@@ -10,7 +10,7 @@
             --text-primary: #f7fafc;
             --text-muted: #a0aec0;
             --accent-coral: #f57758;
-            --accent-orange: #FF8C42;
+            --accent-orange: #d96216; /* Darkened from #FF8C42 */
             --border-color: #384152;
         }
 
@@ -208,7 +208,7 @@
             background: transparent;
             border: 30px solid var(--accent-orange); 
             border-radius: 50%;
-            z-index: 2;
+            z-index: 1;
             /* Strong glow effect */
             box-shadow: 0 0 40px rgba(255, 140, 66, 0.6), inset 0 0 20px rgba(255, 140, 66, 0.4);
             animation: pulse 3s ease-in-out infinite;
@@ -232,7 +232,7 @@
 
         .profile-container {
             position: relative;
-            z-index: 3;
+            z-index: 2;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -252,24 +252,23 @@
             align-items: flex-end;
             justify-content: center;
             position: relative;
-            z-index: 4;
+            z-index: 3;
         }
 
         .profile-circle img {
-            width: 85%; /* Adjusted fit within the ring visual */
-            height: 115%; /* Sufficient pop-out */
-            object-fit: contain; /* Keep aspect ratio clean */
-            object-fit: cover;
+            width: 125%; /* Slightly increased to cover bottom */
+            height: 145%; /* Keep proportions correct */
+            object-fit: contain;
             position: absolute;
-            bottom: 0;
+            bottom: -20%; /* Lowered so base drops smoothly towards the fade out */
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
             /* Drop shadow for the person to separate from background */
             filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
-            /* Fade out the bottom of the image */
-            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+            /* Dark gradient fade applied STRICTLY to the image bottom ends */
+            mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
         }
 
         .profile-placeholder {
@@ -283,7 +282,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            z-index: 1;
+            z-index: 3;
             pointer-events: none;
         }
 
@@ -636,18 +635,18 @@
             }
 
             .profile-circle img {
-                width: 85%;
-                height: 115%;
-                object-fit: cover;
+                width: 130%;
+                height: 150%;
+                object-fit: contain;
                 /* border-radius: 50%; */
                 position: absolute;
-                bottom: 0;
+                bottom: -20%;
                 top: auto;
                 left: 50%;
                 transform: translateX(-50%);
                 z-index: 10;
-                mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-                -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+                mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+                -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
             }
 
             .profile-placeholder {
