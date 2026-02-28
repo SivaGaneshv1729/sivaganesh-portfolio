@@ -119,56 +119,119 @@
         </div>
     </section>
 
-    <!-- About & Services Side-by-Side Section -->
-    <section class="about-services">
+    <!-- Skills Auto-Scrolling Marquee -->
+    <div class="skills-marquee-container">
+        <div class="skills-marquee">
+            <span>HTML5</span>
+            <span class="dot">★</span>
+            <span>CSS3</span>
+            <span class="dot">★</span>
+            <span>JavaScript</span>
+            <span class="dot">★</span>
+            <span>React</span>
+            <span class="dot">★</span>
+            <span>Node.js</span>
+            <span class="dot">★</span>
+            <span>Python</span>
+            <span class="dot">★</span>
+            <span>Git</span>
+            <span class="dot">★</span>
+            <span>UI/UX Design</span>
+            <span class="dot">★</span>
+            <span>Responsive Web Design</span>
+            <span class="dot">★</span>
+            <!-- Duplicate for infinite scroll effect (same list repeated) -->
+            <span aria-hidden="true">HTML5</span>
+            <span aria-hidden="true" class="dot">★</span>
+            <span aria-hidden="true">CSS3</span>
+            <span aria-hidden="true" class="dot">★</span>
+            <span aria-hidden="true">JavaScript</span>
+            <span aria-hidden="true" class="dot">★</span>
+            <span aria-hidden="true">React</span>
+            <span aria-hidden="true" class="dot">★</span>
+            <span aria-hidden="true">Node.js</span>
+            <span aria-hidden="true" class="dot">★</span>
+            <span aria-hidden="true">Python</span>
+            <span aria-hidden="true" class="dot">★</span>
+            <span aria-hidden="true">Git</span>
+            <span aria-hidden="true" class="dot">★</span>
+            <span aria-hidden="true">UI/UX Design</span>
+            <span aria-hidden="true" class="dot">★</span>
+            <span aria-hidden="true">Responsive Web Design</span>
+            <span aria-hidden="true" class="dot">★</span>
+        </div>
+    </div>
+
+    <!-- Journey & Experience Timeline Section -->
+    <section class="journey-timeline" id="about">
         <div class="container">
-            <div class="about-services-grid">
-                <!-- Services Section -->
-                <div class="services">
-                    <div class="services-timeline">
-                        <div class="timeline-item">
-                            <span class="timeline-dot"></span>
-                            <div class="timeline-content">
-                                <h3>Website Development</h3>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-dot"></span>
-                            <div class="timeline-content">
-                                <h3>AI Engineer</h3>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-dot"></span>
-                            <div class="timeline-content">
-                                <h3>Website Hosting</h3>
-                            </div>
-                        </div>
+            <h2 class="section-title" style="text-align: center; margin-bottom: 1rem;">My Journey</h2>
+            
+            <div class="about-intro" style="text-align: center; max-width: 800px; margin: 0 auto 4rem;">
+                <p class="about-text" style="color: var(--text-muted); font-size: 1.125rem; margin-bottom: 2rem;">
+                    I started my software journey from photography. Through that, I learned to 
+                    love the process of creating visual content. Since then, I have expanded my 
+                    skills to include software engineering and web development while pursuing my Bachelor's degree.
+                </p>
+                <div class="stats-grid" style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
+                    <div class="stat">
+                        <div class="stat-number">120<span class="accent">+</span></div>
+                        <p class="stat-label">Completed Projects</p>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">95<span class="accent">%</span></div>
+                        <p class="stat-label">Client satisfaction</p>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">10<span class="accent">+</span></div>
+                        <p class="stat-label">Years of experience</p>
                     </div>
                 </div>
-                <!-- About Section -->
-                <div class="about">
-                    <h2 class="section-title">About me</h2>
-                    <p class="about-text">
-                        I started my software journey from photography. Through that, I learned to 
-                        love the process of creating visual content. Since then, I have expanded my 
-                        skills to include web development, and software development as it fulfills my love for learning and building things.
-                    </p>
-                    <div class="stats-grid">
-                        <div class="stat">
-                            <div class="stat-number">120<span class="accent">+</span></div>
-                            <p class="stat-label">Completed Projects</p>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">95<span class="accent">%</span></div>
-                            <p class="stat-label">Client satisfaction</p>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">10<span class="accent">+</span></div>
-                            <p class="stat-label">Years of experience</p>
-                        </div>
+            </div>
+
+            <!-- Modern Alternating Timeline -->
+            <div class="timeline-wrapper">
+                
+                <!-- Timeline Item 1 (Left) -->
+                <div class="timeline-box left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020 - 2024</div>
+                        <h3>Bachelor of Science in Computer Science</h3>
+                        <h4>University Name</h4>
+                        <p>Focused on Software Engineering, Data Structures, and AI. Built multiple full-stack applications and learned the core fundamentals of computing.</p>
                     </div>
                 </div>
+
+                <!-- Timeline Item 2 (Right) -->
+                <div class="timeline-box right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023</div>
+                        <h3>AI Engineering Intern</h3>
+                        <h4>Tech Startup</h4>
+                        <p>Developed machine learning pipelines and worked closely with large language models to automate internal data analytics processes.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 (Left) -->
+                <div class="timeline-box left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - Present</div>
+                        <h3>Freelance Web Developer</h3>
+                        <h4>Self-Employed</h4>
+                        <p>Delivered numerous modern, responsive, and high-performance websites for clients globally, maintaining a high satisfaction rate.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 4 (Right) -->
+                <div class="timeline-box right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021</div>
+                        <h3>The Visual Beginnings</h3>
+                        <h4>Photography & Design</h4>
+                        <p>Transitioned from visual arts to software, leveraging my eye for design to create beautiful, user-centric interfaces and portfolios.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -399,13 +462,13 @@ console.log(calculate(num1, num2));
             contactForm.reset();
         });
 
-        // Add animation on scroll
+        // Add animation on scroll for standard elements
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const stdObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
@@ -414,12 +477,25 @@ console.log(calculate(num1, num2));
             });
         }, observerOptions);
 
-        // Observe sections for animation
+        // Observe elements for standard animation
         document.querySelectorAll('.service-card, .project-item, .stat').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
+            stdObserver.observe(el);
+        });
+
+        // Timeline Animation Observer
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-show');
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.timeline-box').forEach(el => {
+            timelineObserver.observe(el);
         });
 
         // Active navigation highlight
