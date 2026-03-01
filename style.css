@@ -14,6 +14,17 @@
             --border-color: #384152;
         }
 
+        /* Light Theme overrides */
+        body.light-theme {
+            --bg-dark: #f8f9fa;
+            --bg-card: #ffffff;
+            --text-primary: #1a202c;
+            --text-muted: #4a5568;
+            --accent-coral: #ed6442;
+            --accent-orange: #c8530d;
+            --border-color: #e2e8f0;
+        }
+
         html, body {
             overflow-x: hidden;
         }
@@ -35,33 +46,45 @@
             padding: 0 2rem;
         }
 
-        /* Header */
+        /* Floating Glassmorphism Header */
         .header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 20px; /* Floating slightly below the top */
+            left: 50%;
+            transform: translateX(-50%); /* Center it */
             z-index: 1000;
-            background: rgba(26, 32, 44, 0.8);
+            background: rgba(37, 45, 58, 0.4); /* Glassmorphism background matching the marquee */
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(56, 65, 82, 0.5); /* Subtle border like the marquee */
+            border-radius: 50px; /* Fully rounded pill shape */
+            padding: 0 1rem;
+            width: 90%; /* Responsive width */
+            max-width: 550px; /* Don't let it get too wide on large screens */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for floating effect */
+            transition: all 0.3s ease;
         }
 
         .header-content {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 1rem 0;
+            padding: 0.8rem 0; /* Vertical padding */
+            width: 100%;
         }
 
         .logo {
             font-size: 1.25rem;
             font-weight: bold;
+            color: var(--text-primary);
         }
 
         .nav {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
         }
 
         .nav-link {
@@ -70,8 +93,45 @@
             transition: color 0.3s;
         }
 
-        .nav-link:hover {
+        .nav-link:hover, .nav-link.active {
             color: var(--accent-coral);
+            font-weight: 500;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 5%; /* completely separate from the centered pill container */
+            z-index: 1001; /* float over everything else */
+            background: rgba(37, 45, 58, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(56, 65, 82, 0.5);
+            color: var(--text-primary);
+            cursor: pointer;
+            border-radius: 50%;
+            height: 48px;
+            width: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(56, 65, 82, 0.6);
+            transform: translateY(-2px);
+        }
+
+        body.light-theme .theme-toggle {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #1a202c;
+        }
+
+        body.light-theme .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .menu-toggle {
@@ -81,6 +141,7 @@
             background: none;
             border: none;
             cursor: pointer;
+            padding: 5px;
         }
 
         .menu-toggle span {
@@ -95,7 +156,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 80px;
+            padding-top: 100px; /* Give a bit more top padding to clear the floating header */
             background: linear-gradient(135deg, #1a202c 0%, #2d1b1b 50%, #1a202c 100%);
         }
 
@@ -593,13 +654,20 @@
             .nav {
                 display: none;
                 position: absolute;
-                top: 100%;
+                top: 120%; /* Drop down below the header */
                 left: 0;
                 right: 0;
-                background: var(--bg-dark);
+                width: 100%;
+                justify-content: center;
+                background: rgba(37, 45, 58, 0.95); /* Deeper glass for dropdown */
+                backdrop-filter: blur(10px);
                 flex-direction: column;
-                padding: 1rem 2rem;
-                border-top: 1px solid var(--border-color);
+                align-items: center;
+                padding: 1.5rem 2rem;
+                gap: 1.5rem;
+                border: 1px solid rgba(56, 65, 82, 0.5);
+                border-radius: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             }
 
             .nav.active {
@@ -684,6 +752,28 @@
         }
 
         /* Skills Marquee Section */
+        .marquee-wrapper {
+            position: relative;
+            width: 100%;
+            margin-top: -2rem; /* Pulled up closer to hero section */
+            z-index: 5;
+        }
+
+        .decorative-marquee-bg {
+            content: '';
+            position: absolute;
+            width: 105vw;
+            height: 48px; /* Match approximately the thickness of the scrolling bar */
+            background: rgba(217, 98, 22, 0.4); /* Darker version of the orange accent */
+            border-top: 1px solid rgba(217, 98, 22, 0.5);
+            border-bottom: 1px solid rgba(217, 98, 22, 0.5);
+            left: -2.5vw;
+            top: 50%;
+            transform: translateY(-50%) rotate(2deg); /* Opposite tilt */
+            z-index: 1; /* Behind the scrolling marquee */
+            backdrop-filter: blur(5px);
+        }
+
         .skills-marquee-container {
             width: 105vw; /* Slightly thicker than screen to hide rotation gaps */
             overflow: hidden;
@@ -694,7 +784,6 @@
             white-space: nowrap;
             position: relative;
             z-index: 10;
-            margin-top: -2rem; /* Pull up closer to hero section */
             transform: rotate(-2deg); /* The modern tilt */
             margin-left: -2.5vw; /* Re-center after wide width */
             backdrop-filter: blur(5px); /* Add a slight blur to background for modern look */

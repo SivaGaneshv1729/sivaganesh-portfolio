@@ -8,22 +8,33 @@
     <meta name="description" content="Software Developer specializing in web development, app development, and hosting.">
 </head>
 <body>
+    <!-- Theme Toggle (Separate from Header) -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <!-- Sun Icon for Light Mode -->
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <!-- Moon Icon for Dark Mode -->
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+
     <!-- Header -->
     <header class="header">
-        <div class="container">
+        <div class="container" style="padding: 0;">
             <div class="header-content">
-                <h1 class="logo">Jensen Omega</h1>
+                <!-- <h1 class="logo">Jensen Omega</h1> -->
                 <nav class="nav" id="nav">
                     <a href="#home" class="nav-link">Home</a>
                     <a href="#about" class="nav-link">About</a>
-                    <a href="#projects" class="nav-link">Projects</a>
-                    <a href="#contacts" class="nav-link">Contacts</a>
+                    <a href="#projects" class="nav-link">Work</a>
+                    <a href="#blog" class="nav-link">Blog</a>
+                    <a href="#contacts" class="nav-link">Book a Call</a>
                 </nav>
-                <button class="menu-toggle" id="menuToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <div class="header-actions" style="display: flex; gap: 1rem; align-items: center;">
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -120,7 +131,9 @@
     </section>
 
     <!-- Skills Auto-Scrolling Marquee -->
-    <div class="skills-marquee-container">
+    <div class="marquee-wrapper">
+        <div class="decorative-marquee-bg"></div>
+        <div class="skills-marquee-container">
         <div class="skills-marquee">
             <span>HTML5</span>
             <span class="dot">★</span>
@@ -160,6 +173,7 @@
             <span aria-hidden="true">Responsive Web Design</span>
             <span aria-hidden="true" class="dot">★</span>
         </div>
+    </div>
     </div>
 
     <!-- Journey & Experience Timeline Section -->
@@ -514,6 +528,36 @@ console.log(calculate(num1, num2));
                     navLink.classList.add('active');
                 }
             });
+        });
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const sunIcon = document.querySelector('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+
+        // Check for saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            body.classList.add('light-theme');
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
+        } else {
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-theme');
+            
+            if (body.classList.contains('light-theme')) {
+                localStorage.setItem('theme', 'light');
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            } else {
+                localStorage.setItem('theme', 'dark');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            }
         });
     </script>
 </body>
