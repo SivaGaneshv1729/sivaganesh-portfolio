@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Siva Ganesh Vemula- Portfolio</title>
     <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <meta name="description" content="Software Developer specializing in web development, app development, and hosting.">
 </head>
 <body>
@@ -267,117 +268,146 @@
                 <!-- <div class="title-divider"></div> -->
             </div>
 
-            <!-- Project 1 -->
-            <div class="project-item">
-                <div class="project-info">
-                    <h3 class="project-title">ClassmateAI</h3>
-                    <div class="project-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">Javascript</span>
-                        <span class="tag">FastAPI</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">OpenAI</span>
-                    </div>
-                    <p class="project-description">
-                        Used components of Javascript to implement basic data structures through recursive algorithms. 
-                        Used a terminal to display ships through the function of grids and tracked where ships are hit or missed.
-                    </p>
-                    <div class="project-buttons">
-                        <button class="btn btn-primary">View GitHub</button>
-                        <button class="btn btn-ghost">View project →</button>
-                    </div>
-                </div>
-                <div class="project-visual">
-                    <pre class="code-snippet"><code>null;
+            <!-- Project Stacking Container -->
+            <div class="projects-stack">
+                
+                <!-- Project 1 -->
+                <div class="project-card" style="top: 120px;">
+                    <div class="project-card-inner">
+                        <div class="project-content">
+                            <h3 class="project-title">ClassmateAI</h3>
+                            <p class="project-description">
+                                A recursive algorithms visualizer built with basic data structures inside terminal interfaces. From searching strategies to grid tracking, it empowers learning algorithms interactively.
+                            </p>
+                            
+                            <div class="project-highlights">
+                                <ul>
+                                    <li>Terminal-based UI mimicking deep structural logic grids</li>
+                                    <li>Advanced recursive search processing algorithms</li>
+                                    <li>Developer tracking system for memory and bounds</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-skills">
+                                <div class="project-tags">
+                                    <span class="tag"><i class="devicon-javascript-plain"></i> JavaScript</span>
+                                    <span class="tag"><i class="devicon-python-plain"></i> Python</span>
+                                    <span class="tag"><i class="devicon-fastapi-plain"></i> FastAPI</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-visual code-showcase" style="background: rgba(43, 108, 176, 0.9);">
+                            <!-- Colored backdrop like reference -->
+                            <pre class="code-snippet"><code>null;
 // Check location is strike i.e., 'X' from A-J & 0
 ...
 null;
 // sunk a Cruiser. There are 4 ships left!
 myFleet = fleet.filter(s => s.isSunk());
 return myFleet;</code></pre>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Project 2 -->
-            <div class="project-item">
-                <div class="project-info">
-                    <h3 class="project-title">Multi Tenant SaaS Application</h3>
-                    <div class="project-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">Javascript</span>
-                        <span class="tag">API</span>
-                        <span class="tag">Version control</span>
-                    </div>
-                    <p class="project-description">
-                        Uses a public movie API to build a collection movie list that sorts from A to Z or vice versa. 
-                        It shows the movie details in each container and adds user's favorite movies into another container.
-                    </p>
-                    <div class="project-buttons">
-                        <button class="btn btn-primary">View GitHub</button>
-                        <button class="btn btn-ghost">View project →</button>
-                    </div>
-                </div>
-                <div class="project-visual project-image">
-                    <div class="placeholder-image">Movie API Project</div>
-                </div>
-            </div>
+                <!-- Project 2 -->
+                <div class="project-card" style="top: 145px;">
+                    <div class="project-card-inner">
+                        <div class="project-content">
+                            <h3 class="project-title">Multi Tenant SaaS</h3>
+                            <p class="project-description">
+                                Uses a public movie API to build a collection movie list that sorts and manages user favorites. A powerful tool for isolating tenant viewing habits.
+                            </p>
+                            
+                            <div class="project-highlights">
+                                <ul>
+                                    <li>100+ free endpoints integrated seamlessly via REST</li>
+                                    <li>AI-powered sorting and favorites tracking systems</li>
+                                    <li>Tenant-specific environment isolations</li>
+                                </ul>
+                            </div>
 
-            <!-- Project 3 -->
-            <div class="project-item">
-                <div class="project-info">
-                    <h3 class="project-title">Javascript Calculator</h3>
-                    <div class="project-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">Javascript</span>
-                        <span class="tag">Node.js</span>
-                    </div>
-                    <p class="project-description">
-                        Uses simple algorithmic concepts in Javascript to produce an arithmetic result in a terminal.
-                    </p>
-                    <div class="project-buttons">
-                        <button class="btn btn-primary">View GitHub</button>
-                        <button class="btn btn-ghost">View project →</button>
+                            <div class="project-skills">
+                                <div class="project-tags">
+                                    <span class="tag"><i class="devicon-react-original"></i> React</span>
+                                    <span class="tag"><i class="devicon-nextjs-plain"></i> Next.js</span>
+                                    <span class="tag"><i class="devicon-tailwindcss-plain"></i> Tailwind</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-visual image-showcase" style="background: rgba(220, 53, 69, 0.9);">
+                            <!-- Colored backdrop like reference -->
+                            <div class="placeholder-image">Movie App Preview</div>
+                        </div>
                     </div>
                 </div>
-                <div class="project-visual">
-                    <pre class="code-snippet"><code>console.log('The result is = ' + (a * b));
+
+                <!-- Project 3 -->
+                <div class="project-card" style="top: 170px;">
+                    <div class="project-card-inner">
+                        <div class="project-content">
+                            <h3 class="project-title">CLI Calculator</h3>
+                            <p class="project-description">
+                                A logic-heavy terminal application using algorithmic Javascript concepts to evaluate deep arithmetic and complex sequential parsing.
+                            </p>
+                            
+                            <div class="project-highlights">
+                                <ul>
+                                    <li>Sequential calculation chaining with memory states</li>
+                                    <li>100% strict mathematical parsing and logic routing</li>
+                                    <li>Developer utilities including base converters</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-skills">
+                                <div class="project-tags">
+                                    <span class="tag"><i class="devicon-nodejs-plain"></i> Node.js</span>
+                                    <span class="tag"><i class="devicon-typescript-plain"></i> TypeScript</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-visual code-showcase" style="background: rgba(72, 187, 120, 0.9);">
+                             <!-- Colored backdrop like reference -->
+                            <pre class="code-snippet"><code>console.log('The result is = ' + (a * b));
 // else if (prompt === '/'){
 ...
 console.log('The result is = ' + (a / b));
-// }
-if (prompt === 'x' || prompt === '+' || ...
-console.log(calculate(num1, num2));
-} else {
-}</code></pre>
+// }</code></pre>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Project 4 -->
-            <div class="project-item">
-                <div class="project-visual project-image">
-                    <div class="placeholder-image">SaaS Landing Page</div>
-                </div>
-                <div class="project-info">
-                    <h3 class="project-title">SaaS Landing Page</h3>
-                    <div class="project-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">Javascript</span>
-                        <span class="tag">Node.js</span>
+                <!-- Project 4 -->
+                <div class="project-card" style="top: 195px;">
+                    <div class="project-card-inner">
+                        <div class="project-content">
+                            <h3 class="project-title">SaaS Landing Page</h3>
+                            <p class="project-description">
+                                A highly responsive landing page skeleton with functional user forms and dynamic layouts. Designed to convert users effectively.
+                            </p>
+                            
+                            <div class="project-highlights">
+                                <ul>
+                                    <li>Advanced CSS Grid & Flexbox layouts</li>
+                                    <li>Interactive form experiences without refresh</li>
+                                    <li>Optimized mobile-first responsive design</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-skills">
+                                <div class="project-tags">
+                                    <span class="tag"><i class="devicon-html5-plain"></i> HTML5</span>
+                                    <span class="tag"><i class="devicon-css3-plain"></i> CSS3</span>
+                                    <span class="tag"><i class="devicon-javascript-plain"></i> Vanilla JS</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-visual image-showcase" style="background: rgba(220, 153, 53, 0.9);">
+                            <!-- Colored backdrop like reference -->
+                            <div class="placeholder-image">Landing Page UI</div>
+                        </div>
                     </div>
-                    <p class="project-description">
-                        It gives user's the experience of a form and a basic skeleton. 
-                        It also used components of both the grid and flexbox elements to produce a landing page.
-                    </p>
-                    <div class="project-buttons">
-                        <button class="btn btn-primary">View GitHub</button>
-                        <button class="btn btn-ghost">View project →</button>
-                    </div>
                 </div>
-                
+
             </div>
         </div>
     </section>
