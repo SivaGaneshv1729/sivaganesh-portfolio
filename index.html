@@ -8,6 +8,11 @@
     <meta name="description" content="Software Developer specializing in web development, app development, and hosting.">
 </head>
 <body>
+    <!-- Detached SG Logo -->
+    <a href="#home" class="detached-logo" aria-label="Home">
+        <img src="sg logo.jpg" alt="SG Logo">
+    </a>
+
     <!-- Theme Toggle (Separate from Header) -->
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
         <!-- Sun Icon for Light Mode -->
@@ -204,7 +209,11 @@
             </div>
 
             <!-- Modern Alternating Timeline -->
-            <div class="timeline-wrapper">
+            <div class="timeline-wrapper" id="timelineWrapper">
+                <!-- Scroll Progress Line & Traveling Dot -->
+                <div class="timeline-progress" id="timelineProgress">
+                    <div class="timeline-dot"></div>
+                </div>
                 
                 <!-- Timeline Item 1 (Left) -->
                 <div class="timeline-box left">
@@ -528,6 +537,34 @@ console.log(calculate(num1, num2));
                     navLink.classList.add('active');
                 }
             });
+
+            // Timeline Progress Line calculation
+            const timelineWrapper = document.getElementById('timelineWrapper');
+            const timelineProgress = document.getElementById('timelineProgress');
+            const timelineBoxes = document.querySelectorAll('.timeline-box');
+            
+            if (timelineWrapper && timelineProgress) {
+                const wrapperRect = timelineWrapper.getBoundingClientRect();
+                const wrapperTop = wrapperRect.top + scrollY;
+                const wrapperHeight = timelineWrapper.offsetHeight;
+                
+                // Calculate how much of the timeline is scrolled past the middle of the viewport
+                const viewportMiddle = scrollY + window.innerHeight / 2;
+                let progress = Math.max(0, viewportMiddle - wrapperTop);
+                progress = Math.min(progress, wrapperHeight); // Cap at max height
+                
+                timelineProgress.style.height = progress + 'px';
+
+                // Light up dots as the line reaches them
+                timelineBoxes.forEach(box => {
+                    const boxTop = box.getBoundingClientRect().top + scrollY;
+                    if (progress >= (boxTop - wrapperTop)) {
+                        box.classList.add('active-node');
+                    } else {
+                        box.classList.remove('active-node');
+                    }
+                });
+            }
         });
         // Theme Toggle Functionality
         const themeToggle = document.getElementById('themeToggle');
