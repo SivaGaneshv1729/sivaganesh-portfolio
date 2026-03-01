@@ -183,7 +183,7 @@
     </div>
 
     <!-- Journey & Experience Timeline Section -->
-    <section class="journey-timeline" id="about">
+    <section class="journey-timeline" id="about" style="position: relative; overflow: hidden;">
         <div class="container">
             <h2 class="section-title" style="text-align: center; margin-bottom: 1rem;">My Journey</h2>
             
@@ -209,53 +209,67 @@
                 </div>
             </div>
 
-            <!-- Modern Alternating Timeline -->
-            <div class="timeline-wrapper" id="timelineWrapper">
-                <!-- Scroll Progress Line & Traveling Dot -->
-                <div class="timeline-progress" id="timelineProgress">
-                    <div class="timeline-dot"></div>
-                </div>
-                
-                <!-- Timeline Item 1 (Left) -->
-                <div class="timeline-box left">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2020 - 2024</div>
-                        <h3>Bachelor of Science in Computer Science</h3>
-                        <h4>University Name</h4>
-                        <p>Focused on Software Engineering, Data Structures, and AI. Built multiple full-stack applications and learned the core fundamentals of computing.</p>
+            <!-- Modern Horizontal Timeline -->
+            <div class="timeline-scroll-container" id="timelineScrollContainer">
+                <div class="timeline-track-horizontal" id="timelineTrackHorizontal">
+                    <div class="timeline-progress-horizontal" id="timelineProgressHorizontal">
+                        <div class="timeline-dot-horizontal" id="timelineDotHorizontal"></div>
                     </div>
                 </div>
 
-                <!-- Timeline Item 2 (Right) -->
-                <div class="timeline-box right">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023</div>
-                        <h3>AI Engineering Intern</h3>
-                        <h4>Tech Startup</h4>
-                        <p>Developed machine learning pipelines and worked closely with large language models to automate internal data analytics processes.</p>
-                    </div>
-                </div>
+                <div class="timeline-items" id="timelineItems">
+                        <!-- Timeline Item 1 -->
+                        <div class="timeline-box horizontal">
+                            <div class="timeline-top">
+                                <div class="timeline-org">University Name</div>
+                                <div class="timeline-duration">2020 - 2024</div>
+                            </div>
+                            <div class="timeline-connector"></div>
+                            <div class="timeline-bottom">
+                                <h3 class="timeline-title">Bachelor of Science in Computer Science</h3>
+                                <p class="timeline-description">Focused on Software Engineering, Data Structures, and AI. Built multiple full-stack applications and learned the core fundamentals of computing.</p>
+                            </div>
+                        </div>
 
-                <!-- Timeline Item 3 (Left) -->
-                <div class="timeline-box left">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2022 - Present</div>
-                        <h3>Freelance Web Developer</h3>
-                        <h4>Self-Employed</h4>
-                        <p>Delivered numerous modern, responsive, and high-performance websites for clients globally, maintaining a high satisfaction rate.</p>
-                    </div>
-                </div>
+                        <!-- Timeline Item 2 -->
+                        <div class="timeline-box horizontal">
+                            <div class="timeline-top">
+                                <div class="timeline-org">Tech Startup</div>
+                                <div class="timeline-duration">2023</div>
+                            </div>
+                            <div class="timeline-connector"></div>
+                            <div class="timeline-bottom">
+                                <h3 class="timeline-title">AI Engineering Intern</h3>
+                                <p class="timeline-description">Developed machine learning pipelines and worked closely with large language models to automate internal data analytics processes.</p>
+                            </div>
+                        </div>
 
-                <!-- Timeline Item 4 (Right) -->
-                <div class="timeline-box right">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2021</div>
-                        <h3>The Visual Beginnings</h3>
-                        <h4>Photography & Design</h4>
-                        <p>Transitioned from visual arts to software, leveraging my eye for design to create beautiful, user-centric interfaces and portfolios.</p>
-                    </div>
-                </div>
+                        <!-- Timeline Item 3 -->
+                        <div class="timeline-box horizontal">
+                            <div class="timeline-top">
+                                <div class="timeline-org">Self-Employed</div>
+                                <div class="timeline-duration">2022 - Present</div>
+                            </div>
+                            <div class="timeline-connector"></div>
+                            <div class="timeline-bottom">
+                                <h3 class="timeline-title">Freelance Web Developer</h3>
+                                <p class="timeline-description">Delivered numerous modern, responsive, and high-performance websites for clients globally, maintaining a high satisfaction rate.</p>
+                            </div>
+                        </div>
 
+                        <!-- Timeline Item 4 -->
+                        <div class="timeline-box horizontal">
+                            <div class="timeline-top">
+                                <div class="timeline-org">Photography & Design</div>
+                                <div class="timeline-duration">2021</div>
+                            </div>
+                            <div class="timeline-connector"></div>
+                            <div class="timeline-bottom">
+                                <h3 class="timeline-title">The Visual Beginnings</h3>
+                                <p class="timeline-description">Transitioned from visual arts to software, leveraging my eye for design to create beautiful, user-centric interfaces and portfolios.</p>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </section>
@@ -568,34 +582,84 @@ console.log('The result is = ' + (a / b));
                 }
             });
 
-            // Timeline Progress Line calculation
-            const timelineWrapper = document.getElementById('timelineWrapper');
-            const timelineProgress = document.getElementById('timelineProgress');
-            const timelineBoxes = document.querySelectorAll('.timeline-box');
-            
-            if (timelineWrapper && timelineProgress) {
-                const wrapperRect = timelineWrapper.getBoundingClientRect();
-                const wrapperTop = wrapperRect.top + scrollY;
-                const wrapperHeight = timelineWrapper.offsetHeight;
-                
-                // Calculate how much of the timeline is scrolled past the middle of the viewport
-                const viewportMiddle = scrollY + window.innerHeight / 2;
-                let progress = Math.max(0, viewportMiddle - wrapperTop);
-                progress = Math.min(progress, wrapperHeight); // Cap at max height
-                
-                timelineProgress.style.height = progress + 'px';
+            // We moved the timeline to horizontal scrolling. Let's keep other active nav intact.
+        });
 
-                // Light up dots as the line reaches them
-                timelineBoxes.forEach(box => {
-                    const boxTop = box.getBoundingClientRect().top + scrollY;
-                    if (progress >= (boxTop - wrapperTop)) {
+        // Horizontal Timeline native scroll calculation
+        const timelineScrollContainer = document.getElementById('timelineScrollContainer');
+        const timelineProgressHorizontal = document.getElementById('timelineProgressHorizontal');
+        const timelineDotHorizontal = document.getElementById('timelineDotHorizontal');
+        const timelineBoxesHorizontal = document.querySelectorAll('.timeline-box.horizontal');
+
+        if (timelineScrollContainer && timelineProgressHorizontal) {
+            
+            const handleTimelineScroll = () => {
+                // Get the left padding/offset to accurately calculate items relative to the start
+                const scrollLeft = timelineScrollContainer.scrollLeft;
+                const scrollWidth = timelineScrollContainer.scrollWidth;
+                const clientWidth = timelineScrollContainer.clientWidth;
+                
+                // Calculate progress as a percentage
+                let maxScroll = scrollWidth - clientWidth;
+                let scrollPercent = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
+                
+                // Update line and dot
+                timelineProgressHorizontal.style.width = scrollPercent + '%';
+                if (timelineDotHorizontal) {
+                    timelineDotHorizontal.style.left = scrollPercent + '%';
+                }
+
+                // The glowing dot's physical position relative to the scroll container's viewport
+                const dotViewX = (scrollPercent / 100) * clientWidth;
+                
+                timelineBoxesHorizontal.forEach(box => {
+                    // Box position relative to the scroll container's current viewport
+                    const boxLeftRelativeToViewport = box.offsetLeft - scrollLeft;
+                    
+                    // Trigger when the dot geometrically traces over the start of the box (with a tiny 20px lead buffer)
+                    if (dotViewX >= boxLeftRelativeToViewport - 20) { 
                         box.classList.add('active-node');
-                    } else {
+                        box.style.opacity = '1';
+                        box.style.transform = 'translateY(0)';
+                    } 
+                    // Re-hide the box if we scroll backwards and the dot moves away
+                    else if (dotViewX < boxLeftRelativeToViewport - 50) {
                         box.classList.remove('active-node');
+                        box.style.opacity = '0';
+                        box.style.transform = 'translateY(30px)';
                     }
                 });
-            }
-        });
+            };
+
+             timelineScrollContainer.addEventListener('scroll', handleTimelineScroll);
+            
+            // Translate vertical wheel scrolls into horizontal scrolling
+            timelineScrollContainer.addEventListener('wheel', (e) => {
+                if (e.deltaY !== 0) {
+                    const scrollLeft = timelineScrollContainer.scrollLeft;
+                    const maxScroll = timelineScrollContainer.scrollWidth - timelineScrollContainer.clientWidth;
+                    
+                    // If at the beginning and scrolling up, allow default vertical scroll up
+                    if (scrollLeft === 0 && e.deltaY < 0) {
+                        return; // Let it scroll the page up
+                    }
+                    
+                    // If at the end and scrolling down, allow default vertical scroll down
+                    // Math.ceil/floor offsets occasionally cause decimal discrepancies, so we use a 1px buffer
+                    if (scrollLeft >= maxScroll - 1 && e.deltaY > 0) {
+                        return; // Let it scroll the page down
+                    }
+                    
+                    // Otherwise, hijack the scroll for horizontal movement
+                    e.preventDefault();
+                    timelineScrollContainer.scrollLeft += e.deltaY;
+                }
+            });
+
+            // Trigger once on load to show initial items
+            setTimeout(handleTimelineScroll, 300);
+        }
+        
         // Theme Toggle Functionality
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;

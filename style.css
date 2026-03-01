@@ -992,114 +992,51 @@
             background-color: var(--bg-dark);
         }
 
-        /* Modern Alternate Timeline Container */
-        .timeline-wrapper {
-            position: relative;
-            max-width: 1000px;
+        /* Modern Horizontal Timeline Container */
+        .timeline-scroll-container {
+            width: 90%;
             margin: 0 auto;
-        }
-
-        /* The central vertical line */
-        .timeline-wrapper::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background-color: var(--border-color);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -2px;
-            border-radius: 2px;
-            z-index: 0;
-        }
-
-        /* The colored progress line that fills down */
-        .timeline-progress {
-            position: absolute;
-            width: 4px;
-            background: linear-gradient(to bottom, var(--accent-coral), var(--accent-orange));
-            top: 0;
-            left: 50%;
-            margin-left: -2px;
-            border-radius: 2px;
-            z-index: 1;
-            height: 0; /* Updated by JS */
-            transition: height 0.1s ease-out;
-        }
-
-        /* The containers pointing to the line */
-        .timeline-box {
-            padding: 10px 40px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* Smooth touch swipe */
             position: relative;
-            width: 50%;
-            box-sizing: border-box;
+            padding: 4rem 0;
+            scrollbar-width: none; /* Firefox */
         }
-
-        /* The dots on the timeline (initial state merged below) */
         
-        /* Align left containers */
-        .left {
+        .timeline-scroll-container::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        /* The central horizontal line - stays sticky in viewport */
+        .timeline-track-horizontal {
+            position: sticky;
             left: 0;
+            top: 35%; /* Shifted upper to sit exactly between top/bottom boxes */
+            width: 100%; /* Match container */
+            height: 4px;
+            background-color: var(--border-color);
+            z-index: 0;
+            transform: translateY(-50%);
         }
 
-        /* Align right containers */
-        .right {
-            left: 50%;
-        }
-
-        /* Connectors pointing to the timeline dot */
-        .left::before {
-            content: " ";
-            height: 0;
+        /* The colored progress line */
+        .timeline-progress-horizontal {
             position: absolute;
-            top: 25px;
-            width: 0;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(to right, var(--accent-coral), var(--accent-orange));
+            width: 0; /* Updated by JS */
             z-index: 1;
-            right: 30px;
-            border: medium solid var(--bg-card);
-            border-width: 10px 0 10px 10px;
-            border-color: transparent transparent transparent var(--bg-card);
+            transition: width 0.1s ease-out;
         }
-
-        .right::before {
-            content: " ";
-            height: 0;
+        
+        /* The tracking dot */
+        .timeline-dot-horizontal {
             position: absolute;
-            top: 25px;
-            width: 0;
-            z-index: 1;
-            left: 30px;
-            border: medium solid var(--bg-card);
-            border-width: 10px 10px 10px 0;
-            border-color: transparent var(--bg-card) transparent transparent;
-        }
-
-        /* The content cards themselves */
-        .timeline-box .timeline-content {
-            padding: 24px 30px;
-            background-color: var(--bg-card);
-            position: relative;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.4s ease-out, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.4s ease-out;
-            opacity: 0;
-        }
-
-        /* Initial hidden states for left and right boxes */
-        .timeline-box.left .timeline-content {
-            transform: translateX(-50px);
-        }
-
-        .timeline-box.right .timeline-content {
-            transform: translateX(50px);
-        }
-
-        /* Single Scrollable Dot */
-        .timeline-dot {
-            position: absolute;
-            bottom: -10px; /* Sticks to the bottom of the progress line */
-            left: 50%;
-            transform: translateX(-50%);
+            top: 35%; /* Matches the track height */
+            left: 0; /* Updated by JS via progress width */
+            transform: translate(-50%, -50%);
             width: 20px;
             height: 20px;
             background-color: var(--accent-coral);
@@ -1107,90 +1044,117 @@
             border-radius: 50%;
             box-shadow: 0 0 15px var(--accent-coral);
             z-index: 2;
+            transition: left 0.1s ease-out;
         }
 
-        /* Render classes tracked by IntersectionObserver */
-        .timeline-box.animate-show .timeline-content {
-            opacity: 1;
-            transform: translateX(0);
+        .timeline-items {
+            display: flex;
+            width: max-content;
+            gap: 10vw; /* Space out items */
+            padding: 0 10vw; /* Reduced buffer so as not to over-scroll at the end */
+            margin-top: -4px; /* Align perfectly over the line */
+            position: relative;
+            z-index: 5;
+            align-items: center;
+            will-change: transform; /* Optimized for smooth hardware scrolling */
         }
 
-        /* Interactive multiple animations on hover */
-        .timeline-box.animate-show .timeline-content:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            border-color: var(--accent-coral);
-            z-index: 10;
+        .timeline-box.horizontal {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+            position: relative;
+            
+            /* Hidden Mask State */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease-out, transform 0.8s ease-out;
         }
 
-        /* When scroll progress hits the node (light up the card instead of dot) */
-        .timeline-box.active-node .timeline-content {
-            border-color: var(--accent-coral);
-            box-shadow: 0 5px 25px rgba(245, 119, 88, 0.2);
+        /* Active highlight when dot hits the box */
+        .timeline-box.horizontal.active-node {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
 
-        .timeline-date {
-            color: var(--accent-coral);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            display: inline-block;
-            background: rgba(245, 119, 88, 0.1);
-            padding: 4px 10px;
-            border-radius: 4px;
+        /* Tab Layouts */
+        .timeline-top {
+            width: 100%;
+            padding: 0;
+            background-color: transparent; /* Remove tab background */
+            border: none;
+            margin-bottom: 0px; /* Spacing from the center track */
+        }
+        
+        .timeline-bottom {
+            width: 100%;
+            padding: 1.5rem;
+            background-color: var(--bg-card); /* Maintain tab here */
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-top: 100px; /* Spacing from the center track */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .timeline-content h3 {
-            font-size: 1.4rem;
-            color: var(--text-primary);
-            margin-bottom: 0.2rem;
-            font-weight: 600;
+        .timeline-org {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s, text-shadow 0.3s;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
         }
 
-        .timeline-content h4 {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .timeline-content p {
-            color: var(--text-muted);
+        .timeline-duration {
             font-size: 0.95rem;
+            color: var(--accent-coral);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 6px 14px;
+            background: rgba(20, 24, 28, 0.8); /* Dark pill background for contrast */
+            border: 1px solid rgba(245, 119, 88, 0.2);
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .timeline-description {
+            color: var(--text-muted);
             line-height: 1.6;
-            margin: 0;
+            font-size: 0.95rem;
         }
 
-        /* Responsive Timeline styling for devices < 768px */
-        @media screen and (max-width: 768px) {
-            .timeline-wrapper::after {
-                left: 31px; /* Move central line left */
-            }
+        .timeline-box.horizontal.active-node .timeline-top,
+        .timeline-box.horizontal.active-node .timeline-bottom {
+            border-color: var(--accent-coral);
+            box-shadow: 0 5px 25px rgba(245, 119, 88, 0.15);
+        }
 
-            .timeline-box {
-                width: 100%; /* Switch to full width boxes */
-                padding-left: 70px;
-                padding-right: 25px;
-            }
+        .timeline-box.horizontal.active-node .timeline-org {
+            color: var(--accent-coral);
+        }
 
-            .timeline-box::after {
-                left: 21px; /* Align dot left */
+        /* Responsive Mobile Layout */
+        @media (max-width: 768px) {
+            .timeline-box.horizontal {
+                width: 280px;
             }
-
-            .right {
-                left: 0; /* Reset right shift */
-            }
-
-            /* Fix arrows to all point left */
-            .left::before, .right::before {
-                left: 60px;
-                border-width: 10px 10px 10px 0;
-                border-color: transparent var(--bg-card) transparent transparent;
+            .timeline-items {
+                gap: 3rem;
             }
         }
+
+
         @media (max-width: 900px) {
             .about-services-grid {
                 grid-template-columns: 1fr;
