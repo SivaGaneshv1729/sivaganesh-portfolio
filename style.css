@@ -25,7 +25,7 @@
             --border-color: #e2e8f0;
         }
 
-        html, body {
+        html {
             overflow-x: hidden;
         }
 
@@ -493,44 +493,80 @@
 
         .projects-header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 3rem; /* Adjusted for split-layout */
+            flex-shrink: 0;
         }
 
-        .projects-stack {
+
+        /* Locked Scroll-Jack Mechanics */
+        .projects-scroll-jack {
+            /* Height is dynamically set by Javascript for a perfect 1:1 scroll ratio */
+            position: relative;
+            margin-bottom: 10vh; /* Buffer to prevent contact section overlap at the very end */
+        }
+
+        .projects-sticky-container {
+            position: sticky;
+            top: 0;
+            height: 100vh; /* Locks the view to the screen */
+            width: 100%;
+            overflow: hidden; /* Prevent native scrolling inside the lock */
+            display: flex;
+            flex-direction: column; /* Fixed: flow top to bottom without centering overflow */
+        }
+        
+        .projects-sticky-container .container.h-full {
+            height: 100%;
             display: flex;
             flex-direction: column;
-            gap: 6rem; /* increased gap for the floating look */
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
+            justify-content: center; /* Center the combined title+columns layout */
         }
 
-        .project-card {
-            position: sticky;
-            /* Top offsets managed inline to create the stacking deck effect */
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            overflow: hidden;
-            transition: transform 0.4s ease, filter 0.4s ease;
-        }
-
-        .project-card-inner {
+        /* Projects Split Layout */
+        .projects-split-layout {
             display: grid;
             grid-template-columns: 0.8fr 1.2fr; /* 40/60 split leaning towards images */
             gap: 4rem;
-            min-height: 480px;
-            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex: 1; /* Fill remaining height below header */
+            min-height: 0; /* Strict boundary handling */
+        }
+
+        /* Left Static Column */
+        .projects-left-column {
+            height: 100%; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center texts specifically within left column */
+        }
+
+        .project-details-container {
+            position: relative;
+            flex: 1;
         }
 
         .project-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             padding: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            pointer-events: none; /* Ignore clicks when hidden */
+        }
+        
+        .project-content.is-active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            z-index: 2;
         }
 
         .project-title {
@@ -561,7 +597,10 @@
         }
 
         .project-highlights h4, .project-skills h4 {
-            display: none; /* Hide headings as per reference */
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .project-highlights ul {
@@ -580,7 +619,7 @@
         }
 
         .project-highlights li::before {
-            content: '✦'; /* or a plus sign */
+            content: ''; /* or a plus sign */
             position: absolute;
             left: 0;
             top: 2px;
@@ -616,44 +655,90 @@
         }
 
         .tag:hover {
-            background: #2d3748;
-            border-color: #4a5568;
-            color: #ffffff;
-            transform: translateY(-2px);
+            background: var(--accent-coral);
+            color: var(--bg-dark);
+            box-shadow: 0 0 15px rgba(245, 119, 88, 0.4);
         }
 
-        .project-buttons {
-            display: none; /* Reference didn't prominently show buttons here, relying on tags/links, but we can keep them if needed. Hidden for now to match exactly. */
+        /* Vertical Scroll Tracker for Projects */
+        .project-scroll-track-wrapper {
+            position: absolute;
+            top: 0;
+            right: -2.5rem; /* Pin strictly to the right edge of the exact left text column, pushing into the gap */
+            left: auto;
+            bottom: 0;
+            width: 2px;
+            z-index: 15;
+            pointer-events: none;
         }
 
-        .project-visual {
-            background: rgba(220, 53, 69, 0.9); /* Deep red background from reference */
+        .project-scroll-track {
+            position: sticky;
+            top: 15vh; /* Matches the left column stickiness */
+            height: 70vh; /* clearly fully visible on screen */
+            width: 2px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .project-scroll-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%; /* JS will grow this from 0 to 100% */
+            background: linear-gradient(to bottom, var(--accent-coral), var(--accent-orange));
+            border-radius: 2px;
+            transition: height 0.1s ease-out;
+        }
+
+        .project-scroll-dot {
+            position: absolute;
+            top: 0; /* JS will move this from 0 to 100% */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 18px;
+            height: 18px;
+            background-color: var(--accent-coral);
+            border: 4px solid var(--bg-card);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(245, 119, 88, 0.8);
+            transition: top 0.1s ease-out;
+        }
+
+        /* Right Scrolling Column */
+        .projects-right-column {
+            position: relative;
+            height: 100%; /* Fill the grid column exactly */
+            overflow: hidden; /* Clip edges strictly */
+            /* Removed flex align-items bugs completely */
+        }
+
+        .projects-visual-track {
+            display: flex;
+            flex-direction: column;
+            gap: 20vh; /* Smooth gaps between images */
+            /* Padding is strictly maintained by precise JS math based on calculated inner element height */
+            /* JS will slide this up and down */
+            transform: translateY(0);
+            will-change: transform;
+            width: 100%;
+        }
+
+        .project-visual-item {
+            background: rgba(220, 53, 69, 0.9); /* Deep default */
             border-radius: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: 2.5rem;
             position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            opacity: 0;
-            transform: translateX(20px);
-            transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s; /* Snappy slight delay */
-        }
-        
-        /* Active Animation Trigger */
-        .project-card.is-active .project-content,
-        .project-card.is-active .project-visual {
-            opacity: 1;
-            transform: translate(0) scale(1);
+            min-height: 480px;
+            
+            /* Intersection state (driven by generic fade observer or custom CSS) */
         }
 
-        /* Dim older stacked cards when pushed behind */
-        .project-card.is-dimmed {
-            filter: brightness(0.4);
-            transform: scale(0.96);
-        }
-
-        /* Adjust internal showcases to fit the new red container */
         .code-showcase .code-snippet, .image-showcase .placeholder-image {
             width: 100%;
             height: 100%;
@@ -666,38 +751,7 @@
         
         .code-showcase .code-snippet {
             padding: 2rem;
-        }
-
-        .tag:hover {
-            background: var(--accent-coral);
-            color: var(--bg-dark);
-            box-shadow: 0 0 15px rgba(245, 119, 88, 0.4);
-        }
-
-        .project-buttons {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: auto;
-        }
-
-        .project-visual {
-            background: rgba(20, 25, 33, 0.6);
-            border-left: 1px solid rgba(255, 255, 255, 0.03);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .code-showcase .code-snippet {
             background: rgba(26, 30, 36, 0.9);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-            width: 100%;
-            border: 1px solid rgba(255,255,255,0.05);
             font-size: 0.85rem;
             color: #a0aec0;
             overflow-x: auto;
@@ -709,10 +763,8 @@
         }
 
         .image-showcase .placeholder-image {
-            width: 100%;
             height: 80%;
             background: linear-gradient(135deg, rgba(245, 119, 88, 0.15), rgba(217, 98, 22, 0.05));
-            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -722,6 +774,29 @@
             border: 1px dashed rgba(245, 119, 88, 0.2);
             box-shadow: 0 10px 40px rgba(0,0,0,0.4);
         }
+
+        /* Hide the vertical track on mobile where the 2-column layout stacks */
+        @media (max-width: 968px) {
+            .projects-split-layout {
+                display: flex;
+                flex-direction: column;
+                gap: 4rem;
+            }
+            .project-scroll-track-wrapper {
+                display: none;
+            }
+            .projects-left-column {
+                position: relative;
+                top: 0;
+                height: auto;
+                min-height: auto;
+            }
+            .projects-right-column {
+                gap: 4rem;
+                padding-bottom: 0;
+            }
+        }
+
 
         /* Contact Section */
         .contact {
