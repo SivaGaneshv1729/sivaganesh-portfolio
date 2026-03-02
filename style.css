@@ -528,6 +528,9 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .project-title {
@@ -632,6 +635,22 @@
             padding: 2rem;
             position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s; /* Snappy slight delay */
+        }
+        
+        /* Active Animation Trigger */
+        .project-card.is-active .project-content,
+        .project-card.is-active .project-visual {
+            opacity: 1;
+            transform: translate(0) scale(1);
+        }
+
+        /* Dim older stacked cards when pushed behind */
+        .project-card.is-dimmed {
+            filter: brightness(0.4);
+            transform: scale(0.96);
         }
 
         /* Adjust internal showcases to fit the new red container */
@@ -1070,14 +1089,14 @@
             
             /* Hidden Mask State */
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.5s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px) scale(0.95);
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Active highlight when dot hits the box */
         .timeline-box.horizontal.active-node {
             opacity: 1 !important;
-            transform: translateY(0) !important;
+            transform: translateY(0) scale(1) !important;
         }
 
         /* Tab Layouts */
@@ -1101,24 +1120,28 @@
 
         .timeline-org {
             font-size: 1.5rem;
-            font-weight: 800;
+            font-weight: 700;
             color: #ffffff;
             margin-bottom: 0.8rem;
-            transition: color 0.3s, text-shadow 0.3s;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            letter-spacing: -0.5px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            transition: color 0.3s ease;
         }
 
         .timeline-duration {
-            font-size: 0.95rem;
-            color: var(--accent-coral);
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            padding: 6px 14px;
-            background: rgba(20, 24, 28, 0.8); /* Dark pill background for contrast */
-            border: 1px solid rgba(245, 119, 88, 0.2);
-            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #ffffff;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 6px 16px;
+            background: linear-gradient(135deg, rgba(245, 119, 88, 0.2), rgba(245, 119, 88, 0.05));
+            border: 1px solid rgba(245, 119, 88, 0.3);
+            border-radius: 30px;
             display: inline-block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            text-transform: uppercase;
         }
 
         .timeline-title {

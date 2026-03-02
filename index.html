@@ -530,26 +530,55 @@ console.log('The result is = ' + (a / b));
         });
 
         // Add animation on scroll for standard elements
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
+        // Standard Fade Up Observer (for hero text, section titles, etc)
         const stdObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
+                    stdObserver.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        // Observe elements for standard animation
-        document.querySelectorAll('.service-card, .project-item, .stat').forEach(el => {
+        document.querySelectorAll('.section-title, .hero-content h1').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             stdObserver.observe(el);
+        });
+
+        // Sticky Stack Project Logic
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        window.addEventListener('scroll', () => {
+            // Find viewport properties
+            projectCards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                
+                // Read the inline sticky "top" offset defined in HTML (e.g., 120px)
+                const stickyOffset = parseInt(card.style.top) || 0;
+                
+                // If the card has scrolled up to (or past) its sticky locking point plus a responsive 250px buffer
+                if (rect.top <= stickyOffset + 250) {
+                    card.classList.add('is-active');
+                    
+                    // Optional: If the NEXT card is also locked/active, dim this current card to feel like it's deeper in the stack.
+                    if (index < projectCards.length - 1) {
+                        const nextCardRect = projectCards[index + 1].getBoundingClientRect();
+                        const nextStickyOffset = parseInt(projectCards[index + 1].style.top) || 0;
+                        
+                        if (nextCardRect.top <= nextStickyOffset + 250) {
+                            card.classList.add('is-dimmed');
+                        } else {
+                            card.classList.remove('is-dimmed');
+                        }
+                    }
+                } else {
+                    card.classList.remove('is-active');
+                    card.classList.remove('is-dimmed');
+                }
+            });
         });
 
         // Timeline Animation Observer
@@ -616,17 +645,13 @@ console.log('The result is = ' + (a / b));
                     // Box position relative to the scroll container's current viewport
                     const boxLeftRelativeToViewport = box.offsetLeft - scrollLeft;
                     
-                    // Trigger when the dot geometrically traces over the start of the box (with a tiny 20px lead buffer)
-                    if (dotViewX >= boxLeftRelativeToViewport - 20) { 
+                    // Trigger when the dot approaches the box (with a highly accurate 40px lead buffer)
+                    if (dotViewX >= boxLeftRelativeToViewport - 40) { 
                         box.classList.add('active-node');
-                        box.style.opacity = '1';
-                        box.style.transform = 'translateY(0)';
                     } 
-                    // Re-hide the box if we scroll backwards and the dot moves away
-                    else if (dotViewX < boxLeftRelativeToViewport - 50) {
+                    // Re-hide smoothly if we scroll backwards
+                    else if (dotViewX < boxLeftRelativeToViewport - 80) {
                         box.classList.remove('active-node');
-                        box.style.opacity = '0';
-                        box.style.transform = 'translateY(30px)';
                     }
                 });
             };
