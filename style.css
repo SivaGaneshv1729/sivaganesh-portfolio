@@ -485,7 +485,104 @@
             color: var(--text-muted);
         }
 
-        /* Projects Section */
+        /* ====================
+           SKILLS SECTION 
+           ==================== */
+        .skills-section {
+            padding: 8rem 0 6rem 0;
+            position: relative;
+            background-color: var(--bg-dark); /* Ensure seamless blending */
+        }
+
+        .skills-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .skills-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 0.2em; /* Wide spacing from reference */
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .skills-title {
+            font-size: 4rem; /* Massive bold typography */
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            display: inline-block;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #6b21a8, #ec4899); /* Deep purple to bright pink */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: Georgia, 'Times New Roman', Times, serif; /* Make it serif cursive/italic */
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        /* Pill Grid Defaults */
+        .skills-pill-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Dark Capsule Design */
+        .skill-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.1rem;
+            padding: 0.8rem 1.6rem;
+            background-color: #111418; /* Extremely dark, nearly black */
+            border: 1px solid #2d3748; /* Subtle structural border */
+            border-radius: 50px; /* Perfect pill shape */
+            color: #e2e8f0;
+            font-size: 1rem;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+        }
+
+        .skill-pill i {
+            font-size: 1rem; /* Make icons prominent */
+        }
+
+        .skill-pill:hover {
+            transform: translateY(-3px);
+            border-color: rgba(236, 72, 153, 0.4); /* Subtle pink glow on border */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Light Theme overrides for pill section */
+        body.light-theme .skill-pill {
+            background-color: #ffffff;
+            border-color: #e2e8f0;
+            color: #1a202c;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        body.light-theme .skills-title {
+            color: #1a202c;
+        }
+
+        @media (max-width: 768px) {
+            .skills-title { font-size: 2.5rem; }
+            .skill-pill { padding: 0.6rem 1.2rem; font-size: 0.95rem; }
+        }
+
+        /* ====================
+           PROJECTS SECTION
+           ==================== */
         .projects {
             padding: 5rem 0;
             position: relative;
@@ -496,7 +593,6 @@
             margin-bottom: 3rem; /* Adjusted for split-layout */
             flex-shrink: 0;
         }
-
 
         /* Locked Scroll-Jack Mechanics */
         .projects-scroll-jack {
