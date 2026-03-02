@@ -275,153 +275,163 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="projects-header">
-                <h2 class="section-title">Projects</h2>
-                <!-- <div class="title-divider"></div> -->
-            </div>
+    <!-- Projects Section -->
+    <section id="projects" class="projects projects-scroll-jack">
+        <div class="projects-sticky-container">
+            <div class="container h-full">
+                <div class="projects-header">
+                    <h2 class="section-title">Projects</h2>
+                </div>
 
-            <!-- Project Stacking Container -->
-            <div class="projects-stack">
-                
-                <!-- Project 1 -->
-                <div class="project-card" style="top: 120px;">
-                    <div class="project-card-inner">
-                        <div class="project-content">
-                            <h3 class="project-title">ClassmateAI</h3>
-                            <p class="project-description">
-                                A recursive algorithms visualizer built with basic data structures inside terminal interfaces. From searching strategies to grid tracking, it empowers learning algorithms interactively.
-                            </p>
-                            
-                            <div class="project-highlights">
-                                <ul>
-                                    <li>Terminal-based UI mimicking deep structural logic grids</li>
-                                    <li>Advanced recursive search processing algorithms</li>
-                                    <li>Developer tracking system for memory and bounds</li>
-                                </ul>
+                <div class="projects-split-layout" id="projectsStack">
+                    
+                    <!-- Left Static Column: Text & Tracker -->
+                    <div class="projects-left-column">
+                        <div class="project-details-container">
+                            <!-- Project 1 Details -->
+                            <div class="project-content is-active" id="project-details-0">
+                                <h3 class="project-title">ClassmateAI</h3>
+                                <p class="project-description">
+                                    A recursive algorithms visualizer built with basic data structures inside terminal interfaces. From searching strategies to grid tracking, it empowers learning algorithms interactively.
+                                </p>
+                                
+                                <div class="project-highlights">
+                                    <h4>Key Highlights</h4>
+                                    <ul>
+                                        <li>Terminal-based UI mimicking deep structural logic grids</li>
+                                        <li>Advanced recursive search processing algorithms</li>
+                                        <li>Developer tracking system for memory and bounds</li>
+                                    </ul>
+                                </div>
+
+                                <div class="project-skills">
+                                    <h4>Tech Stack</h4>
+                                    <div class="project-tags">
+                                        <span class="tag"><i class="devicon-javascript-plain"></i> JavaScript</span>
+                                        <span class="tag"><i class="devicon-python-plain"></i> Python</span>
+                                        <span class="tag"><i class="devicon-fastapi-plain"></i> FastAPI</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="project-skills">
-                                <div class="project-tags">
-                                    <span class="tag"><i class="devicon-javascript-plain"></i> JavaScript</span>
-                                    <span class="tag"><i class="devicon-python-plain"></i> Python</span>
-                                    <span class="tag"><i class="devicon-fastapi-plain"></i> FastAPI</span>
+                            <!-- Project 2 Details -->
+                            <div class="project-content" id="project-details-1">
+                                <h3 class="project-title">Multi Tenant SaaS</h3>
+                                <p class="project-description">
+                                    Uses a public movie API to build a collection movie list that sorts and manages user favorites. A powerful tool for isolating tenant viewing habits.
+                                </p>
+                                
+                                <div class="project-highlights">
+                                    <h4>Key Highlights</h4>
+                                    <ul>
+                                        <li>100+ free endpoints integrated seamlessly via REST</li>
+                                        <li>AI-powered sorting and favorites tracking systems</li>
+                                        <li>Tenant-specific environment isolations</li>
+                                    </ul>
+                                </div>
+
+                                <div class="project-skills">
+                                    <h4>Tech Stack</h4>
+                                    <div class="project-tags">
+                                        <span class="tag"><i class="devicon-react-original"></i> React</span>
+                                        <span class="tag"><i class="devicon-nextjs-plain"></i> Next.js</span>
+                                        <span class="tag"><i class="devicon-tailwindcss-plain"></i> Tailwind</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 3 Details -->
+                            <div class="project-content" id="project-details-2">
+                                <h3 class="project-title">CLI Calculator</h3>
+                                <p class="project-description">
+                                    A logic-heavy terminal application using algorithmic Javascript concepts to evaluate deep arithmetic and complex sequential parsing.
+                                </p>
+                                
+                                <div class="project-highlights">
+                                    <h4>Key Highlights</h4>
+                                    <ul>
+                                        <li>Sequential calculation chaining with memory states</li>
+                                        <li>100% strict mathematical parsing and logic routing</li>
+                                        <li>Developer utilities including base converters</li>
+                                    </ul>
+                                </div>
+
+                                <div class="project-skills">
+                                    <h4>Tech Stack</h4>
+                                    <div class="project-tags">
+                                        <span class="tag"><i class="devicon-nodejs-plain"></i> Node.js</span>
+                                        <span class="tag"><i class="devicon-typescript-plain"></i> TypeScript</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 4 Details -->
+                            <div class="project-content" id="project-details-3">
+                                <h3 class="project-title">SaaS Landing Page</h3>
+                                <p class="project-description">
+                                    A highly responsive landing page skeleton with functional user forms and dynamic layouts. Designed to convert users effectively.
+                                </p>
+                                
+                                <div class="project-highlights">
+                                    <h4>Key Highlights</h4>
+                                    <ul>
+                                        <li>Advanced CSS Grid & Flexbox layouts</li>
+                                        <li>Interactive form experiences without refresh</li>
+                                        <li>Optimized mobile-first responsive design</li>
+                                    </ul>
+                                </div>
+
+                                <div class="project-skills">
+                                    <h4>Tech Stack</h4>
+                                    <div class="project-tags">
+                                        <span class="tag"><i class="devicon-html5-plain"></i> HTML5</span>
+                                        <span class="tag"><i class="devicon-css3-plain"></i> CSS3</span>
+                                        <span class="tag"><i class="devicon-javascript-plain"></i> Vanilla JS</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="project-visual code-showcase" style="background: rgba(43, 108, 176, 0.9);">
-                            <!-- Colored backdrop like reference -->
-                            <pre class="code-snippet"><code>null;
+
+                        <!-- Vertical Progress Tracker explicitly on the right edge of LEFT column -->
+                        <div class="project-scroll-track-wrapper">
+                            <div class="project-scroll-track">
+                                <div class="project-scroll-line" id="projectScrollLine"></div>
+                                <div class="project-scroll-dot" id="projectScrollDot"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Scrolling Column: Images (Will be translated via JS) -->
+                    <div class="projects-right-column">
+                        <div class="projects-visual-track" id="projectVisualTrack">
+                            <div class="project-visual code-showcase project-visual-item" data-index="0" style="background: rgba(43, 108, 176, 0.9);">
+                                <pre class="code-snippet"><code>null;
 // Check location is strike i.e., 'X' from A-J & 0
 ...
 null;
 // sunk a Cruiser. There are 4 ships left!
 myFleet = fleet.filter(s => s.isSunk());
 return myFleet;</code></pre>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card" style="top: 145px;">
-                    <div class="project-card-inner">
-                        <div class="project-content">
-                            <h3 class="project-title">Multi Tenant SaaS</h3>
-                            <p class="project-description">
-                                Uses a public movie API to build a collection movie list that sorts and manages user favorites. A powerful tool for isolating tenant viewing habits.
-                            </p>
-                            
-                            <div class="project-highlights">
-                                <ul>
-                                    <li>100+ free endpoints integrated seamlessly via REST</li>
-                                    <li>AI-powered sorting and favorites tracking systems</li>
-                                    <li>Tenant-specific environment isolations</li>
-                                </ul>
                             </div>
 
-                            <div class="project-skills">
-                                <div class="project-tags">
-                                    <span class="tag"><i class="devicon-react-original"></i> React</span>
-                                    <span class="tag"><i class="devicon-nextjs-plain"></i> Next.js</span>
-                                    <span class="tag"><i class="devicon-tailwindcss-plain"></i> Tailwind</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-visual image-showcase" style="background: rgba(220, 53, 69, 0.9);">
-                            <!-- Colored backdrop like reference -->
-                            <div class="placeholder-image">Movie App Preview</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card" style="top: 170px;">
-                    <div class="project-card-inner">
-                        <div class="project-content">
-                            <h3 class="project-title">CLI Calculator</h3>
-                            <p class="project-description">
-                                A logic-heavy terminal application using algorithmic Javascript concepts to evaluate deep arithmetic and complex sequential parsing.
-                            </p>
-                            
-                            <div class="project-highlights">
-                                <ul>
-                                    <li>Sequential calculation chaining with memory states</li>
-                                    <li>100% strict mathematical parsing and logic routing</li>
-                                    <li>Developer utilities including base converters</li>
-                                </ul>
+                            <div class="project-visual image-showcase project-visual-item" data-index="1" style="background: rgba(220, 53, 69, 0.9);">
+                                <div class="placeholder-image">Movie App Preview</div>
                             </div>
 
-                            <div class="project-skills">
-                                <div class="project-tags">
-                                    <span class="tag"><i class="devicon-nodejs-plain"></i> Node.js</span>
-                                    <span class="tag"><i class="devicon-typescript-plain"></i> TypeScript</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-visual code-showcase" style="background: rgba(72, 187, 120, 0.9);">
-                             <!-- Colored backdrop like reference -->
-                            <pre class="code-snippet"><code>console.log('The result is = ' + (a * b));
+                            <div class="project-visual code-showcase project-visual-item" data-index="2" style="background: rgba(72, 187, 120, 0.9);">
+                                <pre class="code-snippet"><code>console.log('The result is = ' + (a * b));
 // else if (prompt === '/'){
 ...
 console.log('The result is = ' + (a / b));
 // }</code></pre>
+                            </div>
+
+                            <div class="project-visual image-showcase project-visual-item" data-index="3" style="background: rgba(220, 153, 53, 0.9);">
+                                <div class="placeholder-image">Landing Page UI</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Project 4 -->
-                <div class="project-card" style="top: 195px;">
-                    <div class="project-card-inner">
-                        <div class="project-content">
-                            <h3 class="project-title">SaaS Landing Page</h3>
-                            <p class="project-description">
-                                A highly responsive landing page skeleton with functional user forms and dynamic layouts. Designed to convert users effectively.
-                            </p>
-                            
-                            <div class="project-highlights">
-                                <ul>
-                                    <li>Advanced CSS Grid & Flexbox layouts</li>
-                                    <li>Interactive form experiences without refresh</li>
-                                    <li>Optimized mobile-first responsive design</li>
-                                </ul>
-                            </div>
-
-                            <div class="project-skills">
-                                <div class="project-tags">
-                                    <span class="tag"><i class="devicon-html5-plain"></i> HTML5</span>
-                                    <span class="tag"><i class="devicon-css3-plain"></i> CSS3</span>
-                                    <span class="tag"><i class="devicon-javascript-plain"></i> Vanilla JS</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-visual image-showcase" style="background: rgba(220, 153, 53, 0.9);">
-                            <!-- Colored backdrop like reference -->
-                            <div class="placeholder-image">Landing Page UI</div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
@@ -548,36 +558,84 @@ console.log('The result is = ' + (a / b));
             stdObserver.observe(el);
         });
 
-        // Sticky Stack Project Logic
-        const projectCards = document.querySelectorAll('.project-card');
+        // Locked Scroll-Jack Layout Logic
+        const projectsScrollJack = document.querySelector('.projects-scroll-jack');
+        const visualTrack = document.getElementById('projectVisualTrack');
+        const visualItems = document.querySelectorAll('.project-visual-item');
+        const contentItems = document.querySelectorAll('.project-content');
+        const projectScrollLine = document.getElementById('projectScrollLine');
+        const projectScrollDot = document.getElementById('projectScrollDot');
         
+        let jackMaxScroll = 0;
+        let trackMaxTranslate = 0;
+
+        function initProjectScroll() {
+            if (!projectsScrollJack || !visualTrack || !visualItems.length) return;
+            
+            // 1. Calculate dynamic padding to center the first and last images
+            const containerHeight = visualTrack.parentElement.clientHeight;
+            const itemHeight = visualItems[0].clientHeight;
+            const centerPadding = Math.max(0, (containerHeight - itemHeight) / 2);
+            visualTrack.style.paddingTop = `${centerPadding}px`;
+            visualTrack.style.paddingBottom = `${centerPadding}px`;
+
+            // 2. Calculate exact track scrolling distance
+            const trackHeight = visualTrack.scrollHeight;
+            trackMaxTranslate = Math.max(0, trackHeight - containerHeight);
+
+            // 3. Set the artificial container height to match the exact 1-to-1 pixel scroll distance
+            // Height = Real viewport height + the distance the track needs to linearly slide
+            const newHeight = window.innerHeight + trackMaxTranslate;
+            projectsScrollJack.style.height = `${newHeight}px`;
+            
+            jackMaxScroll = trackMaxTranslate; // 1:1 ratio
+        }
+
+        window.addEventListener('resize', initProjectScroll);
+        // Initialize after fonts/images load
+        window.addEventListener('load', initProjectScroll);
+        // Call immediately just in case
+        initProjectScroll();
+
         window.addEventListener('scroll', () => {
-            // Find viewport properties
-            projectCards.forEach((card, index) => {
-                const rect = card.getBoundingClientRect();
-                
-                // Read the inline sticky "top" offset defined in HTML (e.g., 120px)
-                const stickyOffset = parseInt(card.style.top) || 0;
-                
-                // If the card has scrolled up to (or past) its sticky locking point plus a responsive 250px buffer
-                if (rect.top <= stickyOffset + 250) {
-                    card.classList.add('is-active');
-                    
-                    // Optional: If the NEXT card is also locked/active, dim this current card to feel like it's deeper in the stack.
-                    if (index < projectCards.length - 1) {
-                        const nextCardRect = projectCards[index + 1].getBoundingClientRect();
-                        const nextStickyOffset = parseInt(projectCards[index + 1].style.top) || 0;
-                        
-                        if (nextCardRect.top <= nextStickyOffset + 250) {
-                            card.classList.add('is-dimmed');
-                        } else {
-                            card.classList.remove('is-dimmed');
-                        }
-                    }
-                } else {
-                    card.classList.remove('is-active');
-                    card.classList.remove('is-dimmed');
+            if (!projectsScrollJack || !visualTrack || jackMaxScroll <= 0) return;
+            
+            const jackRect = projectsScrollJack.getBoundingClientRect();
+            
+            // Progress 0 to 1 based entirely on the top edge intersecting and pulling out of the window
+            // Since height = Window + Translate, scrolling the container from top to bottom covers exact distance
+            let scrollProgress = -jackRect.top / jackMaxScroll;
+            scrollProgress = Math.max(0, Math.min(scrollProgress, 1)); // Strict clamp
+            
+            // 1. Update Tracker
+            const progressPercent = scrollProgress * 100;
+            if (projectScrollLine && projectScrollDot) {
+                projectScrollLine.style.height = progressPercent + '%';
+                projectScrollDot.style.top = progressPercent + '%';
+            }
+            
+            // 2. Translate Right Visuals Column Upward
+            visualTrack.style.transform = `translateY(-${scrollProgress * trackMaxTranslate}px)`;
+
+            // 3. Dynamically Swap Text 
+            const totalItems = visualItems.length;
+            const thresholdStep = 1 / totalItems;
+            let activeIndex = 0;
+            
+            for (let i = 0; i < totalItems; i++) {
+                if (scrollProgress >= i * thresholdStep) {
+                    activeIndex = i;
                 }
+            }
+
+            visualItems.forEach((v, i) => {
+                if (i === activeIndex) v.classList.add('is-active');
+                else v.classList.remove('is-active');
+            });
+
+            contentItems.forEach((c, i) => {
+                if (i === activeIndex) c.classList.add('is-active');
+                else c.classList.remove('is-active');
             });
         });
 
