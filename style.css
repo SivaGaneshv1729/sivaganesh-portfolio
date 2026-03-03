@@ -6,6 +6,7 @@
 
         :root {
             --bg-dark: #1a202c;
+            --global-bg-grad: linear-gradient(135deg, #1a202c 0%, #2d1b1b 50%, #1a202c 100%);
             --bg-card: #252d3a;
             --text-primary: #f7fafc;
             --text-muted: #a0aec0;
@@ -17,6 +18,7 @@
         /* Light Theme overrides */
         body.light-theme {
             --bg-dark: #f8f9fa;
+            --global-bg-grad: #f8f9fa;
             --bg-card: #ffffff;
             --text-primary: #1a202c;
             --text-muted: #4a5568;
@@ -35,9 +37,20 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--bg-dark);
+            background-color: transparent !important; /* Force transparent so the pseudo-element shows */
             color: var(--text-primary);
             line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--global-bg-grad);
+            z-index: -100; /* Set far to back */
         }
 
         .container {
@@ -181,7 +194,7 @@
             display: flex;
             align-items: center;
             padding-top: 100px; /* Give a bit more top padding to clear the floating header */
-            background: linear-gradient(135deg, #1a202c 0%, #2d1b1b 50%, #1a202c 100%);
+            background: transparent;
         }
 
         .hero-grid{
@@ -491,7 +504,7 @@
         .skills-section {
             padding: 8rem 0 6rem 0;
             position: relative;
-            background-color: var(--bg-dark); /* Ensure seamless blending */
+            background-color: transparent; /* Ensure seamless blending */
         }
 
         .skills-header {
@@ -899,7 +912,7 @@
            ==================== */
         .more-about {
             padding: 8rem 0;
-            background-color: var(--bg-card); /* Distinguish from skills background */
+            background-color: transparent; /* Inherit global gradient */
             position: relative;
             overflow: hidden;
         }
@@ -1016,7 +1029,7 @@
            ==================== */
         .curtains-section {
             padding: 8rem 0;
-            background-color: #000000; /* Deepest black for contrast */
+            background-color: transparent;
             position: relative;
         }
 
@@ -1549,7 +1562,7 @@
         /* Journey & Experience Timeline Section */
         .journey-timeline {
             padding: 5rem 0;
-            background-color: var(--bg-dark);
+            background-color: transparent;
         }
 
         /* Modern Horizontal Timeline Container */
