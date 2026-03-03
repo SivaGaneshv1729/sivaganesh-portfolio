@@ -27,9 +27,7 @@
             --border-color: #e2e8f0;
         }
 
-        html {
-            overflow-x: hidden;
-        }
+
 
         html {
             scroll-behavior: smooth;
@@ -1494,6 +1492,7 @@
             width: 100%;
             margin-top: -2rem; /* Pulled up closer to hero section */
             z-index: 5;
+            overflow-x: hidden; /* Constrain strictly here so pseudo elements don't create page-wide horizontal scroll */
         }
 
         .decorative-marquee-bg {
