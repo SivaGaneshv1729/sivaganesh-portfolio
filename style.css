@@ -1478,10 +1478,11 @@
 
         /* Skills Marquee Section */
         .marquee-wrapper {
-            position: relative;
+            position: sticky; /* Keeps rendering on top as sections scroll under */
+            top: 0; /* Anchors to top of viewport when page scrolls past it */
             width: 100%;
             margin-top: -2rem; /* Pulled up closer to hero section */
-            z-index: 5;
+            z-index: 50; /* High enough to layer above the sticky Projects container (z-index < 50) */
             overflow-x: hidden; /* Constrain strictly here so pseudo elements don't create page-wide horizontal scroll */
         }
 
