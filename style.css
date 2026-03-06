@@ -603,8 +603,10 @@
 
         .projects-header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 3rem;
             flex-shrink: 0;
+            padding-top: 5vh; /* Safe dynamic padding from top of screen */
+            z-index: 10;
         }
 
         /* Locked Scroll-Jack Mechanics */
@@ -639,8 +641,9 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            flex: 1; /* Fill remaining height below header */
-            height: 100%;
+            flex: 1; /* Fill remaining height gracefully without overflowing */
+            /* Removed height: 100% to stop it pushing the header off screen */
+            min-height: 0; /* Crucial for flex children with grids inside */
         }
 
         /* Left Static Column */
@@ -1625,8 +1628,8 @@
         .timeline-items {
             display: flex;
             width: max-content;
-            gap: 10vw; /* Space out items */
-            padding: 0 10vw; /* Reduced buffer so as not to over-scroll at the end */
+            gap: 6rem; /* Space out items consistently */
+            padding: 0 5vw; /* Reduced buffer so as not to over-scroll at the end */
             margin-top: -4px; /* Align perfectly over the line */
             position: relative;
             z-index: 5;
@@ -1711,14 +1714,9 @@
             font-size: 0.95rem;
         }
 
-        .timeline-box.horizontal.active-node .timeline-top,
         .timeline-box.horizontal.active-node .timeline-bottom {
             border-color: var(--accent-coral);
             box-shadow: 0 5px 25px rgba(245, 119, 88, 0.15);
-        }
-
-        .timeline-box.horizontal.active-node .timeline-org {
-            color: var(--accent-coral);
         }
 
         /* Responsive Mobile Layout */

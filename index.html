@@ -833,7 +833,6 @@ console.log('The result is = ' + (a / b));
         if (timelineScrollContainer && timelineProgressHorizontal) {
             
             const handleTimelineScroll = () => {
-                // Get the left padding/offset to accurately calculate items relative to the start
                 const scrollLeft = timelineScrollContainer.scrollLeft;
                 const scrollWidth = timelineScrollContainer.scrollWidth;
                 const clientWidth = timelineScrollContainer.clientWidth;
@@ -848,19 +847,22 @@ console.log('The result is = ' + (a / b));
                     timelineDotHorizontal.style.left = scrollPercent + '%';
                 }
 
-                // The glowing dot's physical position relative to the scroll container's viewport
-                const dotViewX = (scrollPercent / 100) * clientWidth;
+                // The glowing dot's physical coordinate on the screen.
+                // The dot travels from timelineTrackHorizontal's left edge (0) to its right edge (clientWidth)
+                // mapped identically to the scroll percentage.
+                const dotScreenX = (scrollPercent / 100) * clientWidth;
+                
+                // The absolute scroll position of the dot across all hidden content
+                const dotAbsoluteX = scrollLeft + dotScreenX;
                 
                 timelineBoxesHorizontal.forEach(box => {
-                    // Box position relative to the scroll container's current viewport
-                    const boxLeftRelativeToViewport = box.offsetLeft - scrollLeft;
-                    
-                    // Trigger when the dot approaches the box (with a highly accurate 40px lead buffer)
-                    if (dotViewX >= boxLeftRelativeToViewport - 40) { 
+                    // Trigger when the dot physically reaches the item
+                    // with a realistic lead distance (e.g. 50px)
+                    if (dotAbsoluteX >= box.offsetLeft - 50) { 
                         box.classList.add('active-node');
                     } 
                     // Re-hide smoothly if we scroll backwards
-                    else if (dotViewX < boxLeftRelativeToViewport - 80) {
+                    else if (dotAbsoluteX < box.offsetLeft - 100) {
                         box.classList.remove('active-node');
                     }
                 });
