@@ -1564,98 +1564,201 @@
             }
         }
 
-        /* Journey & Experience Timeline Section */
-        .journey-timeline {
-            padding: 5rem 0;
-            background-color: transparent;
-        }
+        /* ================================================
+           JOURNEY TIMELINE — Scroll-Jacked Belt
+           ================================================ */
 
-        /* Modern Horizontal Timeline Container */
-        .timeline-scroll-container {
-            width: 90%;
-            margin: 0 auto;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch; /* Smooth touch swipe */
+        /* Outer section: JS sets height dynamically */
+        .journey-section-outer {
             position: relative;
-            padding: 4rem 0;
-            scrollbar-width: none; /* Firefox */
-        }
-        
-        .timeline-scroll-container::-webkit-scrollbar {
-            display: none; /* Chrome/Safari */
+            /* NOTE: do NOT add overflow:hidden here — it breaks position:sticky on children */
+            isolation: isolate;                  /* New stacking context to prevent z-index bleed */
         }
 
-        /* The central horizontal line - stays sticky in viewport */
-        .timeline-track-horizontal {
+        /* Sticky viewport: always 100vh, clips anything outside using clip-path */
+        .journey-sticky-view {
             position: sticky;
-            left: 0;
-            top: 35%; /* Shifted upper to sit exactly between top/bottom boxes */
-            width: 100%; /* Match container */
-            height: 4px;
-            background-color: var(--border-color);
-            z-index: 0;
-            transform: translateY(-50%);
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            /* clip-path clips children to this 100vh box without breaking sticky */
+            clip-path: inset(0);
+            display: block;
+            background: var(--bg-main);
         }
 
-        /* The colored progress line */
-        .timeline-progress-horizontal {
+        /* Section heading */
+        .journey-heading {
+            text-align: center;
+            width: 100%;
+            padding: 2.5rem 0 2rem;
             position: absolute;
             top: 0;
             left: 0;
-            height: 100%;
-            background: linear-gradient(to right, var(--accent-coral), var(--accent-orange));
-            width: 0; /* Updated by JS */
-            z-index: 1;
-            transition: width 0.1s ease-out;
         }
-        
-        /* The tracking dot */
-        .timeline-dot-horizontal {
+
+        .journey-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        /* The track line: 80% wide, centered */
+        .journey-track-line {
             position: absolute;
-            top: 35%; /* Matches the track height */
-            left: 0; /* Updated by JS via progress width */
-            transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            background-color: var(--accent-coral);
-            border: 4px solid var(--bg-card);
-            border-radius: 50%;
-            box-shadow: 0 0 15px var(--accent-coral);
+            left: 10%;                   /* 10% from left = centered at 80% width */
+            width: 80%;
+            top: 50%;
+            height: 3px;
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-50%);
             z-index: 2;
-            transition: left 0.1s ease-out;
         }
 
-        .timeline-items {
-            display: flex;
-            width: max-content;
-            gap: 6rem; /* Space out items consistently */
-            padding: 0 5vw; /* Reduced buffer so as not to over-scroll at the end */
-            margin-top: -4px; /* Align perfectly over the line */
-            position: relative;
+        /* Colored progress fill */
+        .journey-progress-fill {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(to right, var(--accent-coral), var(--accent-orange));
+            transition: width 0.15s linear;
+        }
+
+        /* Glowing traveling dot */
+        .journey-dot {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-coral);
+            border: 3px solid #0a0a0a;
+            box-shadow: 0 0 0 3px var(--accent-coral), 0 0 20px var(--accent-coral);
+            transform: translate(-50%, -50%);
+            transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 5;
-            align-items: center;
-            will-change: transform; /* Optimized for smooth hardware scrolling */
         }
 
-        .timeline-box.horizontal {
-            width: 300px;
+        /* The belt: nodes in a single horizontal row, translated by JS */
+        .journey-belt {
+            display: flex;
+            align-items: center;               /* vertically center node content on the line */
+            position: absolute;
+            top: 50%;                          /* Align to vertical center = track line position */
+            left: 0;
+            /* Initial translateX is set by JS startX — no default needed here */
+            transform: translateY(-50%) translateX(100vw); /* Start off-screen right */
+            will-change: transform;
+            z-index: 3;
+        }
+
+        /* Each individual node: fixed height so pin anchors at exact center */
+        .journey-node {
+            width: 280px;                      /* Must match JS NODE_WIDTH constant */
+            height: 320px;                     /* Fixed height: 160px above + 160px below track line */
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            text-align: left;
+            align-items: center;
+            justify-content: center;           /* Center the pin on the track line */
             position: relative;
-            
-            /* Hidden Mask State */
+            flex-shrink: 0;
+            padding: 0 1rem;
+            box-sizing: border-box;
+
             opacity: 0;
-            transform: translateY(20px) scale(0.95);
-            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Active highlight when dot hits the box */
-        .timeline-box.horizontal.active-node {
-            opacity: 1 !important;
-            transform: translateY(0) scale(1) !important;
+        /* On screen — fade in */
+        .journey-node.node-visible {
+            opacity: 1;
+        }
+
+        /* Exited to the left — fade out */
+        .journey-node.node-exited {
+            opacity: 0;
+        }
+
+        /* Top half: flex grows to fill space above pin */
+        .journey-node-top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;      /* Push content to pin edge */
+            flex: 1;
+            padding-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        .journey-org {
+            font-size: 1.1rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.4rem;
+        }
+
+        .journey-year {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 3px 10px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 20px;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        /* Pin dot: anchored exactly at vertical center of node = on the track line */
+        .node-pin {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid var(--accent-coral);
+            flex-shrink: 0;
+            z-index: 4;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .journey-node.node-visible .node-pin {
+            background: var(--accent-coral);
+            box-shadow: 0 0 0 4px rgba(245,119,88,0.25), 0 0 12px var(--accent-coral);
+        }
+
+        /* Bottom half: flex grows to fill space below pin */
+        .journey-node-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;     /* Push content away from pin */
+            flex: 1;
+            padding-top: 1.2rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .journey-node-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .journey-node-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
 
         /* Tab Layouts */
