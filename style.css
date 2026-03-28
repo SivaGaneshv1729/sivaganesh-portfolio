@@ -1565,234 +1565,104 @@
             }
         }
 
-        /* ================================================
-           JOURNEY TIMELINE — Scroll-Jacked Belt
-           ================================================ */
-
-        /* Outer section: JS sets height dynamically */
-        .journey-section-outer {
+        /* ====================
+           JOURNEY SECTION (Static Vertical Mirror)
+           ==================== */
+        .journey-section {
+            padding: 8rem 0;
             position: relative;
-            /* NOTE: do NOT add overflow:hidden here — it breaks position:sticky on children */
-            isolation: isolate;                  /* New stacking context to prevent z-index bleed */
+            background-color: transparent;
         }
 
-        /* Sticky viewport: always 100vh, clips anything outside using clip-path */
-        .journey-sticky-view {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            width: 100%;
-            /* clip-path clips children to this 100vh box without breaking sticky */
-            clip-path: inset(0);
-            display: block;
-            background: var(--bg-main);
-        }
-
-        /* Section heading */
-        .journey-heading {
+        .journey-header {
             text-align: center;
-            width: 100%;
-            padding: 2.5rem 0 2rem;
-            position: absolute;
-            top: 0;
-            left: 0;
+            margin-bottom: 6rem;
         }
 
-        .journey-title {
-            font-size: 2.5rem;
+        .journey-title-static {
+            font-size: 3.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
             -webkit-background-clip: text;
-            background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
+            margin-top: 0.5rem;
         }
 
-        /* The track line: 80% wide, centered */
-        .journey-track-line {
+        .journey-vertical-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Vertical Track Line */
+        .journey-v-line {
             position: absolute;
-            left: 10%;                   /* 10% from left = centered at 80% width */
-            width: 80%;
-            top: 50%;
-            height: 3px;
-            background: rgba(255,255,255,0.08);
-            transform: translateY(-50%);
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .journey-v-node {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 6rem;
+            position: relative;
             z-index: 2;
         }
 
-        /* Colored progress fill */
-        .journey-progress-fill {
-            position: absolute;
-            top: 0; left: 0;
-            height: 100%;
-            width: 0;
-            background: linear-gradient(to right, var(--accent-coral), var(--accent-orange));
-            transition: width 0.15s linear;
+        .journey-v-left, .journey-v-right {
+            flex: 1;
+            width: 50%;
         }
 
-        /* Glowing traveling dot */
-        .journey-dot {
-            position: absolute;
-            top: 50%;
-            left: 0;
+        .journey-v-left {
+            text-align: right;
+            padding-right: 3rem;
+        }
+
+        .journey-v-right {
+            text-align: left;
+            padding-left: 3rem;
+        }
+
+        /* Node Pin (Centered on Line) */
+        .node-pin-v {
             width: 16px;
             height: 16px;
             border-radius: 50%;
             background: var(--accent-coral);
             border: 3px solid #0a0a0a;
-            box-shadow: 0 0 0 3px var(--accent-coral), 0 0 20px var(--accent-coral);
-            transform: translate(-50%, -50%);
-            transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 5;
-        }
-
-        /* The belt: nodes in a single horizontal row, translated by JS */
-        .journey-belt {
-            display: flex;
-            align-items: center;               /* vertically center node content on the line */
-            position: absolute;
-            top: 50%;                          /* Align to vertical center = track line position */
-            left: 0;
-            /* Initial translateX is set by JS startX — no default needed here */
-            transform: translateY(-50%) translateX(100vw); /* Start off-screen right */
-            will-change: transform;
-            z-index: 3;
-        }
-
-        /* Each individual node: fixed height so pin anchors at exact center */
-        .journey-node {
-            width: 280px;                      /* Must match JS NODE_WIDTH constant */
-            height: 320px;                     /* Fixed height: 160px above + 160px below track line */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;           /* Center the pin on the track line */
-            position: relative;
+            box-shadow: 0 0 0 3px rgba(245, 119, 88, 0.25), 0 0 15px var(--accent-coral);
             flex-shrink: 0;
-            padding: 0 1rem;
-            box-sizing: border-box;
-
-            opacity: 0;
-            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* On screen — fade in */
-        .journey-node.node-visible {
-            opacity: 1;
+        .journey-v-node:hover .node-pin-v {
+            transform: scale(1.3);
+            box-shadow: 0 0 0 5px rgba(245, 119, 88, 0.3), 0 0 25px var(--accent-coral);
         }
 
-        /* Exited to the left — fade out */
-        .journey-node.node-exited {
-            opacity: 0;
-        }
-
-        /* Top half: flex grows to fill space above pin */
-        .journey-node-top {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;      /* Push content to pin edge */
-            flex: 1;
-            padding-bottom: 1.2rem;
-            text-align: center;
-        }
-
+        /* Reusing Content Styles from Original */
         .journey-org {
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             font-weight: 800;
             background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
         }
 
         .journey-year {
             font-size: 0.75rem;
-            color: #94a3b8;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            padding: 3px 10px;
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 20px;
-            display: inline-block;
-            text-transform: uppercase;
-        }
-
-        /* Pin dot: anchored exactly at vertical center of node = on the track line */
-        .node-pin {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            border: 2px solid var(--accent-coral);
-            flex-shrink: 0;
-            z-index: 4;
-            transition: background 0.3s, box-shadow 0.3s;
-        }
-
-        .journey-node.node-visible .node-pin {
-            background: var(--accent-coral);
-            box-shadow: 0 0 0 4px rgba(245,119,88,0.25), 0 0 12px var(--accent-coral);
-        }
-
-        /* Bottom half: flex grows to fill space below pin */
-        .journey-node-bottom {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;     /* Push content away from pin */
-            flex: 1;
-            padding-top: 1.2rem;
-            text-align: center;
-            width: 100%;
-        }
-
-        .journey-node-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .journey-node-desc {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        /* Tab Layouts */
-        .timeline-top {
-            width: 100%;
-            padding: 0;
-            background-color: transparent; /* Remove tab background */
-            border: none;
-            margin-bottom: 0px; /* Spacing from the center track */
-        }
-        
-        .timeline-bottom {
-            width: 100%;
-            padding: 1.5rem;
-            background-color: var(--bg-card); /* Maintain tab here */
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin-top: 100px; /* Spacing from the center track */
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .timeline-org {
-            font-size: 1.6rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.5px;
-        }
-
-        .timeline-duration {
-            font-size: 0.8rem;
             color: #94a3b8;
             font-weight: 700;
             letter-spacing: 1.5px;
@@ -1802,34 +1672,59 @@
             border-radius: 20px;
             display: inline-block;
             text-transform: uppercase;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 4px 6px rgba(0,0,0,0.2);
         }
 
-        .timeline-title {
+        .journey-node-title {
             font-size: 1.25rem;
+            font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 1rem;
-            font-weight: 600;
+            margin-bottom: 0.75rem;
         }
 
-        .timeline-description {
+        .journey-node-desc {
+            font-size: 0.95rem;
             color: var(--text-muted);
             line-height: 1.6;
-            font-size: 0.95rem;
+            max-width: 450px;
         }
 
-        .timeline-box.horizontal.active-node .timeline-bottom {
-            border-color: var(--accent-coral);
-            box-shadow: 0 5px 25px rgba(245, 119, 88, 0.15);
+        .journey-v-right .journey-node-desc {
+            margin-left: 0;
+        }
+
+        .journey-v-left .journey-node-desc {
+            margin-left: auto;
         }
 
         /* Responsive Mobile Layout */
         @media (max-width: 768px) {
-            .timeline-box.horizontal {
-                width: 280px;
+            .journey-v-line {
+                left: 20px;
             }
-            .timeline-items {
-                gap: 3rem;
+            .journey-v-node {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 50px;
+                margin-bottom: 4rem;
+            }
+            .journey-v-left, .journey-v-right {
+                width: 100%;
+                text-align: left;
+                padding: 0;
+            }
+            .journey-v-left {
+                margin-bottom: 1rem;
+            }
+            .node-pin-v {
+                position: absolute;
+                left: 12px;
+                top: 5px;
+            }
+            .journey-v-left .journey-node-desc {
+                margin-left: 0;
+            }
+            .journey-title-static {
+                font-size: 2.5rem;
             }
         }
 

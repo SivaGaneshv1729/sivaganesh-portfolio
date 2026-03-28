@@ -213,76 +213,72 @@
         </div>
     </section>
 
-    <!-- Journey Timeline Section (scroll-jacked) -->
-    <section id="journey-section" class="journey-section-outer">
-        <!-- Sticky viewport that pins while user scrolls through belt height -->
-        <div class="journey-sticky-view" id="journeyStickyView">
-
-            <!-- The section heading floats at top of sticky pane -->
-            <div class="journey-heading">
-                <h2 class="journey-title">My Journey</h2>
+    <!-- Journey Timeline Section (Static Vertical) -->
+    <section id="journey-section" class="journey-section">
+        <div class="container">
+            <div class="journey-header">
+                <p class="section-subtitle">MY EXPERIENCE</p>
+                <h2 class="journey-title-static">My Journey</h2>
             </div>
 
-            <!-- The full-width track line - always visible -->
-            <div class="journey-track-line" id="journeyTrack">
-                <div class="journey-progress-fill" id="journeyProgress"></div>
-                <div class="journey-dot" id="journeyDot"></div>
-            </div>
+            <div class="journey-vertical-container">
+                <!-- Vertical Track Line -->
+                <div class="journey-v-line"></div>
 
-            <!-- Belt: all nodes sit in a row, translated left by JS -->
-            <div class="journey-belt" id="journeyBelt">
-
-                <div class="journey-node">
-                    <div class="journey-node-top">
+                <!-- Node 1 -->
+                <div class="journey-v-node">
+                    <div class="journey-v-left">
                         <div class="journey-org">University Name</div>
                         <div class="journey-year">2020 – 2024</div>
                     </div>
-                    <div class="node-pin"></div>
-                    <div class="journey-node-bottom">
+                    <div class="node-pin-v"></div>
+                    <div class="journey-v-right">
                         <h3 class="journey-node-title">B.Sc. Computer Science</h3>
                         <p class="journey-node-desc">Focused on Software Engineering, Data Structures, and AI. Built multiple full-stack applications and learned the core fundamentals of computing.</p>
                     </div>
                 </div>
 
-                <div class="journey-node">
-                    <div class="journey-node-top">
+                <!-- Node 2 -->
+                <div class="journey-v-node">
+                    <div class="journey-v-left">
                         <div class="journey-org">Tech Startup</div>
                         <div class="journey-year">2023</div>
                     </div>
-                    <div class="node-pin"></div>
-                    <div class="journey-node-bottom">
+                    <div class="node-pin-v"></div>
+                    <div class="journey-v-right">
                         <h3 class="journey-node-title">AI Engineering Intern</h3>
                         <p class="journey-node-desc">Developed machine learning pipelines and worked closely with large language models to automate internal data analytics processes.</p>
                     </div>
                 </div>
 
-                <div class="journey-node">
-                    <div class="journey-node-top">
+                <!-- Node 3 -->
+                <div class="journey-v-node">
+                    <div class="journey-v-left">
                         <div class="journey-org">Self-Employed</div>
                         <div class="journey-year">2022 – Present</div>
                     </div>
-                    <div class="node-pin"></div>
-                    <div class="journey-node-bottom">
+                    <div class="node-pin-v"></div>
+                    <div class="journey-v-right">
                         <h3 class="journey-node-title">Freelance Web Developer</h3>
                         <p class="journey-node-desc">Delivered numerous modern, responsive, and high-performance websites for clients globally, maintaining a high satisfaction rate.</p>
                     </div>
                 </div>
 
-                <div class="journey-node">
-                    <div class="journey-node-top">
+                <!-- Node 4 -->
+                <div class="journey-v-node">
+                    <div class="journey-v-left">
                         <div class="journey-org">Photography &amp; Design</div>
                         <div class="journey-year">2021</div>
                     </div>
-                    <div class="node-pin"></div>
-                    <div class="journey-node-bottom">
+                    <div class="node-pin-v"></div>
+                    <div class="journey-v-right">
                         <h3 class="journey-node-title">The Visual Beginnings</h3>
                         <p class="journey-node-desc">Transitioned from visual arts to software, leveraging my eye for design to create beautiful, user-centric interfaces and portfolios.</p>
                     </div>
                 </div>
-
-            </div><!-- /.journey-belt -->
-        </div><!-- /.journey-sticky-view -->
-    </section><!-- /.journey-section-outer -->
+            </div>
+        </div>
+    </section>
 
     <!-- Projects Section -->
     <section id="projects" class="projects projects-scroll-jack">
