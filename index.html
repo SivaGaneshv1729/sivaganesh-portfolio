@@ -450,27 +450,25 @@ console.log('The result is = ' + (a / b));
         <div class="container">
             <div class="skills-header">
                 <p class="skills-subtitle">MY SKILLSET</p>
-                <h2 class="skills-title">The Magic <span class="text-gradient italic">Behind</span></h2>
+                <h2 class="skills-title">The Magic Behind</h2>
+                <p class="skills-intro">A focused stack built around fast interfaces, scalable systems, and thoughtful product design.</p>
             </div>
             
-            <div class="skills-pill-grid">
+            <div class="skills-pill-grid skills-pill-grid-expanded">
                 <div class="skill-pill"><i class="devicon-react-original colored"></i> ReactJS</div>
                 <div class="skill-pill"><i class="devicon-nextjs-plain"></i> NextJS</div>
                 <div class="skill-pill"><i class="devicon-typescript-plain colored"></i> TypeScript</div>
                 <div class="skill-pill"><i class="devicon-tailwindcss-plain colored"></i> Tailwind CSS</div>
-                
+                <div class="skill-pill"><i class="devicon-redux-original colored"></i> Zustand</div>
                 <div class="skill-pill"><i class="devicon-nodejs-plain colored"></i> NodeJS</div>
                 <div class="skill-pill"><i class="devicon-express-original"></i> ExpressJS</div>
                 <div class="skill-pill"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</div>
                 <div class="skill-pill"><i class="devicon-mongodb-plain colored"></i> MongoDB</div>
                 <div class="skill-pill"><i class="devicon-mysql-plain colored"></i> Prisma</div>
-
-                <div class="skill-pill"><i class="devicon-redux-original colored"></i> Zustand</div>
                 <div class="skill-pill"><i class="devicon-git-plain colored"></i> Git</div>
                 <div class="skill-pill"><i class="devicon-github-original"></i> GitHub</div>
                 <div class="skill-pill"><i class="devicon-vercel-original"></i> Vercel</div>
-                
-                <div class="skill-pill"><i class="devicon-amazonwebservices-original colored"></i> AWS</div>
+                <!-- <div class="skill-pill"><i class="devicon-amazonwebservices-original colored"></i> AWS</div> -->
                 <div class="skill-pill"><i class="devicon-docker-plain colored"></i> Docker</div>
                 <div class="skill-pill"><i class="devicon-linux-plain"></i> Linux</div>
             </div>
@@ -484,7 +482,7 @@ console.log('The result is = ' + (a / b));
                 <!-- Left: Text Content -->
                 <div class="more-about-text">
                     <p class="section-subtitle">A BIT MORE ABOUT ME</p>
-                    <h2 class="more-about-title">Crafting digital experiences with <span class="text-gradient italic">Purpose</span></h2>
+                    <h2 class="more-about-title">Crafting digital experiences with purpose</h2>
                     <div class="more-about-description">
                         <p>
                             I believe that code is more than just instructions for a machine; it's a medium for solving real human problems. My transition from photography to software engineering wasn't a departure from creativity, but an evolution of it.
@@ -493,15 +491,28 @@ console.log('The result is = ' + (a / b));
                             As a developer, I am deeply opinionated about user experience. I strive to build interfaces that feel alive and systems that scale elegantly. Every pixel should have a purpose, and every interaction should tell a story. When I'm not writing code, I'm analyzing design trends, mentoring peers, and pushing the boundaries of what's possible on the web.
                         </p>
                     </div>
+                    <div class="more-about-highlights">
+                        <div class="about-highlight-card">
+                            <span class="about-highlight-value">Design-first</span>
+                            <p>Clean systems, calm hierarchy, and visual choices that support the story.</p>
+                        </div>
+                        <div class="about-highlight-card">
+                            <span class="about-highlight-value">Build-ready</span>
+                            <p>From concept to shipped experience, I like products that feel intentional at every layer.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Right: Animated Photo Collage -->
-                <div class="more-about-collage">
-                    <div class="collage-container">
-                        <!-- We will use CSS to animate these placeholder images like floating polaroids -->
-                        <div class="collage-img img-1"><div class="placeholder-image">Work Setup</div></div>
-                        <div class="collage-img img-2"><div class="placeholder-image">Design Session</div></div>
-                        <div class="collage-img img-3"><div class="placeholder-image">Coding</div></div>
+                <div class="more-about-visual">
+                    <div class="about-visual-stage">
+                        <div class="about-photo-card about-photo-main">
+                            <img src="hero image1.png" alt="Workspace and development setup">
+                        </div>
+                        <div class="about-photo-card about-photo-secondary">
+                            <img src="hero image.png" alt="Creative design and coding process">
+                        </div>
+                        <div class="about-floating-note note-top">UI thinking</div>
+                        <div class="about-floating-note note-bottom">Code + Design</div>
                     </div>
                 </div>
             </div>
@@ -516,7 +527,7 @@ console.log('The result is = ' + (a / b));
         <div class="container">
             <div class="curtains-header">
                 <p class="section-subtitle">BEHIND THE CURTAINS</p>
-                <h2 class="curtains-title">Decoding logic <span class="text-gradient italic">&& the lyrics</span></h2>
+                <h2 class="curtains-title">Decoding logic and the lyrics</h2>
             </div>
             
             <div class="curtains-grid"> -->
@@ -596,65 +607,39 @@ console.log('The result is = ' + (a / b));
 
     <footer class="footer">
         <div class="container">
-            <!-- Top grid layout -->
-            <div class="footer-top-grid">
-                <!-- Col 1: Logo & Mantra -->
+            <div class="footer-shell">
                 <div class="footer-brand">
-                    <h2 class="footer-logo">SG</h2>
+                    <h2 class="footer-logo">Siva Ganesh</h2>
                     <p class="footer-mantra">
                         Building digital experiences that matter, one line of code at a time. Crafting interfaces that feel alive, solving problems that make a difference, and turning ideas into reality. Every pixel has a purpose. Every interaction tells a story.
                     </p>
                 </div>
-
-                <!-- Col 2: General Links -->
-                <div class="footer-links-col">
-                    <h4 class="footer-col-title">General</h4>
-                    <ul class="footer-list">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#">Blogs</a></li>
-                        <li><a href="#">Guestbook</a></li>
-                        <li><a href="#">Uses</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 3: About Links -->
-                <div class="footer-links-col">
-                    <h4 class="footer-col-title">About</h4>
-                    <ul class="footer-list">
-                        <li><a href="#about">About Me</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#curtains">Contact</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 4: Startup Links -->
-                <div class="footer-links-col">
-                    <h4 class="footer-col-title">Startup</h4>
-                    <ul class="footer-list">
-                        <li><a href="#">Project One</a></li>
-                        <li><a href="#">AI Tools</a></li>
-                        <li><a href="#">Platform</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 5: Legal Links & DMCA -->
-                <div class="footer-links-col">
-                    <h4 class="footer-col-title">Legal</h4>
-                    <ul class="footer-list">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                    </ul>
-                    <div class="footer-dmca">
-                        <div class="dmca-badge">
-                            <span class="dmca-green">DMCA</span>
-                            <span class="dmca-dark">PROTECTED</span>
-                        </div>
-                        <p class="dmca-text">This site is protected. Read our <br><a href="#">Privacy Policy</a> & <a href="#">Terms</a>.</p>
+                <div class="footer-links-wrap">
+                    <div class="footer-links-col">
+                        <h4 class="footer-col-title">Navigate</h4>
+                        <ul class="footer-list">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                            <li><a href="#skills">Skills</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-col">
+                        <h4 class="footer-col-title">Connect</h4>
+                        <ul class="footer-list">
+                            <li><a href="#contacts">Book a Call</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">GitHub</a></li>
+                            <li><a href="#">Instagram</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-col">
+                        <h4 class="footer-col-title">Focus</h4>
+                        <p class="footer-focus-text">Design-led front-end work, product storytelling, and AI-assisted developer experiences.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Bottom Copyright Bar -->
             <div class="footer-bottom">
                 <p class="footer-copyright">© 2026 SIVA GANESH VEMULA. ALL RIGHTS RESERVED.</p>
                 <div class="footer-socials">
