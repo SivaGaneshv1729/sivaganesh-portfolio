@@ -51,6 +51,70 @@
             stdObserver.observe(el);
         });
 
+        // Hero role typing animation
+        const heroRole = document.querySelector('.hero-role');
+        const heroRoleText = heroRole?.querySelector('.hero-role-text');
+        const heroRoleSizer = heroRole?.querySelector('.hero-role-sizer');
+
+        if (heroRole && heroRoleText) {
+            const roles = (heroRole.dataset.typingRoles || heroRoleText.textContent)
+                .split('|')
+                .map(role => role.trim())
+                .filter(Boolean);
+            const typingSpeed = 90;
+            const deletingSpeed = 55;
+            const pauseBeforeDelete = 1400;
+            const pauseBeforeRetype = 450;
+            let roleIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let activeRole = roles[roleIndex] || heroRoleText.textContent.trim();
+
+            const longestRole = roles.reduce((longest, role) => {
+                return role.length > longest.length ? role : longest;
+            }, activeRole);
+
+            if (heroRoleSizer) {
+                heroRoleSizer.textContent = heroRole.dataset.typingLongest?.trim() || longestRole;
+            }
+
+            heroRole.setAttribute('aria-label', activeRole);
+            heroRoleText.textContent = '';
+            heroRoleText.classList.add('is-typing');
+
+            function typeHeroRole() {
+                if (!isDeleting) {
+                    charIndex += 1;
+                    heroRoleText.textContent = activeRole.slice(0, charIndex);
+
+                    if (charIndex === activeRole.length) {
+                        isDeleting = true;
+                        window.setTimeout(typeHeroRole, pauseBeforeDelete);
+                        return;
+                    }
+
+                    window.setTimeout(typeHeroRole, typingSpeed);
+                    return;
+                }
+
+                charIndex -= 1;
+                heroRoleText.textContent = activeRole.slice(0, charIndex);
+
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    activeRole = roles[roleIndex];
+                    heroRole.setAttribute('aria-label', activeRole);
+                    window.setTimeout(typeHeroRole, pauseBeforeRetype);
+                    return;
+                }
+
+                window.setTimeout(typeHeroRole, deletingSpeed);
+            }
+
+            window.setTimeout(typeHeroRole, 350);
+        }
+
         // Locked Scroll-Jack Layout Logic
         const projectsScrollJack = document.querySelector('.projects-scroll-jack');
         const visualTrack = document.getElementById('projectVisualTrack');

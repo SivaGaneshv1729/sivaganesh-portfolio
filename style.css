@@ -198,9 +198,13 @@
 
         .hero-grid{
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             gap: 8rem;
             align-items: center;
+        }
+
+        .hero-content {
+            min-width: 0;
         }
 
         .hero-title {
@@ -219,6 +223,45 @@
             font-size: 3rem;
             font-weight: bold;
             margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            min-height: 1.2em;
+            max-width: 100%;
+        }
+
+        .hero-role-sizer {
+            display: inline-block;
+            white-space: nowrap;
+            visibility: hidden;
+            pointer-events: none;
+            min-height: 1.2em;
+            max-width: 100%;
+        }
+
+        .hero-role-text {
+            position: absolute;
+            inset: 0 auto auto 0;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 0.08em solid var(--accent-coral);
+            padding-right: 0.08em;
+            min-height: 1.2em;
+            max-width: 100%;
+        }
+
+        .hero-role-text.is-typing {
+            animation: hero-caret-blink 0.8s steps(1) infinite;
+        }
+
+        @keyframes hero-caret-blink {
+            0%, 49% {
+                border-right-color: var(--accent-coral);
+            }
+
+            50%, 100% {
+                border-right-color: transparent;
+            }
         }
 
         .accent {
@@ -299,6 +342,7 @@
             align-items: center;
             height: 500px;
             width: 100%;
+            transform: translateX(-1.5rem);
         }
 
         .orange-circle {
@@ -398,13 +442,13 @@
 
         .bracket-left {
             top: 10%;
-            left: -10%;
+            left: -5%;
             animation: float 4s ease-in-out infinite;
         }
 
         .bracket-right {
             bottom: 10%;
-            right: -17%;
+            right: -10%;
             animation: float 4s ease-in-out infinite reverse;
         }
 
@@ -1419,6 +1463,7 @@
             .hero-image {
                 padding-top: 200px ;
                 height: 400px;
+                transform: none;
             }
 
             .orange-circle {
