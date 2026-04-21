@@ -209,6 +209,49 @@
             timelineObserver.observe(el);
         });
 
+        // About section image carousel
+        const aboutCarousel = document.querySelector('.about-carousel-visual');
+        if (aboutCarousel) {
+            const aboutCards = aboutCarousel.querySelectorAll('.about-carousel-card');
+            let aboutCurrentIndex = 0;
+            let aboutIsAnimating = false;
+
+            function updateAboutCarousel(newIndex) {
+                if (aboutIsAnimating || !aboutCards.length) return;
+                aboutIsAnimating = true;
+                aboutCurrentIndex = (newIndex + aboutCards.length) % aboutCards.length;
+
+                aboutCards.forEach((card, i) => {
+                    const offset = (i - aboutCurrentIndex + aboutCards.length) % aboutCards.length;
+
+                    card.classList.remove('center', 'up-1', 'up-2', 'down-1', 'down-2', 'hidden');
+
+                    if (offset === 0) {
+                        card.classList.add('center');
+                    } else if (offset === 1) {
+                        card.classList.add('down-1');
+                    } else if (offset === 2) {
+                        card.classList.add('down-2');
+                    } else if (offset === aboutCards.length - 1) {
+                        card.classList.add('up-1');
+                    } else if (offset === aboutCards.length - 2) {
+                        card.classList.add('up-2');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                window.setTimeout(() => {
+                    aboutIsAnimating = false;
+                }, 800);
+            }
+
+            updateAboutCarousel(0);
+            window.setInterval(() => {
+                updateAboutCarousel(aboutCurrentIndex + 1);
+            }, 2400);
+        }
+
         // Active navigation highlight
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section[id]');

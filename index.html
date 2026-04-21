@@ -30,10 +30,11 @@
                 <!-- <h1 class="logo">Jensen Omega</h1> -->
                 <nav class="nav" id="nav">
                     <a href="#home" class="nav-link">Home</a>
-                    <a href="#about" class="nav-link">About</a>
+                    <a href="#journey-section" class="nav-link">Journey</a>
                     <a href="#projects" class="nav-link">Work</a>
-                    <a href="#blog" class="nav-link">Blog</a>
-                    <a href="#contacts" class="nav-link">Book a Call</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#more-about" class="nav-link">About</a>
+                    <!-- <a href="#contacts" class="nav-link">Book a Call</a> -->
                 </nav>
                 <div class="header-actions" style="display: flex; gap: 1rem; align-items: center;">
                     <button class="menu-toggle" id="menuToggle">
@@ -185,37 +186,6 @@
         </div>
     </div>
     </div>
-
-    <!-- Journey & Experience Timeline Section -->
-    <section class="journey-timeline" id="about" style="position: relative; overflow: hidden;">
-        <div class="container">
-            <h2 class="section-title" style="text-align: center; margin-bottom: 1rem;">My Journey</h2>
-            
-            <div class="about-intro" style="text-align: center; max-width: 800px; margin: 0 auto 4rem;">
-                <p class="about-text" style="color: var(--text-muted); font-size: 1.125rem; margin-bottom: 2rem;">
-                    I started my software journey from photography. Through that, I learned to 
-                    love the process of creating visual content. Since then, I have expanded my 
-                    skills to include software engineering and web development while pursuing my Bachelor's degree.
-                </p>
-                <div class="stats-grid" style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
-                    <div class="stat">
-                        <div class="stat-number">120<span class="accent">+</span></div>
-                        <p class="stat-label">Completed Projects</p>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">95<span class="accent">%</span></div>
-                        <p class="stat-label">Client satisfaction</p>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">10<span class="accent">+</span></div>
-                        <p class="stat-label">Years of experience</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Scroll-Jacked Horizontal Timeline -->
-        </div>
-    </section>
 
     <!-- Journey Timeline Section (Static Vertical) -->
     <section id="journey-section" class="journey-section">
@@ -496,58 +466,39 @@ console.log('The result is = ' + (a / b));
                             As a developer, I am deeply opinionated about user experience. I strive to build interfaces that feel alive and systems that scale elegantly. Every pixel should have a purpose, and every interaction should tell a story. When I'm not writing code, I'm analyzing design trends, mentoring peers, and pushing the boundaries of what's possible on the web.
                         </p>
                     </div>
+                    <div class="stats-grid more-about-stats" style="display: flex; justify-content: flex-start; gap: 3rem; flex-wrap: wrap;">
+                        <div class="stat">
+                            <div class="stat-number">120<span class="accent">+</span></div>
+                            <p class="stat-label">Completed Projects</p>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">95<span class="accent">%</span></div>
+                            <p class="stat-label">Client satisfaction</p>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">10<span class="accent">+</span></div>
+                            <p class="stat-label">Years of experience</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="more-about-visual">
                     <div class="about-visual-stage">
-                        <div class="about-carousel-visual" aria-label="Animated about me highlights">
-                            <div class="about-bg-line" aria-hidden="true">
-                                <span></span>
-                                <span></span>
-                            </div>
-
-                            <div class="about-main-grid">
-                                <div class="about-box">
-                                    <span>Frontend</span>
+                        <div class="about-carousel-visual" aria-label="About me image carousel">
+                            <div class="about-carousel-track">
+                                <div class="about-carousel-card" data-index="0">
+                                    <img src="hero image1.png" alt="Workspace and development setup">
                                 </div>
-                                <div class="about-box">
-                                    <div class="about-box-image">
-                                        <img src="hero image1.png" alt="Workspace and development setup">
-                                    </div>
+                                <div class="about-carousel-card" data-index="1">
+                                    <img src="siva_ganesh.png" alt="Portrait of Siva Ganesh">
                                 </div>
-                                <div class="about-box">
-                                    <span>Systems</span>
+                                <div class="about-carousel-card" data-index="2">
+                                    <img src="hero image.png" alt="Creative design and coding process">
                                 </div>
-                                <div class="about-box">
-                                    <span>Motion</span>
-                                </div>
-                                <div class="about-box">
-                                    <div class="about-box-image">
-                                        <img src="siva_ganesh.png" alt="Portrait of Siva Ganesh">
-                                    </div>
-                                </div>
-                                <div class="about-box">
-                                    <div class="about-box-image">
-                                        <img src="hero image.png" alt="Creative design and coding process">
-                                    </div>
-                                </div>
-                                <div class="about-box">
-                                    <span>UX Mindset</span>
-                                </div>
-                                <div class="about-box">
-                                    <div class="about-box-image">
-                                        <img src="main logo.png" alt="Brand identity mark">
-                                    </div>
+                                <div class="about-carousel-card" data-index="3">
+                                    <img src="main logo.png" alt="Siva Ganesh brand mark">
                                 </div>
                             </div>
-
-                            <div class="about-circle-lines" aria-hidden="true">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-
-                            <div class="about-dash-circle" aria-hidden="true"></div>
                         </div>
                     </div>
                 </div>
@@ -641,7 +592,7 @@ console.log('The result is = ' + (a / b));
         </div>
     </section> -->
 
-    <footer class="footer">
+    <footer class="footer" id="contacts">
         <div class="container">
             <div class="footer-shell">
                 <div class="footer-brand">
@@ -655,7 +606,8 @@ console.log('The result is = ' + (a / b));
                         <h4 class="footer-col-title">Navigate</h4>
                         <ul class="footer-list">
                             <li><a href="#home">Home</a></li>
-                            <li><a href="#about">About</a></li>
+                            <li><a href="#more-about">About</a></li>
+                            <li><a href="#journey-section">Journey</a></li>
                             <li><a href="#projects">Projects</a></li>
                             <li><a href="#skills">Skills</a></li>
                         </ul>
