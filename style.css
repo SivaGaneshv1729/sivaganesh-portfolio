@@ -17,14 +17,16 @@
 
         /* Light Theme overrides */
         body.light-theme {
-            --bg-dark: #f8f9fa;
-            --global-bg-grad: #f8f9fa;
+            --bg-dark: #f7f4ef;
+            --global-bg-grad:
+                radial-gradient(circle at 82% 10%, rgba(245, 119, 88, 0.13), transparent 28%),
+                linear-gradient(135deg, #fbf8f3 0%, #f1f5f9 48%, #fff7ed 100%);
             --bg-card: #ffffff;
-            --text-primary: #1a202c;
-            --text-muted: #4a5568;
-            --accent-coral: #ed6442;
-            --accent-orange: #c8530d;
-            --border-color: #e2e8f0;
+            --text-primary: #172033;
+            --text-muted: #5f6b7a;
+            --accent-coral: #d95f45;
+            --accent-orange: #b94f15;
+            --border-color: #d8dee8;
         }
 
 
@@ -160,14 +162,30 @@
             transform: translateY(-2px);
         }
 
+        body.light-theme .header {
+            background: rgba(255, 255, 255, 0.78);
+            border-color: rgba(148, 163, 184, 0.32);
+            box-shadow: 0 18px 42px rgba(15, 23, 42, 0.1);
+        }
+
+        body.light-theme .nav-link {
+            color: #263244;
+        }
+
+        body.light-theme .nav-link:hover,
+        body.light-theme .nav-link.active {
+            color: var(--accent-coral);
+        }
+
         body.light-theme .theme-toggle {
-            background: rgba(255, 255, 255, 0.6);
-            border-color: rgba(0, 0, 0, 0.1);
-            color: #1a202c;
+            background: rgba(255, 255, 255, 0.86);
+            border-color: rgba(148, 163, 184, 0.32);
+            color: #172033;
+            box-shadow: 0 16px 34px rgba(15, 23, 42, 0.12);
         }
 
         body.light-theme .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.8);
+            background: #ffffff;
         }
 
         .menu-toggle {
@@ -310,6 +328,28 @@
             background:  var(--bg-card);
             color: var(--text-primary);
             transform: translateY(-2px);
+        }
+
+        body.light-theme .btn-primary {
+            background: #d95f45;
+            color: #ffffff;
+            box-shadow: 0 12px 24px rgba(217, 95, 69, 0.22);
+        }
+
+        body.light-theme .btn-primary:hover {
+            background: #c94f37;
+        }
+
+        body.light-theme .btn-outline {
+            color: #263244;
+            border-color: rgba(217, 95, 69, 0.55);
+            background: rgba(255, 255, 255, 0.48);
+        }
+
+        body.light-theme .btn-outline:hover {
+            background: #ffffff;
+            border-color: var(--accent-coral);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
         }
 
         .btn-ghost {
@@ -660,13 +700,20 @@
         }
 
         body.light-theme .skill-pill {
-            background-color: rgba(248, 250, 252, 0.95);
-            border-color: rgba(15, 23, 42, 0.08);
-            color: #1a202c;
+            background-color: rgba(255, 255, 255, 0.72);
+            border-color: rgba(148, 163, 184, 0.28);
+            color: #243044;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
         }
         
         body.light-theme .skills-title {
-            color: #1a202c;
+            color: #172033;
+        }
+
+        body.light-theme .skill-pill:hover {
+            background-color: #ffffff;
+            border-color: rgba(217, 95, 69, 0.42);
+            box-shadow: 0 18px 34px rgba(15, 23, 42, 0.1);
         }
 
         @media (max-width: 768px) {
@@ -898,6 +945,39 @@
             border-radius: 50%;
             box-shadow: 0 0 15px rgba(245, 119, 88, 0.8);
             transition: top 0.1s ease-out;
+        }
+
+        body.light-theme .project-title,
+        body.light-theme .project-highlights h4,
+        body.light-theme .project-skills h4 {
+            color: #172033;
+        }
+
+        body.light-theme .project-description,
+        body.light-theme .project-highlights li {
+            color: #5f6b7a;
+        }
+
+        body.light-theme .tag {
+            background: rgba(255, 255, 255, 0.78);
+            border-color: rgba(148, 163, 184, 0.3);
+            color: #334155;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+        }
+
+        body.light-theme .tag:hover {
+            background: var(--accent-coral);
+            border-color: var(--accent-coral);
+            color: #ffffff;
+        }
+
+        body.light-theme .project-scroll-track {
+            background-color: rgba(100, 116, 139, 0.18);
+        }
+
+        body.light-theme .project-scroll-dot {
+            border-color: #ffffff;
+            box-shadow: 0 0 0 5px rgba(217, 95, 69, 0.14), 0 10px 24px rgba(217, 95, 69, 0.3);
         }
 
         /* Right Scrolling Column */
@@ -1149,6 +1229,12 @@
         .about-carousel-card.hidden {
             opacity: 0;
             pointer-events: none;
+        }
+
+        body.light-theme .about-carousel-card {
+            background: rgba(255, 255, 255, 0.84);
+            border-color: rgba(148, 163, 184, 0.32);
+            box-shadow: 0 22px 44px rgba(15, 23, 42, 0.14);
         }
 
         .about-main-grid {
@@ -1905,6 +1991,12 @@
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             }
 
+            body.light-theme .nav {
+                background: rgba(255, 255, 255, 0.94);
+                border-color: rgba(148, 163, 184, 0.3);
+                box-shadow: 0 16px 34px rgba(15, 23, 42, 0.14);
+            }
+
             .nav.active {
                 display: flex;
             }
@@ -2066,6 +2158,23 @@
             animation-play-state: paused;
         }
 
+        body.light-theme .decorative-marquee-bg {
+            background: rgba(217, 95, 69, 0.16);
+            border-top-color: rgba(217, 95, 69, 0.22);
+            border-bottom-color: rgba(217, 95, 69, 0.22);
+        }
+
+        body.light-theme .skills-marquee-container {
+            background: rgba(255, 255, 255, 0.72);
+            border-top-color: rgba(148, 163, 184, 0.28);
+            border-bottom-color: rgba(148, 163, 184, 0.28);
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+        }
+
+        body.light-theme .skills-marquee span {
+            color: #475569;
+        }
+
         @keyframes scroll-marquee {
             0% {
                 transform: translateX(0);
@@ -2191,6 +2300,27 @@
             color: var(--text-muted);
             line-height: 1.6;
             max-width: 450px;
+        }
+
+        body.light-theme .journey-v-line {
+            background: linear-gradient(180deg, transparent, rgba(100, 116, 139, 0.24), transparent);
+        }
+
+        body.light-theme .node-pin-v {
+            border-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(217, 95, 69, 0.16), 0 10px 24px rgba(217, 95, 69, 0.25);
+        }
+
+        body.light-theme .journey-org {
+            background: linear-gradient(135deg, #172033 0%, #475569 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        body.light-theme .journey-year {
+            color: #7c2d12;
+            background: rgba(255, 247, 237, 0.86);
+            border-color: rgba(217, 95, 69, 0.22);
         }
 
         .journey-v-right .journey-node-desc {
@@ -2412,6 +2542,39 @@
 
         .footer-socials a:hover {
             color: #ffffff;
+        }
+
+        body.light-theme .footer {
+            background:
+                radial-gradient(circle at top center, rgba(217, 95, 69, 0.12), transparent 30%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, #f8fafc 100%);
+            color: #172033;
+            border-top-color: rgba(148, 163, 184, 0.24);
+        }
+
+        body.light-theme .footer-brand .footer-logo,
+        body.light-theme .footer-links-col .footer-col-title {
+            color: #172033;
+        }
+
+        body.light-theme .footer-brand .footer-mantra,
+        body.light-theme .footer-list a,
+        body.light-theme .footer-focus-text,
+        body.light-theme .footer-socials a {
+            color: #5f6b7a;
+        }
+
+        body.light-theme .footer-bottom {
+            border-top-color: rgba(148, 163, 184, 0.24);
+        }
+
+        body.light-theme .footer-copyright {
+            color: #64748b;
+        }
+
+        body.light-theme .footer-list a:hover,
+        body.light-theme .footer-socials a:hover {
+            color: var(--accent-coral);
         }
 
         @media (max-width: 980px) {
