@@ -766,13 +766,46 @@
         /* Projects Split Layout */
         .projects-split-layout {
             display: grid;
-            grid-template-columns: 1fr 1.15fr;
+            grid-template-columns: 1fr 1fr;
             gap: 4rem;
             width: 100%;
             max-width: 1360px;
             margin: 0 auto;
             flex: 1; /* Fill remaining height gracefully without overflowing */
             /* Removed height: 100% to stop it pushing the header off screen */
+            min-height: 0; /* Crucial for flex children with grids inside */
+        }
+
+        /* Left Static Column */
+        .projects-left-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center texts specifically within left column */
+        }
+
+        .project-details-container {
+            position: relative;
+            flex: 1;
+        }
+
+        .project-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            pointer-events: none; /* Ignore clicks when hidden */
+        }
+        
+        .project-content.is-active {
+            opacity: 1;
+            transform: translateY(0);
             min-height: 0; /* Crucial for flex children with grids inside */
         }
 
@@ -897,7 +930,7 @@
 
         .tag:hover {
             background: var(--accent-coral);
-            color: var(--bg-dark);
+            color: #bg-dark;
             box-shadow: 0 0 15px rgba(245, 119, 88, 0.4);
         }
 
@@ -1020,25 +1053,6 @@
             background: #0d1117; /* Darker app background inside the red container */
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .code-showcase .code-snippet {
-            padding: 2rem;
-            background: rgba(26, 30, 36, 0.9);
-            font-size: 0.85rem;
-            color: #a0aec0;
-            overflow-x: auto;
-        }
-
-        .code-snippet code {
-            font-family: 'Courier New', Courier, monospace;
-            line-height: 1.5;
-        }
-
-        .image-showcase .placeholder-image {
-            height: 80%;
-            background: linear-gradient(135deg, rgba(245, 119, 88, 0.15), rgba(217, 98, 22, 0.05));
             display: flex;
             align-items: center;
             justify-content: center;
