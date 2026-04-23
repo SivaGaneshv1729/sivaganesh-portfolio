@@ -1,4 +1,47 @@
-// Mobile Menu Toggle
+// Preloader Logic
+        document.addEventListener("DOMContentLoaded", () => {
+            const preloader = document.getElementById("preloader");
+            const preloaderText = document.getElementById("preloader-text");
+            const body = document.body;
+            
+            const greetings = [
+                "Hello",       // English
+                "నమస్కారం",      // Telugu
+                "नमस्ते",         // Hindi
+                "こんにちは",     // Japanese
+                "Bonjour",     // French
+                "Hola",        // Spanish
+                "নমস্কার",       // Bengali
+                "வணக்கம்"        // Tamil
+            ];
+            
+            let currentIndex = 0;
+            
+            if (preloader && preloaderText) {
+                const interval = setInterval(() => {
+                    currentIndex++;
+                    if (currentIndex < greetings.length) {
+                        preloaderText.textContent = greetings[currentIndex];
+                    } else {
+                        clearInterval(interval);
+                        
+                        const preloaderContent = document.querySelector('.preloader-content');
+                        if(preloaderContent) preloaderContent.classList.add('fade-out');
+                        
+                        setTimeout(() => {
+                            preloader.classList.add("preloader-hidden");
+                            body.classList.remove("no-scroll");
+                            
+                            setTimeout(() => {
+                                preloader.remove();
+                            }, 1000);
+                        }, 400);
+                    }
+                }, 220); // 220ms per word
+            }
+        });
+
+        // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const nav = document.getElementById('nav');
 
@@ -194,19 +237,6 @@
                 if (i === activeIndex) c.classList.add('is-active');
                 else c.classList.remove('is-active');
             });
-        });
-
-        // Timeline Animation Observer
-        const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-show');
-                }
-            });
-        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
-
-        document.querySelectorAll('.timeline-box').forEach(el => {
-            timelineObserver.observe(el);
         });
 
         // About section image carousel
