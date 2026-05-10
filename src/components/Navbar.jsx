@@ -13,6 +13,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', href: '#home' },
+    { name: 'Journey', href: '#journey' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
@@ -20,33 +21,33 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/80 backdrop-blur-md py-4 border-b border-slate-800' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/80 backdrop-blur-md py-4 border-b border-white/5' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <a href="#home" className="text-2xl font-bold">
-          <span className="bg-gradient-to-r from-orange-500 to-rose-500 bg-clip-text text-transparent">SG</span>
-          <span className="text-white">.</span>
+        <a href="#home" className="text-2xl font-black tracking-tighter">
+          <span className="text-white">SIVA GANESH</span>
+          <span className="text-orange-500">.</span>
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-10">
           {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="text-sm font-medium hover:text-orange-500 transition-colors uppercase tracking-wider">
+            <a key={link.name} href={link.href} className="text-[13px] font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-[0.2em]">
               {link.name}
             </a>
           ))}
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+        <button className="md:hidden text-white p-2" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Nav */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-slate-950 border-t border-slate-800 py-6 px-6 flex flex-col space-y-4">
+        <div className="md:hidden absolute top-full left-0 w-full bg-slate-950/95 backdrop-blur-xl border-t border-white/5 py-10 px-8 flex flex-col space-y-6">
           {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="text-lg font-medium" onClick={() => setIsOpen(false)}>
+            <a key={link.name} href={link.href} className="text-2xl font-black text-white tracking-tight" onClick={() => setIsOpen(false)}>
               {link.name}
             </a>
           ))}
