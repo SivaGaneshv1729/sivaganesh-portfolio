@@ -1,3 +1,4 @@
+import Preloader from './components/Preloader'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -9,6 +10,7 @@ import Footer from './components/Footer'
 function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 overflow-x-hidden">
+      <Preloader />
       <Navbar />
       <main>
         <Hero />
