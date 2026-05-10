@@ -12,6 +12,11 @@ A modern, responsive personal portfolio website built from scratch to showcase m
 - **Modern UI**: Built with a glassmorphic aesthetic and Tailwind CSS.
 - **Accessibility**: Includes support for `prefers-reduced-motion`.
 
+## 🚀 Project Evolution
+This repository showcases a complete architectural migration:
+- **v2 (Current)**: Modern React + Vite implementation with cinematic animations.
+- **v1 (Legacy)**: Original Vanilla JS, HTML, and CSS implementation (stored in `/public/legacy-v1`).
+
 ## 🛠️ Tech Stack
 - **Framework**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
