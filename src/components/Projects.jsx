@@ -37,8 +37,8 @@ const ProjectText = ({ project, index, total, scrollYProgress }) => {
   // Adjusted thresholds for smoother transitions
   // If it's the first project, it should be visible immediately (opacity 1 at start=0)
   const opacityRange = index === 0 
-    ? [0, end - 0.1, end] 
-    : [start, start + 0.1, end - 0.1, end];
+    ? [0, end - 0.15, end] 
+    : [start, start + 0.1, end - 0.15, end];
   
   const opacityValues = index === 0 
     ? [1, 1, 0] 
@@ -54,8 +54,8 @@ const ProjectText = ({ project, index, total, scrollYProgress }) => {
     : opacityValues;
 
   const opacity = useTransform(scrollYProgress, finalOpacityRange, finalOpacityValues)
-  const scale = useTransform(scrollYProgress, finalOpacityRange, [0.95, 1, 0.95])
-  const y = useTransform(scrollYProgress, finalOpacityRange, [20, 0, -20])
+  const scale = useTransform(scrollYProgress, finalOpacityRange, [0.98, 1, 0.98])
+  const y = useTransform(scrollYProgress, finalOpacityRange, [10, 0, -10])
 
   return (
     <motion.div
@@ -93,7 +93,7 @@ const ProjectText = ({ project, index, total, scrollYProgress }) => {
         </a>
         <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-orange-500 transition-all font-black text-xs uppercase tracking-[0.2em] group">
           <ExternalLink size={20} /> 
-          <span className="border-b-2 border-transparent group-hover:border-orange-500 pb-1">Live</span>
+          <span className="border-b-2 border-transparent group-hover:border-orange-500 pb-1">Live Demo</span>
         </a>
       </div>
     </motion.div>
@@ -113,62 +113,72 @@ const Projects = () => {
     restDelta: 0.001
   })
 
-  // Fixed mapping for image track:
-  // We want the track to move ONLY when shifting between projects.
-  // BUT the user liked the 1:1 scroll feel from the original.
-  // Original logic: trackMaxTranslate = (cards.length - 1) * cardHeight
   const translateY = useTransform(scrollYProgress, [0, 1], ["0%", `-${(projects.length - 1) * 100}%`])
 
   return (
-    <section ref={containerRef} id="projects" className="relative h-[400vh] bg-slate-950 z-20">
-      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-orange-600/5 rounded-full blur-[120px] pointer-events-none" />
+    <>
+      <section ref={containerRef} id="projects" className="relative h-[450vh] bg-slate-950 z-20">
+        <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-orange-600/5 rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-          <div className="relative h-[600px] flex items-center">
-            {projects.map((project, index) => (
-              <ProjectText 
-                key={project.title} 
-                project={project} 
-                index={index} 
-                total={projects.length} 
-                scrollYProgress={scrollYProgress} 
-              />
-            ))}
-          </div>
-
-          <div className="relative h-[550px] w-full rounded-[2.5rem] overflow-hidden border border-white/10 bg-slate-900/20 backdrop-blur-xl shadow-2xl">
-            <div className="absolute left-8 top-1/2 -translate-y-1/2 w-[2px] h-[40%] bg-slate-800 rounded-full z-20 overflow-hidden">
-               <motion.div 
-                 style={{ scaleY, originY: 0 }}
-                 className="w-full h-full bg-orange-500"
-               />
+          <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+            <div className="relative h-[600px] flex items-center">
+              {projects.map((project, index) => (
+                <ProjectText 
+                  key={project.title} 
+                  project={project} 
+                  index={index} 
+                  total={projects.length} 
+                  scrollYProgress={scrollYProgress} 
+                />
+              ))}
             </div>
 
-            <motion.div 
-              style={{ y: translateY }}
-              className="w-full h-full flex flex-col"
-            >
-              {projects.map((project) => (
-                <div key={project.title} className="w-full h-full flex-shrink-0 flex items-center justify-center p-12 lg:p-20">
-                   <motion.div 
-                     whileHover={{ scale: 1.02, rotate: 1 }}
-                     className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] border border-white/10 group bg-slate-800"
-                   >
-                      <img 
-                        src={project.image} 
-                        alt={project.title} 
-                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                   </motion.div>
-                </div>
-              ))}
-            </motion.div>
+            <div className="relative h-[550px] w-full rounded-[2.5rem] overflow-hidden border border-white/10 bg-slate-900/20 backdrop-blur-xl shadow-2xl">
+              <div className="absolute left-8 top-1/2 -translate-y-1/2 w-[2px] h-[40%] bg-slate-800 rounded-full z-20 overflow-hidden">
+                 <motion.div 
+                   style={{ scaleY, originY: 0 }}
+                   className="w-full h-full bg-orange-500"
+                 />
+              </div>
+
+              <motion.div 
+                style={{ y: translateY }}
+                className="w-full h-full flex flex-col"
+              >
+                {projects.map((project) => (
+                  <div key={project.title} className="w-full h-full flex-shrink-0 flex items-center justify-center p-12 lg:p-20">
+                     <motion.div 
+                       whileHover={{ scale: 1.02, rotate: 1 }}
+                       className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] border border-white/10 group bg-slate-800"
+                     >
+                        <img 
+                          src={project.image} 
+                          alt={project.title} 
+                          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                     </motion.div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
           </div>
         </div>
+      </section>
+
+      {/* More Projects CTA - Mimicking the vanilla version exactly */}
+      <div className="py-20 bg-slate-950 flex justify-center border-b border-white/5">
+        <a 
+          href="https://github.com/sivaganeshv1729" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="px-12 py-5 border border-white/10 text-white font-black rounded-2xl hover:bg-white hover:text-slate-950 transition-all transform hover:-translate-y-1 text-sm tracking-widest uppercase"
+        >
+          More Projects
+        </a>
       </div>
-    </section>
+    </>
   )
 }
 
