@@ -35,7 +35,6 @@ const ProjectText = ({ project, index, total, scrollYProgress }) => {
   const end = (index + 1) / total
   
   // Adjusted thresholds for smoother transitions
-  // If it's the first project, it should be visible immediately (opacity 1 at start=0)
   const opacityRange = index === 0 
     ? [0, end - 0.15, end] 
     : [start, start + 0.1, end - 0.15, end];
@@ -44,7 +43,6 @@ const ProjectText = ({ project, index, total, scrollYProgress }) => {
     ? [1, 1, 0] 
     : [0, 1, 1, 0];
 
-  // If it's the last project, it should stay visible until the end
   const finalOpacityRange = index === total - 1 
     ? [start, start + 0.1, 1] 
     : opacityRange;
@@ -53,9 +51,20 @@ const ProjectText = ({ project, index, total, scrollYProgress }) => {
     ? [0, 1, 1] 
     : opacityValues;
 
+  // FIX: Ensure input and output arrays have identical lengths to prevent Framer Motion runtime errors
   const opacity = useTransform(scrollYProgress, finalOpacityRange, finalOpacityValues)
-  const scale = useTransform(scrollYProgress, finalOpacityRange, [0.98, 1, 0.98])
-  const y = useTransform(scrollYProgress, finalOpacityRange, [10, 0, -10])
+  
+  const scale = useTransform(
+    scrollYProgress, 
+    finalOpacityRange, 
+    finalOpacityValues.map(v => v === 1 ? 1 : 0.98)
+  )
+  
+  const y = useTransform(
+    scrollYProgress, 
+    finalOpacityRange, 
+    finalOpacityValues.map((v, i) => (v === 1 ? 0 : (i === 0 ? 10 : -10)))
+  )
 
   return (
     <motion.div
@@ -167,7 +176,6 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* More Projects CTA - Mimicking the vanilla version exactly */}
       <div className="py-20 bg-slate-950 flex justify-center border-b border-white/5">
         <a 
           href="https://github.com/sivaganeshv1729" 
