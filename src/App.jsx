@@ -1,26 +1,28 @@
+import React from 'react'
 import Preloader from './components/Preloader'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import Skills, { Marquee } from './components/Skills'
 import Journey from './components/Journey'
-import About from './components/About'
-import Skills from './components/Skills'
 import Projects from './components/Projects'
+import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Spotlight from './components/Spotlight'
 
 function App() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 overflow-x-hidden relative">
+    <div className="min-h-screen relative overflow-x-hidden">
       <Spotlight />
       <Preloader />
       <Navbar />
       <main className="relative z-10">
         <Hero />
+        <Marquee />
         <Journey />
-        <About />
-        <Skills />
         <Projects />
+        <Skills />
+        <About />
         <Contact />
       </main>
       <Footer />
