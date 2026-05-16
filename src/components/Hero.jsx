@@ -1,77 +1,88 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
+import React, { useState, useEffect } from 'react';
+
+const roles = ["Aspiring Developer", "Designer", "Problem Solver"];
 
 const Hero = () => {
-  const { scrollY } = useScroll()
-  const y1 = useTransform(scrollY, [0, 500], [0, 200])
-  
-  return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-slate-950">
-      {/* Background radial gradients matching initial branch */}
-      <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-orange-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-rose-500/10 rounded-full blur-[140px] pointer-events-none" />
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [roleIndex, setRoleIndex] = useState(0);
 
-      <motion.div 
-        style={{ y: y1 }}
-        className="absolute top-1/3 right-[10%] w-96 h-96 bg-orange-600/5 rounded-full blur-[120px] -z-10"
-      />
-      
-      <div className="container mx-auto px-6 z-10">
-        <div className="max-w-5xl">
-          <motion.p 
-             initial={{ opacity: 0, y: 20 }}
-             animate={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.6 }}
-             className="text-orange-500 font-bold tracking-[0.4em] text-[12px] mb-8 uppercase"
-          >
-            ASPIRING SOFTWARE ENGINEER
-          </motion.p>
+  useEffect(() => {
+    let timer;
+    const typingSpeed = 90;
+    const deletingSpeed = 55;
+    const pauseBeforeDelete = 1400;
+    const pauseBeforeRetype = 450;
+
+    const currentRole = roles[roleIndex];
+
+    if (!isDeleting) {
+      if (displayedText.length < currentRole.length) {
+        timer = setTimeout(() => {
+          setDisplayedText(currentRole.slice(0, displayedText.length + 1));
+        }, typingSpeed);
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(true);
+        }, pauseBeforeDelete);
+      }
+    } else {
+      if (displayedText.length > 0) {
+        timer = setTimeout(() => {
+          setDisplayedText(currentRole.slice(0, displayedText.length - 1));
+        }, deletingSpeed);
+      } else {
+        setIsDeleting(false);
+        setRoleIndex((prev) => (prev + 1) % roles.length);
+        timer = setTimeout(() => {}, pauseBeforeRetype);
+      }
+    }
+
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, roleIndex]);
+
+  return (
+    <section id="home" className="hero">
+      <div className="container">
+        <div className="hero-grid">
+          <div className="hero-content">
+            <h1 className="hero-title">Hello<span className="accent">.</span></h1>
+            <p className="hero-subtitle">I&apos;m T Siva Ganesh Vemula</p>
+            <h2 className="hero-role" aria-label={roles[roleIndex]}>
+              <span className="hero-role-sizer" aria-hidden="true">Aspiring Developer</span>
+              <span className="hero-role-text is-typing">{displayedText}</span>
+            </h2>
+            
+            <div className="hero-buttons">
+              <a href="mailto:sivaganeshv1729@gmail.com" className="btn btn-primary" target="_blank" rel="noopener noreferrer">Contact Me</a>
+              <a href="https://drive.google.com/file/d/1Z2ZUkhXqSvGRlgMjDKAw019l5DH79g9C/view?usp=sharing" className="btn btn-outline" target="_blank" rel="noopener noreferrer">My Resume</a>
+            </div>
+          </div>
           
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-7xl md:text-9xl lg:text-[10rem] font-black mb-10 leading-[0.85] tracking-tighter text-white"
-          >
-            Digital <br />
-            <span className="bg-gradient-to-r from-orange-500 to-rose-500 bg-clip-text text-transparent">Architect.</span>
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-lg md:text-2xl text-slate-400 mb-16 max-w-3xl leading-relaxed font-medium"
-          >
-            Building high-performance systems and elegant user experiences. I turn complex problems into scalable digital solutions.
-          </motion.p>
-          
-          <motion.div 
-             initial={{ opacity: 0, y: 20 }}
-             animate={{ opacity: 1, y: 0 }}
-             transition={{ delay: 0.8, duration: 0.6 }}
-             className="flex flex-wrap gap-6"
-          >
-            <a href="#projects" className="px-12 py-6 bg-white text-slate-950 font-black rounded-2xl transition-all hover:bg-orange-500 hover:text-white transform hover:-translate-y-1 text-sm tracking-widest uppercase">
-              View My Work
-            </a>
-            <a href="https://drive.google.com/file/d/1Z2ZUkhXqSvGRlgMjDKAw019l5DH79g9C/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="px-12 py-6 border border-white/10 text-white font-black rounded-2xl hover:bg-white hover:text-slate-950 transition-all transform hover:-translate-y-1 text-sm tracking-widest uppercase">
-              My Resume
-            </a>
-          </motion.div>
+          <div className="hero-image">
+            <div className="orange-circle"></div>
+            <div className="profile-container">
+              <div className="profile-circle">
+                <img src="images/siva_ganesh.png" alt="Profile Image" />
+              </div>
+            </div>
+            <div className="decorative-brackets">
+              <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 490 499" preserveAspectRatio="xMidYMid meet" className="bracket-left">
+                <g transform="translate(0,329) scale(0.1,-0.1)" fill="#f57059" stroke="none">
+                  <path d="M2799 3065 c-46 -25 -2670 -1205 -2680 -1205 -5 0 -9 -92 -9 -213 l0 -213 247 -111 c137 -61 730 -328 1318 -593 589 -265 1088 -491 1109 -501 22 -10 43 -19 48 -19 4 0 8 118 8 263 l0 263 -1015 439 -1015 438 0 32 0 33 1012 435 1013 435 3 266 c1 146 -1 266 -5 266 -5 -1 -20 -7 -34 -15z m-9 -274 c0 -155 -3 -211 -12 -219 -7 -6 -449 -198 -983 -427 -580 -249 -980 -426 -994 -441 -17 -16 -25 -34 -25 -59 0 -24 8 -43 25 -60 14 -14 260 -126 604 -274 319 -138 760 -328 980 -423 l400 -173 3 -218 c1 -140 -1 -217 -8 -217 -5 0 -108 44 -227 98 -120 55 -702 316 -1293 582 -591 266 -1083 490 -1092 498 -16 13 -18 36 -18 187 0 126 3 175 13 182 6 6 455 209 997 453 542 244 1012 455 1045 470 123 56 489 222 519 235 69 30 66 38 66 -194z"/>
+                </g>
+              </svg>
+              <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 490 499" preserveAspectRatio="xMidYMid meet" className="bracket-right">
+                <g transform="translate(430,499) scale(-0.1,-0.1)" fill="#f57059" stroke="none">
+                  <path d="M2799 3065 c-46 -25 -2670 -1205 -2680 -1205 -5 0 -9 -92 -9 -213 l0 -213 247 -111 c137 -61 730 -328 1318 -593 589 -265 1088 -491 1109 -501 22 -10 43 -19 48 -19 4 0 8 118 8 263 l0 263 -1015 439 -1015 438 0 32 0 33 1012 435 1013 435 3 266 c1 146 -1 266 -5 266 -5 -1 -20 -7 -34 -15z m-9 -274 c0 -155 -3 -211 -12 -219 -7 -6 -449 -198 -983 -427 -580 -249 -980 -426 -994 -441 -17 -16 -25 -34 -25 -59 0 -24 8 -43 25 -60 14 -14 260 -126 604 -274 319 -138 760 -328 980 -423 l400 -173 3 -218 c1 -140 -1 -217 -8 -217 -5 0 -108 44 -227 98 -120 55 -702 316 -1293 582 -591 266 -1083 490 -1092 498 -16 13 -18 36 -18 187 0 126 3 175 13 182 6 6 455 209 997 453 542 244 1012 455 1045 470 123 56 489 222 519 235 69 30 66 38 66 -194z"/>
+                </g>
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Scroll Down Indicator */}
-      <motion.div 
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 text-slate-800 flex flex-col items-center gap-4"
-      >
-        <span className="text-[10px] font-bold tracking-[0.3em] uppercase">Scroll</span>
-        <div className="w-[1px] h-16 bg-gradient-to-b from-slate-800 to-transparent" />
-      </motion.div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
