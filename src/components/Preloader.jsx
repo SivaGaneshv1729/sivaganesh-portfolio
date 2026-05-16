@@ -1,55 +1,55 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState, useEffect } from 'react';
 
-const words = [
-  "Hello", "Bonjour", "Hola", "Ciao", "Olá", "Hej", "Ahoj", "Namaste", "Vanakkam"
-]
+const greetings = [
+  "Hello",       // English
+  "నమస్కారం",      // Telugu
+  "नमस्ते",         // Hindi
+  "こんにちは",     // Japanese
+  "Bonjour",     // French
+  "Hola",        // Spanish
+  "নমস্কার",       // Bengali
+  "வணக்கம்"        // Tamil
+];
 
 const Preloader = () => {
-  const [index, setIndex] = useState(0)
-  const [isVisible, setIsVisible] = useState(true)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFadeOut, setIsFadeOut] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
-    if (index === words.length - 1) {
-      setTimeout(() => setIsVisible(false), 1000)
-      return
-    }
+    document.body.classList.add("no-scroll");
 
-    const timeout = setTimeout(() => {
-      setIndex(prev => prev + 1)
-    }, index === 0 ? 1000 : 150)
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => {
+        if (prev < greetings.length - 1) {
+          return prev + 1;
+        } else {
+          clearInterval(interval);
+          setIsFadeOut(true);
+          setTimeout(() => {
+            setIsHidden(true);
+            document.body.classList.remove("no-scroll");
+          }, 800);
+          return prev;
+        }
+      });
+    }, 220);
 
-    return () => clearTimeout(timeout)
-  }, [index])
+    return () => {
+      clearInterval(interval);
+      document.body.classList.remove("no-scroll");
+    };
+  }, []);
+
+  if (isHidden) return null;
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ opacity: 1 }}
-          exit={{ 
-            opacity: 0, 
-            filter: "blur(20px)",
-            transition: { duration: 0.8, ease: "easeInOut" }
-          }}
-          className="fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center pointer-events-none"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            key={words[index]}
-            transition={{ duration: 0.15 }}
-            className="flex items-center gap-3"
-          >
-            <span className="w-3 h-3 rounded-full bg-orange-500" />
-            <p className="text-white text-5xl md:text-7xl font-bold tracking-tight">
-              {words[index]}
-            </p>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  )
-}
+    <div id="preloader" className={`preloader ${isFadeOut ? 'preloader-hidden' : ''}`}>
+      <div className={`preloader-content ${isFadeOut ? 'fade-out' : ''}`}>
+        <span id="preloader-text">{greetings[currentIndex]}</span>
+      </div>
+    </div>
+  );
+};
 
-export default Preloader
+export default Preloader;
