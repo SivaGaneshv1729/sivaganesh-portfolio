@@ -1,193 +1,204 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
-import { ExternalLink } from 'lucide-react'
-import { GitHubIcon } from './Icons'
-
-const projects = [
-  {
-    title: "Payment Gateway",
-    description: "Engineered a robust payment gateway integration containerized via Docker for high reliability. Resolved build configurations and implemented testing for high system reliability.",
-    tags: ["React", "FastAPI", "Docker"],
-    github: "https://github.com/SivaGaneshv1729/production-payment-gateway-async",
-    demo: "https://sivaganeshv.pages.dev/",
-    image: "/images/project1_clear.png"
-  },
-  {
-    title: "Multi-Tenant SaaS Platform",
-    description: "Architected a scalable MERN stack platform featuring secure role-based isolation. Designed RESTful APIs and optimized schemas for secure, role-based data isolation.",
-    tags: ["MongoDB", "Express", "React", "Node"],
-    github: "https://github.com/SivaGaneshv1729/multi-tenant-saas-platform",
-    demo: "https://sivaganeshv.pages.dev/",
-    image: "/images/project2_clear.png"
-  },
-  {
-    title: "ClassmateAI",
-    description: "Built ClassmateAI, adopted by 50+ peers for task and note management. Architected a Full-Stack Application featuring an AI chatbot powered by the Google Gemini API.",
-    tags: ["Gemini API", "FastAPI", "React"],
-    github: "https://github.com/SivaGaneshv1729/ClassmateAI",
-    demo: "https://sivaganeshv.pages.dev/",
-    image: "/images/project3_clear.png"
-  }
-]
-
-const ProjectText = ({ project, index, total, scrollYProgress }) => {
-  const start = index / total
-  const end = (index + 1) / total
-  
-  // Adjusted thresholds for smoother transitions
-  const opacityRange = index === 0 
-    ? [0, end - 0.15, end] 
-    : [start, start + 0.1, end - 0.15, end];
-  
-  const opacityValues = index === 0 
-    ? [1, 1, 0] 
-    : [0, 1, 1, 0];
-
-  const finalOpacityRange = index === total - 1 
-    ? [start, start + 0.1, 1] 
-    : opacityRange;
-  
-  const finalOpacityValues = index === total - 1 
-    ? [0, 1, 1] 
-    : opacityValues;
-
-  // FIX: Ensure input and output arrays have identical lengths to prevent Framer Motion runtime errors
-  const opacity = useTransform(scrollYProgress, finalOpacityRange, finalOpacityValues)
-  
-  const scale = useTransform(
-    scrollYProgress, 
-    finalOpacityRange, 
-    finalOpacityValues.map(v => v === 1 ? 1 : 0.98)
-  )
-  
-  const y = useTransform(
-    scrollYProgress, 
-    finalOpacityRange, 
-    finalOpacityValues.map((v, i) => (v === 1 ? 0 : (i === 0 ? 10 : -10)))
-  )
-
-  return (
-    <motion.div
-      style={{ opacity, scale, y }}
-      className="absolute inset-0 flex flex-col justify-center px-4"
-    >
-      <div className="mb-8 flex items-center gap-4">
-        <span className="text-orange-500 font-black text-xl">0{index + 1}</span>
-        <div className="h-[1px] w-12 bg-orange-500/50" />
-        <span className="text-slate-600 font-bold uppercase tracking-widest text-[10px]">Project Showcase</span>
-      </div>
-      
-      <h3 className="text-5xl md:text-7xl font-black mb-8 text-white leading-[0.9] tracking-tighter">
-        {project.title.split(' ').map((word, i) => (
-          <span key={i} className="block">{word}</span>
-        ))}
-      </h3>
-      
-      <p className="text-slate-400 text-lg mb-10 max-w-md leading-relaxed font-medium">
-        {project.description}
-      </p>
-      
-      <div className="flex flex-wrap gap-2 mb-10">
-        {project.tags.map(tag => (
-          <span key={tag} className="px-4 py-1.5 bg-slate-900 border border-white/5 rounded-full text-[11px] font-black text-slate-500 uppercase tracking-widest">
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      <div className="flex gap-8">
-        <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-orange-500 transition-all font-black text-xs uppercase tracking-[0.2em] group">
-          <GitHubIcon size={20} /> 
-          <span className="border-b-2 border-transparent group-hover:border-orange-500 pb-1">Code</span>
-        </a>
-        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-orange-500 transition-all font-black text-xs uppercase tracking-[0.2em] group">
-          <ExternalLink size={20} /> 
-          <span className="border-b-2 border-transparent group-hover:border-orange-500 pb-1">Live Demo</span>
-        </a>
-      </div>
-    </motion.div>
-  )
-}
+import React, { useEffect, useRef, useState } from 'react';
 
 const Projects = () => {
-  const containerRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  })
+  const containerRef = useRef(null);
+  const trackRef = useRef(null);
+  const lineRef = useRef(null);
+  const dotRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  })
+  useEffect(() => {
+    const container = containerRef.current;
+    const track = trackRef.current;
+    if (!container || !track) return;
 
-  const translateY = useTransform(scrollYProgress, [0, 1], ["0%", `-${(projects.length - 1) * 100}%`])
+    let jackMaxScroll = 0;
+    let trackMaxTranslate = 0;
+    let visualItems = track.querySelectorAll('.project-visual-item');
+
+    const handleResize = () => {
+      if (!visualItems.length) return;
+      const containerHeight = track.parentElement.clientHeight;
+      const itemHeight = visualItems[0].clientHeight;
+      const centerPadding = Math.max(0, (containerHeight - itemHeight) / 2);
+      track.style.paddingTop = `${centerPadding}px`;
+      track.style.paddingBottom = `${centerPadding}px`;
+
+      const trackHeight = track.scrollHeight;
+      trackMaxTranslate = Math.max(0, trackHeight - containerHeight);
+
+      const newHeight = window.innerHeight + trackMaxTranslate;
+      container.style.height = `${newHeight}px`;
+      jackMaxScroll = trackMaxTranslate;
+    };
+
+    const handleScroll = () => {
+      if (jackMaxScroll <= 0) return;
+      const jackRect = container.getBoundingClientRect();
+      let scrollProgress = -jackRect.top / jackMaxScroll;
+      scrollProgress = Math.max(0, Math.min(scrollProgress, 1));
+
+      const progressPercent = scrollProgress * 100;
+      if (lineRef.current && dotRef.current) {
+        lineRef.current.style.height = progressPercent + '%';
+        dotRef.current.style.top = progressPercent + '%';
+      }
+
+      track.style.transform = `translateY(-${scrollProgress * trackMaxTranslate}px)`;
+
+      const totalItems = visualItems.length;
+      const thresholdStep = 1 / totalItems;
+      let newActiveIndex = 0;
+      for (let i = 0; i < totalItems; i++) {
+        if (scrollProgress >= i * thresholdStep) {
+          newActiveIndex = i;
+        }
+      }
+      setActiveIndex(newActiveIndex);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', handleScroll);
+
+    const timer = setTimeout(handleResize, 300);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
-    <>
-      <section ref={containerRef} id="projects" className="relative h-[450vh] bg-slate-950 z-20">
-        <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-orange-600/5 rounded-full blur-[120px] pointer-events-none" />
+    <section id="projects" ref={containerRef} className="projects projects-scroll-jack">
+      <div className="projects-sticky-container">
+        <div className="container h-full">
+          <div className="projects-header">
+            <h2 className="section-title">Projects</h2>
+          </div>
 
-          <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-            <div className="relative h-[600px] flex items-center">
-              {projects.map((project, index) => (
-                <ProjectText 
-                  key={project.title} 
-                  project={project} 
-                  index={index} 
-                  total={projects.length} 
-                  scrollYProgress={scrollYProgress} 
-                />
-              ))}
-            </div>
+          <div className="projects-split-layout" id="projectsStack">
+            {/* Left Static Column: Text & Tracker */}
+            <div className="projects-left-column">
+              <div className="project-details-container">
+                {/* Project 1 Details */}
+                <div className={`project-content ${activeIndex === 0 ? 'is-active' : ''}`} id="project-details-0">
+                  <h3 className="project-title">
+                    <a href="https://github.com/SivaGaneshv1729/production-payment-gateway-async" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s' }}>Payment Gateway</a>
+                  </h3>
+                  <p className="project-description">
+                    Engineered a robust payment gateway integration and containerized it via Docker. Resolved build configurations and implemented testing for high system reliability. Structured the codebase and authored documentation to streamline future scaling.
+                  </p>
+                  
+                  <div className="project-highlights">
+                    <h4>Key Highlights</h4>
+                    <ul>
+                      <li>Robust payment gateway integration</li>
+                      <li>Containerized deployment via Docker</li>
+                    </ul>
+                  </div>
 
-            <div className="relative h-[550px] w-full rounded-[2.5rem] overflow-hidden border border-white/10 bg-slate-900/20 backdrop-blur-xl shadow-2xl">
-              <div className="absolute left-8 top-1/2 -translate-y-1/2 w-[2px] h-[40%] bg-slate-800 rounded-full z-20 overflow-hidden">
-                 <motion.div 
-                   style={{ scaleY, originY: 0 }}
-                   className="w-full h-full bg-orange-500"
-                 />
+                  <div className="project-skills">
+                    <h4>Tech Stack</h4>
+                    <div className="project-tags">
+                      <span className="tag"><i className="devicon-docker-plain"></i> Docker</span>
+                      <span className="tag"><i className="devicon-nodejs-plain"></i> Node.js</span>
+                      <span className="tag"><i className="devicon-express-original"></i> Express.js</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Project 2 Details */}
+                <div className={`project-content ${activeIndex === 1 ? 'is-active' : ''}`} id="project-details-1">
+                  <h3 className="project-title">
+                    <a href="https://github.com/SivaGaneshv1729/multi-tenant-saas-platform" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s' }}>Multi-Tenant SaaS Platform</a>
+                  </h3>
+                  <p className="project-description">
+                    Architected a scalable full-stack MERN SaaS platform with multi-tenant architecture. Designed RESTful APIs and optimized schemas for secure, role-based data isolation. Built a responsive UI and managed complex state for centralized data processing.
+                  </p>
+                  
+                  <div className="project-highlights">
+                    <h4>Key Highlights</h4>
+                    <ul>
+                      <li>Secure, role-based data isolation</li>
+                      <li>Complex state management for centralized processing</li>
+                    </ul>
+                  </div>
+
+                  <div className="project-skills">
+                    <h4>Tech Stack</h4>
+                    <div className="project-tags">
+                      <span className="tag"><i className="devicon-mongodb-plain"></i> MongoDB</span>
+                      <span className="tag"><i className="devicon-express-original"></i> Express.js</span>
+                      <span className="tag"><i className="devicon-react-original"></i> React</span>
+                      <span className="tag"><i className="devicon-nodejs-plain"></i> Node.js</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Project 3 Details */}
+                <div className={`project-content ${activeIndex === 2 ? 'is-active' : ''}`} id="project-details-2">
+                  <h3 className="project-title">
+                    <a href="https://github.com/SivaGaneshv1729/ClassmateAI" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s' }}>ClassmateAI</a>
+                  </h3>
+                  <p className="project-description">
+                    Built ClassmateAI, adopted by 50+ peers for task and note management. Architected a Full-Stack Application featuring an AI chatbot powered by the Google Gemini API. Developed user-facing modules and implemented a clean, responsive UI.
+                  </p>
+                  
+                  <div className="project-highlights">
+                    <h4>Key Highlights</h4>
+                    <ul>
+                      <li>AI chatbot powered by Google Gemini API</li>
+                      <li>Multiple user-facing modules (notes, tasks, attendance)</li>
+                    </ul>
+                  </div>
+
+                  <div className="project-skills">
+                    <h4>Tech Stack</h4>
+                    <div className="project-tags">
+                      <span className="tag"><i className="devicon-fastapi-plain"></i> FastAPI</span>
+                      <span className="tag"><i className="devicon-mongodb-plain"></i> MongoDB</span>
+                      <span className="tag"><i className="devicon-python-plain"></i> Python</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <motion.div 
-                style={{ y: translateY }}
-                className="w-full h-full flex flex-col"
-              >
-                {projects.map((project) => (
-                  <div key={project.title} className="w-full h-full flex-shrink-0 flex items-center justify-center p-12 lg:p-20">
-                     <motion.div 
-                       whileHover={{ scale: 1.02, rotate: 1 }}
-                       className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] border border-white/10 group bg-slate-800"
-                     >
-                        <img 
-                          src={project.image} 
-                          alt={project.title} 
-                          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                     </motion.div>
-                  </div>
-                ))}
-              </motion.div>
+              {/* Vertical Progress Tracker */}
+              <div className="project-scroll-track-wrapper">
+                <div className="project-scroll-track">
+                  <div className="project-scroll-line" ref={lineRef} id="projectScrollLine"></div>
+                  <div className="project-scroll-dot" ref={dotRef} id="projectScrollDot"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Scrolling Column: Images */}
+            <div className="projects-right-column">
+              <div className="projects-visual-track" ref={trackRef} id="projectVisualTrack">
+                <div className={`project-visual image-showcase project-visual-item ${activeIndex === 0 ? 'is-active' : ''}`} data-index="0" style={{ background: 'rgba(43, 108, 176, 0.9)' }}>
+                  <img src="images/project1_clear.png" alt="Payment Gateway" style={{ width: '100%', aspectRatio: '899 / 647', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.6)' }} />
+                </div>
+
+                <div className={`project-visual image-showcase project-visual-item ${activeIndex === 1 ? 'is-active' : ''}`} data-index="1" style={{ background: 'rgba(220, 53, 69, 0.9)' }}>
+                  <img src="images/project2_clear.png" alt="SaaS Platform" style={{ width: '100%', aspectRatio: '899 / 647', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.6)' }} />
+                </div>
+
+                <div className={`project-visual image-showcase project-visual-item ${activeIndex === 2 ? 'is-active' : ''}`} data-index="2" style={{ background: 'rgba(72, 187, 120, 0.9)' }}>
+                  <img src="images/project3_clear.png" alt="Classmate AI" style={{ width: '100%', aspectRatio: '899 / 647', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.6)' }} />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-
-      <div className="py-20 bg-slate-950 flex justify-center border-b border-white/5">
-        <a 
-          href="https://github.com/sivaganeshv1729" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="px-12 py-5 border border-white/10 text-white font-black rounded-2xl hover:bg-white hover:text-slate-950 transition-all transform hover:-translate-y-1 text-sm tracking-widest uppercase"
-        >
-          More Projects
-        </a>
       </div>
-    </>
-  )
-}
 
-export default Projects
+      <div className="projects-more-cta">
+        <a className="btn btn-outline" href="https://github.com/sivaganeshv1729" target="_blank" rel="noopener noreferrer">More Projects</a>
+      </div>
+    </section>
+  );
+};
+
+export default Projects;
