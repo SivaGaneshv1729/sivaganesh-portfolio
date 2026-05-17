@@ -5,6 +5,7 @@ const Projects = () => {
   const trackRef = useRef(null);
   const lineRef = useRef(null);
   const dotRef = useRef(null);
+  const resizeRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -31,6 +32,8 @@ const Projects = () => {
       container.style.height = `${newHeight}px`;
       jackMaxScroll = trackMaxTranslate;
     };
+
+    resizeRef.current = handleResize;
 
     const handleScroll = () => {
       if (jackMaxScroll <= 0) return;
@@ -61,143 +64,219 @@ const Projects = () => {
     window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll);
 
-    const timer = setTimeout(handleResize, 300);
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
+    resizeObserver.observe(track);
+    if (container.parentElement) {
+      resizeObserver.observe(container.parentElement);
+    }
+
+    const timer1 = setTimeout(handleResize, 150);
+    const timer2 = setTimeout(handleResize, 500);
+    const timer3 = setTimeout(handleResize, 1500);
 
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timer);
+      resizeObserver.disconnect();
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
     };
   }, []);
 
   return (
-    <section id="projects" ref={containerRef} className="projects projects-scroll-jack">
-      <div className="projects-sticky-container">
-        <div className="container h-full">
-          <div className="projects-header">
-            <h2 className="section-title">Projects</h2>
-          </div>
-
-          <div className="projects-split-layout" id="projectsStack">
-            {/* Left Static Column: Text & Tracker */}
-            <div className="projects-left-column">
-              <div className="project-details-container">
-                {/* Project 1 Details */}
-                <div className={`project-content ${activeIndex === 0 ? 'is-active' : ''}`} id="project-details-0">
-                  <h3 className="project-title">
-                    <a href="https://github.com/SivaGaneshv1729/production-payment-gateway-async" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s' }}>Payment Gateway</a>
-                  </h3>
-                  <p className="project-description">
-                    Engineered a robust payment gateway integration and containerized it via Docker. Resolved build configurations and implemented testing for high system reliability. Structured the codebase and authored documentation to streamline future scaling.
-                  </p>
-                  
-                  <div className="project-highlights">
-                    <h4>Key Highlights</h4>
-                    <ul>
-                      <li>Robust payment gateway integration</li>
-                      <li>Containerized deployment via Docker</li>
-                    </ul>
-                  </div>
-
-                  <div className="project-skills">
-                    <h4>Tech Stack</h4>
-                    <div className="project-tags">
-                      <span className="tag"><i className="devicon-docker-plain"></i> Docker</span>
-                      <span className="tag"><i className="devicon-nodejs-plain"></i> Node.js</span>
-                      <span className="tag"><i className="devicon-express-original"></i> Express.js</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Project 2 Details */}
-                <div className={`project-content ${activeIndex === 1 ? 'is-active' : ''}`} id="project-details-1">
-                  <h3 className="project-title">
-                    <a href="https://github.com/SivaGaneshv1729/multi-tenant-saas-platform" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s' }}>Multi-Tenant SaaS Platform</a>
-                  </h3>
-                  <p className="project-description">
-                    Architected a scalable full-stack MERN SaaS platform with multi-tenant architecture. Designed RESTful APIs and optimized schemas for secure, role-based data isolation. Built a responsive UI and managed complex state for centralized data processing.
-                  </p>
-                  
-                  <div className="project-highlights">
-                    <h4>Key Highlights</h4>
-                    <ul>
-                      <li>Secure, role-based data isolation</li>
-                      <li>Complex state management for centralized processing</li>
-                    </ul>
-                  </div>
-
-                  <div className="project-skills">
-                    <h4>Tech Stack</h4>
-                    <div className="project-tags">
-                      <span className="tag"><i className="devicon-mongodb-plain"></i> MongoDB</span>
-                      <span className="tag"><i className="devicon-express-original"></i> Express.js</span>
-                      <span className="tag"><i className="devicon-react-original"></i> React</span>
-                      <span className="tag"><i className="devicon-nodejs-plain"></i> Node.js</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Project 3 Details */}
-                <div className={`project-content ${activeIndex === 2 ? 'is-active' : ''}`} id="project-details-2">
-                  <h3 className="project-title">
-                    <a href="https://github.com/SivaGaneshv1729/ClassmateAI" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s' }}>ClassmateAI</a>
-                  </h3>
-                  <p className="project-description">
-                    Built ClassmateAI, adopted by 50+ peers for task and note management. Architected a Full-Stack Application featuring an AI chatbot powered by the Google Gemini API. Developed user-facing modules and implemented a clean, responsive UI.
-                  </p>
-                  
-                  <div className="project-highlights">
-                    <h4>Key Highlights</h4>
-                    <ul>
-                      <li>AI chatbot powered by Google Gemini API</li>
-                      <li>Multiple user-facing modules (notes, tasks, attendance)</li>
-                    </ul>
-                  </div>
-
-                  <div className="project-skills">
-                    <h4>Tech Stack</h4>
-                    <div className="project-tags">
-                      <span className="tag"><i className="devicon-fastapi-plain"></i> FastAPI</span>
-                      <span className="tag"><i className="devicon-mongodb-plain"></i> MongoDB</span>
-                      <span className="tag"><i className="devicon-python-plain"></i> Python</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Vertical Progress Tracker */}
-              <div className="project-scroll-track-wrapper">
-                <div className="project-scroll-track">
-                  <div className="project-scroll-line" ref={lineRef} id="projectScrollLine"></div>
-                  <div className="project-scroll-dot" ref={dotRef} id="projectScrollDot"></div>
-                </div>
-              </div>
+    <>
+      <section id="projects" ref={containerRef} className="projects projects-scroll-jack">
+        <div className="projects-sticky-container">
+          <div className="container h-full">
+            <div className="projects-header">
+              <h2 className="section-title">Projects</h2>
             </div>
 
-            {/* Right Scrolling Column: Images */}
-            <div className="projects-right-column">
-              <div className="projects-visual-track" ref={trackRef} id="projectVisualTrack">
-                <div className={`project-visual image-showcase project-visual-item ${activeIndex === 0 ? 'is-active' : ''}`} data-index="0" style={{ background: 'rgba(43, 108, 176, 0.9)' }}>
-                  <img src="images/project1_clear.png" alt="Payment Gateway" style={{ width: '100%', aspectRatio: '899 / 647', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.6)' }} />
+            <div className="projects-split-layout" id="projectsStack">
+              {/* Left Static Column: Text & Tracker */}
+              <div className="projects-left-column">
+                <div 
+                  className="project-details-container custom-scrollbar" 
+                  style={{ 
+                    overflowY: 'auto', 
+                    maxHeight: 'calc(100vh - 180px)', 
+                    paddingRight: '1.5rem' 
+                  }}
+                >
+                  {/* Project 1 Details */}
+                  <div 
+                    className={`project-content ${activeIndex === 0 ? 'is-active' : ''}`} 
+                    id="project-details-0"
+                    style={{ position: activeIndex === 0 ? 'relative' : 'absolute', width: '100%' }}
+                  >
+                    <h3 className="project-title" style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>
+                      <a 
+                        href="https://github.com/SivaGaneshv1729/production-payment-gateway-async" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s' }}
+                        onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-coral)'}
+                        onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}
+                      >
+                        Payment Gateway
+                      </a>
+                    </h3>
+                    <p className="project-description" style={{ fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.5' }}>
+                      Engineered a robust payment gateway integration and containerized it via Docker. Resolved build configurations and implemented testing for high system reliability. Structured the codebase and authored documentation to streamline future scaling.
+                    </p>
+                    
+                    <div className="project-highlights" style={{ marginBottom: '1rem' }}>
+                      <h4 style={{ fontSize: '1rem', marginBottom: '0.4rem' }}>Key Highlights</h4>
+                      <ul style={{ marginBottom: '0' }}>
+                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>Robust payment gateway integration</li>
+                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>Containerized deployment via Docker</li>
+                      </ul>
+                    </div>
+
+                    <div className="project-skills">
+                      <h4 style={{ fontSize: '1rem', marginBottom: '0.6rem' }}>Tech Stack</h4>
+                      <div className="project-tags" style={{ gap: '0.5rem', marginBottom: '0.5rem' }}>
+                        <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-docker-plain"></i> Docker</span>
+                        <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-nodejs-plain"></i> Node.js</span>
+                        <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-express-original"></i> Express.js</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Project 2 Details */}
+                  <div 
+                    className={`project-content ${activeIndex === 1 ? 'is-active' : ''}`} 
+                    id="project-details-1"
+                    style={{ position: activeIndex === 1 ? 'relative' : 'absolute', width: '100%' }}
+                  >
+                    <h3 className="project-title" style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>
+                      <a 
+                        href="https://github.com/SivaGaneshv1729/multi-tenant-saas-platform" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s' }}
+                        onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-coral)'}
+                        onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}
+                      >
+                        Multi-Tenant SaaS Platform
+                      </a>
+                    </h3>
+                    <p className="project-description" style={{ fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.5' }}>
+                      Architected a scalable full-stack MERN SaaS platform with multi-tenant architecture. Designed RESTful APIs and optimized schemas for secure, role-based data isolation. Built a responsive UI and managed complex state for centralized data processing.
+                    </p>
+                    
+                    <div className="project-highlights" style={{ marginBottom: '1rem' }}>
+                      <h4 style={{ fontSize: '1rem', marginBottom: '0.4rem' }}>Key Highlights</h4>
+                      <ul style={{ marginBottom: '0' }}>
+                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>Secure, role-based data isolation</li>
+                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>Complex state management for centralized processing</li>
+                      </ul>
+                    </div>
+
+                    <div className="project-skills">
+                      <h4 style={{ fontSize: '1rem', marginBottom: '0.6rem' }}>Tech Stack</h4>
+                      <div className="project-tags" style={{ gap: '0.5rem', marginBottom: '0.5rem' }}>
+                        <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-mongodb-plain"></i> MongoDB</span>
+                        <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-express-original"></i> Express.js</span>
+                        <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-react-original"></i> React</span>
+                        <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-nodejs-plain"></i> Node.js</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Project 3 Details */}
+                  <div 
+                    className={`project-content ${activeIndex === 2 ? 'is-active' : ''}`} 
+                    id="project-details-2"
+                    style={{ position: activeIndex === 2 ? 'relative' : 'absolute', width: '100%' }}
+                  >
+                    <h3 className="project-title" style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>
+                      <a 
+                        href="https://github.com/SivaGaneshv1729/ClassmateAI" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s' }}
+                        onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-coral)'}
+                        onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}
+                      >
+                        ClassmateAI
+                      </a>
+                    </h3>
+                    <p className="project-description" style={{ fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.5' }}>
+                      Built ClassmateAI, adopted by 50+ peers for task and note management. Architected a Full-Stack Application featuring an AI chatbot powered by the Google Gemini API. Developed user-facing modules and implemented a clean, responsive UI.
+                    </p>
+                    
+                    <div className="project-highlights" style={{ marginBottom: '1rem' }}>
+                      <h4 style={{ fontSize: '1rem', marginBottom: '0.4rem' }}>Key Highlights</h4>
+                      <ul style={{ marginBottom: '0' }}>
+                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>AI chatbot powered by Google Gemini API</li>
+                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>Multiple user-facing modules (notes, tasks, attendance)</li>
+                      </ul>
+                    </div>
+
+                    <div className="project-skills">
+                      <h4 style={{ fontSize: '1rem', marginBottom: '0.6rem' }}>Tech Stack</h4>
+                      <div className="project-tags" style={{ gap: '0.5rem', marginBottom: '0.5rem' }}>
+                        <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-fastapi-plain"></i> FastAPI</span>
+                        <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-mongodb-plain"></i> MongoDB</span>
+                        <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-python-plain"></i> Python</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div className={`project-visual image-showcase project-visual-item ${activeIndex === 1 ? 'is-active' : ''}`} data-index="1" style={{ background: 'rgba(220, 53, 69, 0.9)' }}>
-                  <img src="images/project2_clear.png" alt="SaaS Platform" style={{ width: '100%', aspectRatio: '899 / 647', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.6)' }} />
+                {/* Vertical Progress Tracker */}
+                <div className="project-scroll-track-wrapper">
+                  <div className="project-scroll-track">
+                    <div className="project-scroll-line" ref={lineRef} id="projectScrollLine"></div>
+                    <div className="project-scroll-dot" ref={dotRef} id="projectScrollDot"></div>
+                  </div>
                 </div>
+              </div>
 
-                <div className={`project-visual image-showcase project-visual-item ${activeIndex === 2 ? 'is-active' : ''}`} data-index="2" style={{ background: 'rgba(72, 187, 120, 0.9)' }}>
-                  <img src="images/project3_clear.png" alt="Classmate AI" style={{ width: '100%', aspectRatio: '899 / 647', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.6)' }} />
+              {/* Right Scrolling Column: Images */}
+              <div className="projects-right-column">
+                <div className="projects-visual-track" ref={trackRef} id="projectVisualTrack">
+                  <div className={`project-visual image-showcase project-visual-item ${activeIndex === 0 ? 'is-active' : ''}`} data-index="0" style={{ background: 'rgba(43, 108, 176, 0.9)' }}>
+                    <img 
+                      src="images/project1_clear.png" 
+                      alt="Payment Gateway" 
+                      onLoad={() => resizeRef.current && resizeRef.current()}
+                      style={{ width: '100%', aspectRatio: '899 / 647', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.6)' }} 
+                    />
+                  </div>
+
+                  <div className={`project-visual image-showcase project-visual-item ${activeIndex === 1 ? 'is-active' : ''}`} data-index="1" style={{ background: 'rgba(220, 53, 69, 0.9)' }}>
+                    <img 
+                      src="images/project2_clear.png" 
+                      alt="SaaS Platform" 
+                      onLoad={() => resizeRef.current && resizeRef.current()}
+                      style={{ width: '100%', aspectRatio: '899 / 647', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.6)' }} 
+                    />
+                  </div>
+
+                  <div className={`project-visual image-showcase project-visual-item ${activeIndex === 2 ? 'is-active' : ''}`} data-index="2" style={{ background: 'rgba(72, 187, 120, 0.9)' }}>
+                    <img 
+                      src="images/project3_clear.png" 
+                      alt="Classmate AI" 
+                      onLoad={() => resizeRef.current && resizeRef.current()}
+                      style={{ width: '100%', aspectRatio: '899 / 647', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.6)' }} 
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       <div className="projects-more-cta">
         <a className="btn btn-outline" href="https://github.com/sivaganeshv1729" target="_blank" rel="noopener noreferrer">More Projects</a>
       </div>
-    </section>
+    </>
   );
 };
 
