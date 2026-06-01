@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Projects = () => {
+  const { t } = useTranslation();
   const containerRef = useRef(null);
   const trackRef = useRef(null);
   const lineRef = useRef(null);
@@ -92,7 +94,7 @@ const Projects = () => {
         <div className="projects-sticky-container">
           <div className="container h-full">
             <div className="projects-header">
-              <h2 className="section-title">Projects</h2>
+              <h2 className="section-title">{t('projects.title')}</h2>
             </div>
 
             <div className="projects-split-layout" id="projectsStack">
@@ -121,23 +123,23 @@ const Projects = () => {
                         onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-coral)'}
                         onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}
                       >
-                        Payment Gateway
+                        {t('projects.p1.title')}
                       </a>
                     </h3>
                     <p className="project-description" style={{ fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.5' }}>
-                      Engineered a robust payment gateway integration and containerized it via Docker. Resolved build configurations and implemented testing for high system reliability. Structured the codebase and authored documentation to streamline future scaling.
+                      {t('projects.p1.desc')}
                     </p>
                     
                     <div className="project-highlights" style={{ marginBottom: '1rem' }}>
-                      <h4 style={{ fontSize: '1rem', marginBottom: '0.4rem' }}>Key Highlights</h4>
+                      <h4 style={{ fontSize: '1rem', marginBottom: '0.4rem' }}>{t('projects.keyHighlights')}</h4>
                       <ul style={{ marginBottom: '0' }}>
-                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>Robust payment gateway integration</li>
-                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>Containerized deployment via Docker</li>
+                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>{t('projects.p1.h1')}</li>
+                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>{t('projects.p1.h2')}</li>
                       </ul>
                     </div>
 
                     <div className="project-skills">
-                      <h4 style={{ fontSize: '1rem', marginBottom: '0.6rem' }}>Tech Stack</h4>
+                      <h4 style={{ fontSize: '1rem', marginBottom: '0.6rem' }}>{t('projects.techStack')}</h4>
                       <div className="project-tags" style={{ gap: '0.5rem', marginBottom: '0.5rem' }}>
                         <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-docker-plain"></i> Docker</span>
                         <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-nodejs-plain"></i> Node.js</span>
@@ -161,23 +163,23 @@ const Projects = () => {
                         onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-coral)'}
                         onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}
                       >
-                        Multi-Tenant SaaS Platform
+                        {t('projects.p2.title')}
                       </a>
                     </h3>
                     <p className="project-description" style={{ fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.5' }}>
-                      Architected a scalable full-stack MERN SaaS platform with multi-tenant architecture. Designed RESTful APIs and optimized schemas for secure, role-based data isolation. Built a responsive UI and managed complex state for centralized data processing.
+                      {t('projects.p2.desc')}
                     </p>
                     
                     <div className="project-highlights" style={{ marginBottom: '1rem' }}>
-                      <h4 style={{ fontSize: '1rem', marginBottom: '0.4rem' }}>Key Highlights</h4>
+                      <h4 style={{ fontSize: '1rem', marginBottom: '0.4rem' }}>{t('projects.keyHighlights')}</h4>
                       <ul style={{ marginBottom: '0' }}>
-                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>Secure, role-based data isolation</li>
-                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>Complex state management for centralized processing</li>
+                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>{t('projects.p2.h1')}</li>
+                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>{t('projects.p2.h2')}</li>
                       </ul>
                     </div>
 
                     <div className="project-skills">
-                      <h4 style={{ fontSize: '1rem', marginBottom: '0.6rem' }}>Tech Stack</h4>
+                      <h4 style={{ fontSize: '1rem', marginBottom: '0.6rem' }}>{t('projects.techStack')}</h4>
                       <div className="project-tags" style={{ gap: '0.5rem', marginBottom: '0.5rem' }}>
                         <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-mongodb-plain"></i> MongoDB</span>
                         <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-express-original"></i> Express.js</span>
@@ -202,23 +204,23 @@ const Projects = () => {
                         onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-coral)'}
                         onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}
                       >
-                        ClassmateAI
+                        {t('projects.p3.title')}
                       </a>
                     </h3>
                     <p className="project-description" style={{ fontSize: '0.95rem', marginBottom: '1rem', lineHeight: '1.5' }}>
-                      Built ClassmateAI, adopted by 50+ peers for task and note management. Architected a Full-Stack Application featuring an AI chatbot powered by the Google Gemini API. Developed user-facing modules and implemented a clean, responsive UI.
+                      {t('projects.p3.desc')}
                     </p>
                     
                     <div className="project-highlights" style={{ marginBottom: '1rem' }}>
-                      <h4 style={{ fontSize: '1rem', marginBottom: '0.4rem' }}>Key Highlights</h4>
+                      <h4 style={{ fontSize: '1rem', marginBottom: '0.4rem' }}>{t('projects.keyHighlights')}</h4>
                       <ul style={{ marginBottom: '0' }}>
-                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>AI chatbot powered by Google Gemini API</li>
-                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>Multiple user-facing modules (notes, tasks, attendance)</li>
+                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>{t('projects.p3.h1')}</li>
+                        <li style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>{t('projects.p3.h2')}</li>
                       </ul>
                     </div>
 
                     <div className="project-skills">
-                      <h4 style={{ fontSize: '1rem', marginBottom: '0.6rem' }}>Tech Stack</h4>
+                      <h4 style={{ fontSize: '1rem', marginBottom: '0.6rem' }}>{t('projects.techStack')}</h4>
                       <div className="project-tags" style={{ gap: '0.5rem', marginBottom: '0.5rem' }}>
                         <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-fastapi-plain"></i> FastAPI</span>
                         <span className="tag" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}><i className="devicon-mongodb-plain"></i> MongoDB</span>
@@ -274,7 +276,7 @@ const Projects = () => {
       </section>
 
       <div className="projects-more-cta">
-        <a className="btn btn-outline" href="https://github.com/sivaganeshv1729" target="_blank" rel="noopener noreferrer">More Projects</a>
+        <a className="btn btn-outline" href="https://github.com/sivaganeshv1729" target="_blank" rel="noopener noreferrer">{t('projects.moreProjects')}</a>
       </div>
     </>
   );

@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
-
-const roles = ["Aspiring Developer", "Designer", "Problem Solver"];
+import { useTranslation } from 'react-i18next';
 
 const Hero = () => {
+  const { t } = useTranslation();
+  
+  // Create roles array inside component so it reacts to language changes
+  const roles = [
+    t('hero.roles.dev'),
+    t('hero.roles.designer'),
+    t('hero.roles.problemSolver')
+  ];
+
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [roleIndex, setRoleIndex] = useState(0);
@@ -46,16 +54,16 @@ const Hero = () => {
       <div className="container">
         <div className="hero-grid">
           <div className="hero-content">
-            <h1 className="hero-title">Hello<span className="accent">.</span></h1>
-            <p className="hero-subtitle">I&apos;m T Siva Ganesh Vemula</p>
+            <h1 className="hero-title">{t('hero.hello')}<span className="accent">.</span></h1>
+            <p className="hero-subtitle">{t('hero.subtitle')}</p>
             <h2 className="hero-role" aria-label={roles[roleIndex]}>
-              <span className="hero-role-sizer" aria-hidden="true">Aspiring Developer</span>
+              <span className="hero-role-sizer" aria-hidden="true">{t('hero.roles.dev')}</span>
               <span className="hero-role-text is-typing">{displayedText}</span>
             </h2>
             
             <div className="hero-buttons">
-              <a href="mailto:sivaganeshv1729@gmail.com" className="btn btn-primary" target="_blank" rel="noopener noreferrer">Contact Me</a>
-              <a href="https://drive.google.com/file/d/1Z2ZUkhXqSvGRlgMjDKAw019l5DH79g9C/view?usp=sharing" className="btn btn-outline" target="_blank" rel="noopener noreferrer">My Resume</a>
+              <a href="mailto:sivaganeshv1729@gmail.com" className="btn btn-primary" target="_blank" rel="noopener noreferrer">{t('hero.contactMe')}</a>
+              <a href="https://drive.google.com/file/d/1Z2ZUkhXqSvGRlgMjDKAw019l5DH79g9C/view?usp=sharing" className="btn btn-outline" target="_blank" rel="noopener noreferrer">{t('hero.resume')}</a>
             </div>
           </div>
           

@@ -1,12 +1,14 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Journey = () => {
+  const { t } = useTranslation();
   return (
     <section id="journey-section" className="journey-section">
       <div className="container">
         <div className="journey-header">
-          <p className="section-subtitle">MY EXPERIENCE</p>
-          <h2 className="journey-title-static">My Journey</h2>
+          <p className="section-subtitle">{t('journey.subtitle')}</p>
+          <h2 className="journey-title-static">{t('journey.title')}</h2>
         </div>
 
         <div className="journey-vertical-container">
@@ -16,52 +18,52 @@ const Journey = () => {
           {/* Node 1 */}
           <div className="journey-v-node">
             <div className="journey-v-left">
-              <div className="journey-org">Aditya University</div>
-              <div className="journey-year">Sept 2023 – Present</div>
+              <div className="journey-org">{t('journey.node1.org')}</div>
+              <div className="journey-year">{t('journey.node1.year')}</div>
             </div>
             <div className="node-pin-v"></div>
             <div className="journey-v-right">
-              <h3 className="journey-node-title">B.Tech - AI & Machine Learning</h3>
-              <p className="journey-node-desc">Pursuing a Bachelor of Technology with a focus on Artificial Intelligence and Machine Learning. (CGPA : 8.7)</p>
+              <h3 className="journey-node-title">{t('journey.node1.title')}</h3>
+              <p className="journey-node-desc">{t('journey.node1.desc')}</p>
             </div>
           </div>
 
           {/* Node 2 */}
           <div className="journey-v-node">
             <div className="journey-v-left">
-              <div className="journey-org">Rotaract Club of RRC AEC</div>
-              <div className="journey-year">June 2024 – Present</div>
+              <div className="journey-org">{t('journey.node2.org')}</div>
+              <div className="journey-year">{t('journey.node2.year')}</div>
             </div>
             <div className="node-pin-v"></div>
             <div className="journey-v-right">
-              <h3 className="journey-node-title">Chief Designer & Editor</h3>
-              <p className="journey-node-desc">Directed club branding and executed content strategies, driving community engagement through thoughtful design.</p>
+              <h3 className="journey-node-title">{t('journey.node2.title')}</h3>
+              <p className="journey-node-desc">{t('journey.node2.desc')}</p>
             </div>
           </div>
 
           {/* Node 3 */}
           <div className="journey-v-node">
             <div className="journey-v-left">
-              <div className="journey-org">Aditya University</div>
-              <div className="journey-year">May 2025 – June 2025</div>
+              <div className="journey-org">{t('journey.node3.org')}</div>
+              <div className="journey-year">{t('journey.node3.year')}</div>
             </div>
             <div className="node-pin-v"></div>
             <div className="journey-v-right">
-              <h3 className="journey-node-title">Web Development Intern</h3>
-              <p className="journey-node-desc">Contributed to a full-stack AI web application. Engineered key modules like a task manager and an AI chatbot to enhance user productivity and support.</p>
+              <h3 className="journey-node-title">{t('journey.node3.title')}</h3>
+              <p className="journey-node-desc">{t('journey.node3.desc')}</p>
             </div>
           </div>
 
           {/* Node 4 */}
           <div className="journey-v-node">
             <div className="journey-v-left">
-              <div className="journey-org">GDG on Campus</div>
-              <div className="journey-year">Sept 2025 – Present</div>
+              <div className="journey-org">{t('journey.node4.org')}</div>
+              <div className="journey-year">{t('journey.node4.year')}</div>
             </div>
             <div className="node-pin-v"></div>
             <div className="journey-v-right">
-              <h3 className="journey-node-title">AI Lead</h3>
-              <p className="journey-node-desc">Organized collaborative AI workshops and tech programs, facilitating real-world project development and peer mentorship.</p>
+              <h3 className="journey-node-title">{t('journey.node4.title')}</h3>
+              <p className="journey-node-desc">{t('journey.node4.desc')}</p>
             </div>
           </div>
           

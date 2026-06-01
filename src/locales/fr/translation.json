@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "journey": "Parcours",
+    "work": "Projets",
+    "skills": "Compétences",
+    "about": "À propos"
+  },
+  "hero": {
+    "hello": "Bonjour",
+    "subtitle": "Je suis T Siva Ganesh Vemula",
+    "roles": {
+      "dev": "Développeur en Devenir",
+      "designer": "Designer",
+      "problemSolver": "Solutionneur de Problèmes"
+    },
+    "contactMe": "Contactez-moi",
+    "resume": "Mon CV"
+  },
+  "journey": {
+    "subtitle": "MON EXPÉRIENCE",
+    "title": "Mon Parcours",
+    "node1": {
+      "org": "Université Aditya",
+      "year": "Sept 2023 – Présent",
+      "title": "B.Tech - IA & Apprentissage Automatique",
+      "desc": "Poursuite d'un Bachelor en Technologie avec spécialisation en Intelligence Artificielle et Apprentissage Automatique. (CGPA: 8.7)"
+    },
+    "node2": {
+      "org": "Club Rotaract de RRC AEC",
+      "year": "Juin 2024 – Présent",
+      "title": "Designer en Chef & Rédacteur",
+      "desc": "Direction de l'image de marque du club et exécution de stratégies de contenu, favorisant l'engagement de la communauté grâce à un design réfléchi."
+    },
+    "node3": {
+      "org": "Université Aditya",
+      "year": "Mai 2025 – Juin 2025",
+      "title": "Stagiaire en Développement Web",
+      "desc": "Contribution à une application web IA full-stack. Développement de modules clés comme un gestionnaire de tâches et un chatbot IA pour améliorer la productivité et le support utilisateur."
+    },
+    "node4": {
+      "org": "GDG sur le Campus",
+      "year": "Sept 2025 – Présent",
+      "title": "Responsable IA",
+      "desc": "Organisation d'ateliers IA collaboratifs et de programmes technologiques, facilitant le développement de projets concrets et le mentorat entre pairs."
+    }
+  },
+  "projects": {
+    "title": "Projets",
+    "keyHighlights": "Points Clés",
+    "techStack": "Technologies",
+    "moreProjects": "Plus de Projets",
+    "p1": {
+      "title": "Passerelle de Paiement",
+      "desc": "Conception d'une intégration robuste de passerelle de paiement et conteneurisation via Docker. Résolution des configurations de compilation et implémentation de tests pour une fiabilité accrue. Structuration du code et documentation pour faciliter l'évolution.",
+      "h1": "Intégration robuste de passerelle de paiement",
+      "h2": "Déploiement conteneurisé via Docker"
+    },
+    "p2": {
+      "title": "Plateforme SaaS Multi-locataires",
+      "desc": "Architecture d'une plateforme SaaS MERN full-stack avec architecture multi-locataires. Conception d'API RESTful et optimisation des schémas pour une isolation des données basée sur les rôles. Création d'une interface utilisateur réactive et gestion d'états complexes.",
+      "h1": "Isolation sécurisée des données basée sur les rôles",
+      "h2": "Gestion d'états complexes pour un traitement centralisé"
+    },
+    "p3": {
+      "title": "ClassmateAI",
+      "desc": "Création de ClassmateAI, adopté par plus de 50 étudiants pour la gestion de tâches et de notes. Architecture d'une application full-stack avec un chatbot IA propulsé par l'API Google Gemini. Développement de modules utilisateurs et interface réactive.",
+      "h1": "Chatbot IA propulsé par l'API Google Gemini",
+      "h2": "Multiples modules utilisateurs (notes, tâches, présences)"
+    }
+  },
+  "skills": {
+    "subtitle": "MES COMPÉTENCES",
+    "title": "La Magie Derrière",
+    "intro": "Une pile technologique axée sur des interfaces rapides, des systèmes évolutifs et une conception de produit réfléchie."
+  },
+  "about": {
+    "subtitle": "UN PEU PLUS SUR MOI",
+    "title": "Créer des expériences numériques avec un but",
+    "p1": "Je crois que le code est bien plus que de simples instructions pour une machine ; c'est un moyen de résoudre de vrais problèmes humains. Ma transition de la photographie à l'ingénierie logicielle n'a pas été un abandon de la créativité, mais son évolution.",
+    "p2": "En tant que développeur, j'attache une grande importance à l'expérience utilisateur. Je m'efforce de créer des interfaces vivantes et des systèmes qui s'adaptent avec élégance. Chaque pixel doit avoir un but, et chaque interaction doit raconter une histoire. Quand je ne code pas, j'analyse les tendances du design, j'accompagne mes pairs et je repousse les limites de ce qui est possible sur le web."
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "subtitle": "Vous avez un projet en tête ou souhaitez explorer une collaboration ? Laissez un message ci-dessous.",
+    "form": {
+      "name": "Nom",
+      "email": "Adresse E-mail",
+      "message": "Message",
+      "namePlaceholder": "Jean Dupont",
+      "emailPlaceholder": "jean@exemple.com",
+      "messagePlaceholder": "Parlez-moi de votre projet...",
+      "send": "Envoyer le Message",
+      "success": "✓ Lancement du client de messagerie... Cliquez sur envoyer pour confirmer !"
+    }
+  },
+  "footer": {
+    "brand": "Siva Ganesh",
+    "mantra": "Construire des expériences numériques qui comptent, une ligne de code à la fois. Créer des interfaces vivantes, résoudre des problèmes qui font la différence, et transformer des idées en réalité. Chaque pixel a un but. Chaque interaction raconte une histoire.",
+    "nav": "Navigation",
+    "connect": "Connexion",
+    "focus": "Focus",
+    "focusText": "Travail front-end axé sur le design, storytelling de produits et expériences de développement assistées par l'IA.",
+    "vanilla": "Voir la Version Originale",
+    "copyright": "© 2026 SIVA GANESH VEMULA. TOUS DROITS RÉSERVÉS."
+  }
+}

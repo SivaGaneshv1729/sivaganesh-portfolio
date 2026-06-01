@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "home": "Home",
+    "journey": "Journey",
+    "work": "Work",
+    "skills": "Skills",
+    "about": "About"
+  },
+  "hero": {
+    "hello": "Hello",
+    "subtitle": "I'm T Siva Ganesh Vemula",
+    "roles": {
+      "dev": "Aspiring Developer",
+      "designer": "Designer",
+      "problemSolver": "Problem Solver"
+    },
+    "contactMe": "Contact Me",
+    "resume": "My Resume"
+  },
+  "journey": {
+    "subtitle": "MY EXPERIENCE",
+    "title": "My Journey",
+    "node1": {
+      "org": "Aditya University",
+      "year": "Sept 2023 – Present",
+      "title": "B.Tech - AI & Machine Learning",
+      "desc": "Pursuing a Bachelor of Technology with a focus on Artificial Intelligence and Machine Learning. (CGPA : 8.7)"
+    },
+    "node2": {
+      "org": "Rotaract Club of RRC AEC",
+      "year": "June 2024 – Present",
+      "title": "Chief Designer & Editor",
+      "desc": "Directed club branding and executed content strategies, driving community engagement through thoughtful design."
+    },
+    "node3": {
+      "org": "Aditya University",
+      "year": "May 2025 – June 2025",
+      "title": "Web Development Intern",
+      "desc": "Contributed to a full-stack AI web application. Engineered key modules like a task manager and an AI chatbot to enhance user productivity and support."
+    },
+    "node4": {
+      "org": "GDG on Campus",
+      "year": "Sept 2025 – Present",
+      "title": "AI Lead",
+      "desc": "Organized collaborative AI workshops and tech programs, facilitating real-world project development and peer mentorship."
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "keyHighlights": "Key Highlights",
+    "techStack": "Tech Stack",
+    "moreProjects": "More Projects",
+    "p1": {
+      "title": "Payment Gateway",
+      "desc": "Engineered a robust payment gateway integration and containerized it via Docker. Resolved build configurations and implemented testing for high system reliability. Structured the codebase and authored documentation to streamline future scaling.",
+      "h1": "Robust payment gateway integration",
+      "h2": "Containerized deployment via Docker"
+    },
+    "p2": {
+      "title": "Multi-Tenant SaaS Platform",
+      "desc": "Architected a scalable full-stack MERN SaaS platform with multi-tenant architecture. Designed RESTful APIs and optimized schemas for secure, role-based data isolation. Built a responsive UI and managed complex state for centralized data processing.",
+      "h1": "Secure, role-based data isolation",
+      "h2": "Complex state management for centralized processing"
+    },
+    "p3": {
+      "title": "ClassmateAI",
+      "desc": "Built ClassmateAI, adopted by 50+ peers for task and note management. Architected a Full-Stack Application featuring an AI chatbot powered by the Google Gemini API. Developed user-facing modules and implemented a clean, responsive UI.",
+      "h1": "AI chatbot powered by Google Gemini API",
+      "h2": "Multiple user-facing modules (notes, tasks, attendance)"
+    }
+  },
+  "skills": {
+    "subtitle": "MY SKILLSET",
+    "title": "The Magic Behind",
+    "intro": "A focused stack built around fast interfaces, scalable systems, and thoughtful product design."
+  },
+  "about": {
+    "subtitle": "A BIT MORE ABOUT ME",
+    "title": "Crafting digital experiences with purpose",
+    "p1": "I believe that code is more than just instructions for a machine; it's a medium for solving real human problems. My transition from photography to software engineering wasn't a departure from creativity, but an evolution of it.",
+    "p2": "As a developer, I am deeply opinionated about user experience. I strive to build interfaces that feel alive and systems that scale elegantly. Every pixel should have a purpose, and every interaction should tell a story. When I'm not writing code, I'm analyzing design trends, mentoring peers, and pushing the boundaries of what's possible on the web."
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Have a project in mind or want to explore working together? Leave a message below.",
+    "form": {
+      "name": "Name",
+      "email": "Email Address",
+      "message": "Message",
+      "namePlaceholder": "John Doe",
+      "emailPlaceholder": "john@example.com",
+      "messagePlaceholder": "Tell me about your project...",
+      "send": "Send Message",
+      "success": "✓ Launching email client... Please click send to submit!"
+    }
+  },
+  "footer": {
+    "brand": "Siva Ganesh",
+    "mantra": "Building digital experiences that matter, one line of code at a time. Crafting interfaces that feel alive, solving problems that make a difference, and turning ideas into reality. Every pixel has a purpose. Every interaction tells a story.",
+    "nav": "Navigate",
+    "connect": "Connect",
+    "focus": "Focus",
+    "focusText": "Design-led front-end work, product storytelling, and AI-assisted developer experiences.",
+    "vanilla": "View Vanilla Version",
+    "copyright": "© 2026 SIVA GANESH VEMULA. ALL RIGHTS RESERVED."
+  }
+}

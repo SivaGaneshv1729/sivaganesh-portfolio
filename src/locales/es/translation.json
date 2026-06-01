@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "journey": "Trayectoria",
+    "work": "Proyectos",
+    "skills": "Habilidades",
+    "about": "Sobre Mí"
+  },
+  "hero": {
+    "hello": "Hola",
+    "subtitle": "Soy T Siva Ganesh Vemula",
+    "roles": {
+      "dev": "Desarrollador en Formación",
+      "designer": "Diseñador",
+      "problemSolver": "Solucionador de Problemas"
+    },
+    "contactMe": "Contáctame",
+    "resume": "Mi Currículum"
+  },
+  "journey": {
+    "subtitle": "MI EXPERIENCIA",
+    "title": "Mi Trayectoria",
+    "node1": {
+      "org": "Universidad Aditya",
+      "year": "Sept 2023 – Presente",
+      "title": "B.Tech - IA y Aprendizaje Automático",
+      "desc": "Cursando la Licenciatura en Tecnología con enfoque en Inteligencia Artificial y Aprendizaje Automático. (CGPA: 8.7)"
+    },
+    "node2": {
+      "org": "Rotaract Club de RRC AEC",
+      "year": "Junio 2024 – Presente",
+      "title": "Diseñador Jefe y Editor",
+      "desc": "Dirigí el branding del club y ejecuté estrategias de contenido, impulsando la participación comunitaria a través del diseño reflexivo."
+    },
+    "node3": {
+      "org": "Universidad Aditya",
+      "year": "Mayo 2025 – Junio 2025",
+      "title": "Pasante de Desarrollo Web",
+      "desc": "Contribuí a una aplicación web de IA full-stack. Desarrollé módulos clave como un gestor de tareas y un chatbot de IA para mejorar la productividad y el soporte al usuario."
+    },
+    "node4": {
+      "org": "GDG en el Campus",
+      "year": "Sept 2025 – Presente",
+      "title": "Líder de IA",
+      "desc": "Organicé talleres de IA colaborativos y programas tecnológicos, facilitando el desarrollo de proyectos del mundo real y la mentoría entre pares."
+    }
+  },
+  "projects": {
+    "title": "Proyectos",
+    "keyHighlights": "Puntos Clave",
+    "techStack": "Tecnologías",
+    "moreProjects": "Más Proyectos",
+    "p1": {
+      "title": "Pasarela de Pago",
+      "desc": "Diseñé una integración robusta de pasarela de pago y la conteneiricé mediante Docker. Resolví configuraciones de compilación e implementé pruebas para una alta fiabilidad del sistema. Estructuré el código y redacté documentación para agilizar futuras escalas.",
+      "h1": "Integración robusta de pasarela de pago",
+      "h2": "Despliegue conteneirizado mediante Docker"
+    },
+    "p2": {
+      "title": "Plataforma SaaS Multi-inquilino",
+      "desc": "Arquitecté una plataforma SaaS MERN full-stack escalable con arquitectura multi-inquilino. Diseñé APIs RESTful y optimicé esquemas para el aislamiento seguro de datos basado en roles. Construí una UI responsiva y gestioné estados complejos para el procesamiento centralizado de datos.",
+      "h1": "Aislamiento seguro de datos basado en roles",
+      "h2": "Gestión de estados complejos para procesamiento centralizado"
+    },
+    "p3": {
+      "title": "ClassmateAI",
+      "desc": "Desarrollé ClassmateAI, adoptado por más de 50 compañeros para la gestión de tareas y notas. Arquitecté una aplicación full-stack que incluye un chatbot de IA impulsado por la API de Google Gemini. Desarrollé módulos orientados al usuario e implementé una UI limpia y responsiva.",
+      "h1": "Chatbot de IA impulsado por la API de Google Gemini",
+      "h2": "Múltiples módulos orientados al usuario (notas, tareas, asistencia)"
+    }
+  },
+  "skills": {
+    "subtitle": "MIS HABILIDADES",
+    "title": "La Magia Detrás",
+    "intro": "Un stack enfocado en interfaces rápidas, sistemas escalables y diseño de productos reflexivo."
+  },
+  "about": {
+    "subtitle": "UN POCO MÁS SOBRE MÍ",
+    "title": "Creando experiencias digitales con propósito",
+    "p1": "Creo que el código es más que solo instrucciones para una máquina; es un medio para resolver problemas humanos reales. Mi transición de la fotografía a la ingeniería de software no fue un abandono de la creatividad, sino una evolución de la misma.",
+    "p2": "Como desarrollador, tengo convicciones profundas sobre la experiencia del usuario. Me esfuerzo por construir interfaces que se sientan vivas y sistemas que escalen elegantemente. Cada píxel debe tener un propósito y cada interacción debe contar una historia. Cuando no estoy escribiendo código, estoy analizando tendencias de diseño, asesorando a compañeros y empujando los límites de lo posible en la web."
+  },
+  "contact": {
+    "title": "Ponte en Contacto",
+    "subtitle": "¿Tienes un proyecto en mente o quieres explorar trabajar juntos? Deja un mensaje a continuación.",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo Electrónico",
+      "message": "Mensaje",
+      "namePlaceholder": "Juan Pérez",
+      "emailPlaceholder": "juan@ejemplo.com",
+      "messagePlaceholder": "Cuéntame sobre tu proyecto...",
+      "send": "Enviar Mensaje",
+      "success": "✓ Iniciando cliente de correo... ¡Haz clic en enviar para confirmar!"
+    }
+  },
+  "footer": {
+    "brand": "Siva Ganesh",
+    "mantra": "Construyendo experiencias digitales que importan, una línea de código a la vez. Creando interfaces que se sienten vivas, resolviendo problemas que marcan la diferencia y convirtiendo ideas en realidad. Cada píxel tiene un propósito. Cada interacción cuenta una historia.",
+    "nav": "Navegación",
+    "connect": "Conectar",
+    "focus": "Enfoque",
+    "focusText": "Trabajo front-end guiado por diseño, narrativa de productos y experiencias de desarrollador asistidas por IA.",
+    "vanilla": "Ver Versión Original",
+    "copyright": "© 2026 SIVA GANESH VEMULA. TODOS LOS DERECHOS RESERVADOS."
+  }
+}

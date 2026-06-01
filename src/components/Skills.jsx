@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const Marquee = () => {
   return (
@@ -29,13 +30,14 @@ export const Marquee = () => {
 };
 
 const Skills = () => {
+  const { t } = useTranslation();
   return (
     <section id="skills" className="skills-section">
       <div className="container">
         <div className="skills-header">
-          <p className="skills-subtitle">MY SKILLSET</p>
-          <h2 className="skills-title">The Magic Behind</h2>
-          <p className="skills-intro">A focused stack built around fast interfaces, scalable systems, and thoughtful product design.</p>
+          <p className="skills-subtitle">{t('skills.subtitle')}</p>
+          <h2 className="skills-title">{t('skills.title')}</h2>
+          <p className="skills-intro">{t('skills.intro')}</p>
         </div>
         
         <div className="skills-pill-grid skills-pill-grid-expanded">

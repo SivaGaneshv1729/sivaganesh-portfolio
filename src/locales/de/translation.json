@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "home": "Start",
+    "journey": "Werdegang",
+    "work": "Projekte",
+    "skills": "Fähigkeiten",
+    "about": "Über mich"
+  },
+  "hero": {
+    "hello": "Hallo",
+    "subtitle": "Ich bin T Siva Ganesh Vemula",
+    "roles": {
+      "dev": "Aufstrebender Entwickler",
+      "designer": "Designer",
+      "problemSolver": "Problemlöser"
+    },
+    "contactMe": "Kontakt",
+    "resume": "Mein Lebenslauf"
+  },
+  "journey": {
+    "subtitle": "MEINE ERFAHRUNG",
+    "title": "Mein Werdegang",
+    "node1": {
+      "org": "Aditya Universität",
+      "year": "Sept 2023 – Heute",
+      "title": "B.Tech - KI & Maschinelles Lernen",
+      "desc": "Absolvierung eines Bachelor of Technology mit Schwerpunkt Künstliche Intelligenz und Maschinelles Lernen. (CGPA: 8.7)"
+    },
+    "node2": {
+      "org": "Rotaract Club von RRC AEC",
+      "year": "Juni 2024 – Heute",
+      "title": "Chefdesigner & Redakteur",
+      "desc": "Leitete das Club-Branding und führte Content-Strategien durch, um das Community-Engagement durch durchdachtes Design zu fördern."
+    },
+    "node3": {
+      "org": "Aditya Universität",
+      "year": "Mai 2025 – Juni 2025",
+      "title": "Webentwicklung Praktikant",
+      "desc": "Mitwirkung an einer Full-Stack-KI-Webanwendung. Entwickelte wichtige Module wie einen Task-Manager und einen KI-Chatbot, um die Produktivität und den Support der Benutzer zu verbessern."
+    },
+    "node4": {
+      "org": "GDG auf dem Campus",
+      "year": "Sept 2025 – Heute",
+      "title": "KI-Leiter",
+      "desc": "Organisierte kollaborative KI-Workshops und Tech-Programme zur Förderung realer Projektentwicklungen und Peer-Mentoring."
+    }
+  },
+  "projects": {
+    "title": "Projekte",
+    "keyHighlights": "Wichtige Highlights",
+    "techStack": "Technologien",
+    "moreProjects": "Weitere Projekte",
+    "p1": {
+      "title": "Zahlungsgateway",
+      "desc": "Entwickelte eine robuste Zahlungsgateway-Integration und containerisierte diese über Docker. Behebung von Build-Konfigurationen und Implementierung von Tests für hohe Systemzuverlässigkeit.",
+      "h1": "Robuste Zahlungsgateway-Integration",
+      "h2": "Containerisiertes Deployment via Docker"
+    },
+    "p2": {
+      "title": "Multi-Tenant SaaS Plattform",
+      "desc": "Architektierte eine skalierbare Full-Stack-MERN-SaaS-Plattform mit Multi-Tenant-Architektur. Entwurf von RESTful APIs und optimierten Schemata für eine sichere, rollenbasierte Datenisolation.",
+      "h1": "Sichere, rollenbasierte Datenisolation",
+      "h2": "Komplexes Zustandsmanagement für zentralisierte Verarbeitung"
+    },
+    "p3": {
+      "title": "ClassmateAI",
+      "desc": "Aufbau von ClassmateAI, das von über 50 Kommilitonen für die Aufgaben- und Notizverwaltung übernommen wurde. Architektierte eine Full-Stack-Anwendung mit einem KI-Chatbot basierend auf der Google Gemini API.",
+      "h1": "KI-Chatbot, unterstützt durch die Google Gemini API",
+      "h2": "Mehrere benutzernahe Module (Notizen, Aufgaben, Anwesenheit)"
+    }
+  },
+  "skills": {
+    "subtitle": "MEINE FÄHIGKEITEN",
+    "title": "Die Magie dahinter",
+    "intro": "Ein fokussierter Stack rund um schnelle Schnittstellen, skalierbare Systeme und durchdachtes Produktdesign."
+  },
+  "about": {
+    "subtitle": "EIN BISSCHEN MEHR ÜBER MICH",
+    "title": "Digitale Erlebnisse mit Zweck erschaffen",
+    "p1": "Ich glaube, dass Code mehr als nur Anweisungen für eine Maschine ist; es ist ein Medium zur Lösung echter menschlicher Probleme. Mein Übergang von der Fotografie zur Softwareentwicklung war keine Abkehr von der Kreativität, sondern eine Weiterentwicklung.",
+    "p2": "Als Entwickler habe ich eine tiefgreifende Meinung zur Benutzererfahrung. Ich bemühe mich, Schnittstellen zu bauen, die sich lebendig anfühlen, und Systeme, die elegant skalieren. Jedes Pixel sollte einen Zweck haben. Wenn ich keinen Code schreibe, analysiere ich Designtrends."
+  },
+  "contact": {
+    "title": "Kontakt aufnehmen",
+    "subtitle": "Haben Sie ein Projekt im Kopf oder möchten Sie eine Zusammenarbeit erkunden? Hinterlassen Sie unten eine Nachricht.",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail-Adresse",
+      "message": "Nachricht",
+      "namePlaceholder": "Max Mustermann",
+      "emailPlaceholder": "max@beispiel.de",
+      "messagePlaceholder": "Erzählen Sie mir von Ihrem Projekt...",
+      "send": "Nachricht senden",
+      "success": "✓ E-Mail-Client wird gestartet... Bitte klicken Sie auf Senden, um zu übermitteln!"
+    }
+  },
+  "footer": {
+    "brand": "Siva Ganesh",
+    "mantra": "Digitale Erlebnisse bauen, die von Bedeutung sind, Zeile für Zeile. Schnittstellen erschaffen, die sich lebendig anfühlen, Ideen in die Realität umsetzen. Jedes Pixel hat einen Zweck.",
+    "nav": "Navigieren",
+    "connect": "Verbinden",
+    "focus": "Fokus",
+    "focusText": "Designorientierte Frontend-Arbeit, Produkt-Storytelling und KI-gestützte Entwicklererlebnisse.",
+    "vanilla": "Vanilla-Version ansehen",
+    "copyright": "© 2026 SIVA GANESH VEMULA. ALLE RECHTE VORBEHALTEN."
+  }
+}

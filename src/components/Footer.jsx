@@ -1,29 +1,31 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="footer" id="contacts">
       <div className="container">
         <div className="footer-shell">
           <div className="footer-brand">
-            <h2 className="footer-logo">Siva Ganesh</h2>
+            <h2 className="footer-logo">{t('footer.brand')}</h2>
             <p className="footer-mantra">
-              Building digital experiences that matter, one line of code at a time. Crafting interfaces that feel alive, solving problems that make a difference, and turning ideas into reality. Every pixel has a purpose. Every interaction tells a story.
+              {t('footer.mantra')}
             </p>
           </div>
           <div className="footer-links-wrap">
             <div className="footer-links-col">
-              <h4 className="footer-col-title">Navigate</h4>
+              <h4 className="footer-col-title">{t('footer.nav')}</h4>
               <ul className="footer-list">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#journey-section">Journey</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#more-about">About</a></li>
+                <li><a href="#home">{t('nav.home')}</a></li>
+                <li><a href="#journey-section">{t('nav.journey')}</a></li>
+                <li><a href="#projects">{t('nav.work')}</a></li>
+                <li><a href="#skills">{t('nav.skills')}</a></li>
+                <li><a href="#more-about">{t('nav.about')}</a></li>
               </ul>
             </div>
             <div className="footer-links-col">
-              <h4 className="footer-col-title">Connect</h4>
+              <h4 className="footer-col-title">{t('footer.connect')}</h4>
               <ul className="footer-list">
                 <li><a href="mailto:sivaganeshv1729@gmail.com">Email</a></li>
                 <li><a href="https://www.linkedin.com/in/siva-ganesh-vemula/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
@@ -31,17 +33,17 @@ const Footer = () => {
               </ul>
             </div>
             <div className="footer-links-col">
-              <h4 className="footer-col-title">Focus</h4>
-              <p className="footer-focus-text">Design-led front-end work, product storytelling, and AI-assisted developer experiences.</p>
+              <h4 className="footer-col-title">{t('footer.focus')}</h4>
+              <p className="footer-focus-text">{t('footer.focusText')}</p>
               <div style={{ marginTop: '1rem' }}>
-                <a href="/legacy-v1/index.html" target="_blank" rel="noopener noreferrer" style={{ color: '#f57059', textDecoration: 'none', fontSize: '0.85rem', fontWeight: 'bold' }}>View Vanilla Version</a>
+                <a href="/legacy-v1/index.html" target="_blank" rel="noopener noreferrer" style={{ color: '#f57059', textDecoration: 'none', fontSize: '0.85rem', fontWeight: 'bold' }}>{t('footer.vanilla')}</a>
               </div>
             </div>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p className="footer-copyright">© 2026 SIVA GANESH VEMULA. ALL RIGHTS RESERVED.</p>
+          <p className="footer-copyright">{t('footer.copyright')}</p>
           <div className="footer-socials">
             <a href="https://github.com/SivaGaneshv1729" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i className="devicon-github-original"></i></a>
             <a href="https://www.linkedin.com/in/siva-ganesh-vemula/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i className="devicon-linkedin-plain"></i></a>

@@ -1,14 +1,42 @@
 import React, { useState } from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    const recipient = "sivaganeshv1729@gmail.com";
+    const subject = encodeURIComponent(`Portfolio Message from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\r\n` +
+      `Email: ${formData.email}\r\n\r\n` +
+      `Message:\r\n${formData.message}`
+    );
+    
+    // Construct the mailto URL
+    const mailtoUrl = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    
+    // Create a temporary link element and click it programmatically.
+    // This is significantly more reliable across various browsers (Chrome, Safari, Edge)
+    // and prevents page navigation conflicts.
+    const tempLink = document.createElement('a');
+    tempLink.href = mailtoUrl;
+    tempLink.target = '_blank';
+    tempLink.style.display = 'none';
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    document.body.removeChild(tempLink);
+
+    // Show success feedback state
     setIsSubmitted(true);
+    
+    // Clear inputs after triggering the client
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({ name: '', email: '', message: '' });
@@ -20,9 +48,9 @@ const Contact = () => {
       <div className="container">
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
-          <h2 className="contact-title" style={{ fontSize: '3rem', marginBottom: '0.75rem', color: '#fff', fontWeight: '700', letterSpacing: '-0.5px' }}>Get In Touch</h2>
+          <h2 className="contact-title" style={{ fontSize: '3rem', marginBottom: '0.75rem', color: '#fff', fontWeight: '700', letterSpacing: '-0.5px' }}>{t('contact.title')}</h2>
           <p className="contact-subtitle" style={{ fontSize: '1.1rem', maxWidth: '540px', margin: '0 auto', color: 'var(--text-muted)' }}>
-            Have a project in mind or want to explore working together? Leave a message below.
+            {t('contact.subtitle')}
           </p>
         </div>
         
@@ -84,7 +112,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2rem', margin: 0 }}>
               {isSubmitted && (
                 <div style={{ padding: '0.85rem', background: 'rgba(39, 201, 63, 0.12)', borderLeft: '3px solid #27c93f', color: '#27c93f', fontSize: '0.95rem', fontWeight: '600', animation: 'fadeIn 0.3s ease' }}>
-                  ✓ Message sent successfully! I will be in touch shortly.
+                  {t('contact.form.success')}
                 </div>
               )}
 
@@ -102,7 +130,7 @@ const Contact = () => {
                     transition: 'color 0.3s ease'
                   }}
                 >
-                  Name
+                  {t('contact.form.name')}
                 </label>
                 <input 
                   type="text" 
@@ -112,7 +140,7 @@ const Contact = () => {
                   onFocus={() => setFocusedField('name')}
                   onBlur={() => setFocusedField(null)}
                   required 
-                  placeholder="John Doe" 
+                  placeholder={t('contact.form.namePlaceholder')}
                   style={{
                     width: '100%',
                     padding: '0.5rem 0',
@@ -144,7 +172,7 @@ const Contact = () => {
                     transition: 'color 0.3s ease'
                   }}
                 >
-                  Email Address
+                  {t('contact.form.email')}
                 </label>
                 <input 
                   type="email" 
@@ -154,7 +182,7 @@ const Contact = () => {
                   onFocus={() => setFocusedField('email')}
                   onBlur={() => setFocusedField(null)}
                   required 
-                  placeholder="john@example.com" 
+                  placeholder={t('contact.form.emailPlaceholder')} 
                   style={{
                     width: '100%',
                     padding: '0.5rem 0',
@@ -186,7 +214,7 @@ const Contact = () => {
                     transition: 'color 0.3s ease'
                   }}
                 >
-                  Message
+                  {t('contact.form.message')}
                 </label>
                 <textarea 
                   id="message" 
@@ -196,7 +224,7 @@ const Contact = () => {
                   onFocus={() => setFocusedField('message')}
                   onBlur={() => setFocusedField(null)}
                   required 
-                  placeholder="Tell me about your project..." 
+                  placeholder={t('contact.form.messagePlaceholder')}
                   style={{
                     width: '100%',
                     padding: '0.5rem 0',
@@ -228,7 +256,7 @@ const Contact = () => {
                     letterSpacing: '0.5px'
                   }}
                 >
-                  Send Message
+                  {t('contact.form.send')}
                 </button>
               </div>
             </form>

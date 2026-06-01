@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const carouselItems = [
   { src: "/images/sg1.jpg", alt: "Workspace and development setup" },
@@ -8,6 +9,7 @@ const carouselItems = [
 ];
 
 const About = () => {
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -34,14 +36,14 @@ const About = () => {
         <div className="more-about-grid">
           {/* Left: Text Content */}
           <div className="more-about-text">
-            <p className="section-subtitle">A BIT MORE ABOUT ME</p>
-            <h2 className="more-about-title">Crafting digital experiences with purpose</h2>
+            <p className="section-subtitle">{t('about.subtitle')}</p>
+            <h2 className="more-about-title">{t('about.title')}</h2>
             <div className="more-about-description">
               <p>
-                I believe that code is more than just instructions for a machine; it&apos;s a medium for solving real human problems. My transition from photography to software engineering wasn&apos;t a departure from creativity, but an evolution of it.
+                {t('about.p1')}
               </p>
               <p>
-                As a developer, I am deeply opinionated about user experience. I strive to build interfaces that feel alive and systems that scale elegantly. Every pixel should have a purpose, and every interaction should tell a story. When I&apos;m not writing code, I&apos;m analyzing design trends, mentoring peers, and pushing the boundaries of what&apos;s possible on the web.
+                {t('about.p2')}
               </p>
             </div>
           </div>
