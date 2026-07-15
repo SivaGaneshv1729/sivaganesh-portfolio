@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 
 const carouselItems = [
   { src: "/images/sg1.jpg", alt: "Workspace and development setup" },
@@ -35,7 +36,13 @@ const About = () => {
       <div className="container">
         <div className="more-about-grid">
           {/* Left: Text Content */}
-          <div className="more-about-text">
+          <motion.div 
+            className="more-about-text"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
             <p className="section-subtitle">{t('about.subtitle')}</p>
             <h2 className="more-about-title">{t('about.title')}</h2>
             <div className="more-about-description">
@@ -46,7 +53,7 @@ const About = () => {
                 {t('about.p2')}
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right: Visual Stage */}
           <div className="more-about-visual">

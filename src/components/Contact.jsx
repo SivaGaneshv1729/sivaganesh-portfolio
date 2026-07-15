@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -55,8 +56,12 @@ const Contact = () => {
         </div>
         
         {/* Split Layout Grid */}
-        <div 
+        <motion.div 
           className="contact-split-grid"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-100px" }}
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
@@ -261,7 +266,7 @@ const Contact = () => {
               </div>
             </form>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

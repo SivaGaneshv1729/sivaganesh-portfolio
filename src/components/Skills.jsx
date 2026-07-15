@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 
 export const Marquee = () => {
   return (
@@ -31,6 +32,21 @@ export const Marquee = () => {
 
 const Skills = () => {
   const { t } = useTranslation();
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1 }
+  };
+
   return (
     <section id="skills" className="skills-section">
       <div className="container">
@@ -40,21 +56,27 @@ const Skills = () => {
           <p className="skills-intro">{t('skills.intro')}</p>
         </div>
         
-        <div className="skills-pill-grid skills-pill-grid-expanded">
-          <div className="skill-pill"><i className="devicon-python-plain colored"></i> Python</div>
-          <div className="skill-pill"><i className="devicon-java-plain colored"></i> Java</div>
-          <div className="skill-pill"><i className="devicon-mysql-plain colored"></i> SQL</div>
-          <div className="skill-pill"><i className="devicon-javascript-plain colored"></i> JavaScript</div>
-          <div className="skill-pill"><i className="devicon-bootstrap-plain colored"></i> Bootstrap</div>
-          <div className="skill-pill"><i className="devicon-express-original"></i> Express.js</div>
-          <div className="skill-pill"><i className="devicon-fastapi-plain colored"></i> FastAPI</div>
-          <div className="skill-pill"><i className="devicon-mongodb-plain colored"></i> MongoDB</div>
-          <div className="skill-pill"><i className="devicon-git-plain colored"></i> Git</div>
-          <div className="skill-pill"><i className="devicon-github-original"></i> GitHub</div>
-          <div className="skill-pill"><i className="devicon-docker-plain colored"></i> Docker</div>
-          <div className="skill-pill"><i className="devicon-figma-plain colored"></i> Figma</div>
-          <div className="skill-pill"><i className="devicon-canva-original colored"></i> Canva</div>
-        </div>
+        <motion.div 
+          className="skills-pill-grid skills-pill-grid-expanded"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          <motion.div variants={itemVariants} className="skill-pill"><i className="devicon-python-plain colored"></i> Python</motion.div>
+          <motion.div variants={itemVariants} className="skill-pill"><i className="devicon-java-plain colored"></i> Java</motion.div>
+          <motion.div variants={itemVariants} className="skill-pill"><i className="devicon-mysql-plain colored"></i> SQL</motion.div>
+          <motion.div variants={itemVariants} className="skill-pill"><i className="devicon-javascript-plain colored"></i> JavaScript</motion.div>
+          <motion.div variants={itemVariants} className="skill-pill"><i className="devicon-bootstrap-plain colored"></i> Bootstrap</motion.div>
+          <motion.div variants={itemVariants} className="skill-pill"><i className="devicon-express-original"></i> Express.js</motion.div>
+          <motion.div variants={itemVariants} className="skill-pill"><i className="devicon-fastapi-plain colored"></i> FastAPI</motion.div>
+          <motion.div variants={itemVariants} className="skill-pill"><i className="devicon-mongodb-plain colored"></i> MongoDB</motion.div>
+          <motion.div variants={itemVariants} className="skill-pill"><i className="devicon-git-plain colored"></i> Git</motion.div>
+          <motion.div variants={itemVariants} className="skill-pill"><i className="devicon-github-original"></i> GitHub</motion.div>
+          <motion.div variants={itemVariants} className="skill-pill"><i className="devicon-docker-plain colored"></i> Docker</motion.div>
+          <motion.div variants={itemVariants} className="skill-pill"><i className="devicon-figma-plain colored"></i> Figma</motion.div>
+          <motion.div variants={itemVariants} className="skill-pill"><i className="devicon-canva-original colored"></i> Canva</motion.div>
+        </motion.div>
       </div>
     </section>
   );
